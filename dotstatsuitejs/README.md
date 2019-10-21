@@ -16,6 +16,8 @@ If you don't work on localhost, you need to change localhost by your domain name
     2. [Update Config](#update-config)
 3. [Overview](#overview)
 
+## Prerequiste
+
 ## Instalation
 ### Docker architecture
 ```

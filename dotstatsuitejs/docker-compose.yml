@@ -87,7 +87,9 @@ services:
     environment:
       CONFIG_URL: "${PROTOCOL}://${HOST}:${CONFIG_PORT}"
       SFS_URL: "${PROTOCOL}://${HOST}:${SFS_PORT}"
-      REDIS_HOST: redis
+      SITE_URL: "${PROTOCOL}://${HOST}:${SHARE_PORT}"
+      REDIS_HOST: ${HOST}
+      REDIS_PORT: ${REDIS_PORT}
 
   data-viewer:
     image: siscc/dotstatsuite-data-viewer:develop
@@ -107,8 +109,10 @@ services:
     environment:
       SERVER_HOST: ${HOST}
       CONFIG_URL: "${PROTOCOL}://${HOST}:${CONFIG_PORT}"
-      REDIS_HOST: redis
-      SOLR_HOST: solr
+      REDIS_HOST: ${HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      SOLR_HOST: ${HOST}
+      SOLR_PORT: ${SOLR_PORT}
     entrypoint:
       - sh
       - -c
