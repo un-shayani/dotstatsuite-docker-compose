@@ -143,6 +143,8 @@ will be
 
 ### .env
 
+if you are note in localhost change HOST in this file
+
 > **WARNING**: If you change port make sure to change also in the settings file and .env
 
 ### run docker-compose 
