@@ -189,13 +189,13 @@ yarn dist
 
 ## Overview
 
-solr: http://206.189.58.70:8983
-redis: http://206.189.58.70:6379  
-postgres: http://206.189.58.70:5432  
-keycloak: http://206.189.58.70:8080  
-config: http://206.189.58.70:5007  
-data-lifecycle-manager: http://206.189.58.70:7000  
-data-explorer: http://206.189.58.70:7001  
-data-viewer: http://206.189.58.70:7002  
-sdmx-faceted-search: http://206.189.58.70:3004  
-share: http://206.189.58.70:3005  
+solr: http://localhost:8983  
+redis: http://localhost:6379  
+postgres: http://localhost:5432  
+keycloak: http://localhost:8080  
+config: http://localhost:5007  
+data-lifecycle-manager: http://localhost:7000  
+data-explorer: http://localhost:7001  
+data-viewer: http://localhost:7002  
+sdmx-faceted-search: http://localhost:3004  
+share: http://localhost:3005  
