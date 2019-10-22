@@ -55,7 +55,7 @@ services:
   config: 
     container_name: config
     build:
-      context: ../../fcsa-dotstasuite/dotstatsuite-config
+      context: ./dotstatsuite-config
       dockerfile: Dockerfile.dev
     ports:
       - "${CONFIG_PORT}:80"
