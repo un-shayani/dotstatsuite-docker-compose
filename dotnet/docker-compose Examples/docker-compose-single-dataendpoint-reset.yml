@@ -9,8 +9,6 @@ services:
         container_name: nsiws-reset
         ports:
           - "${NSI_RESET_PORT}:80"
-        volumes:
-          - "./logs:/app/logs" 
         env_file:
          - ./localization.env
         environment:
@@ -41,6 +39,7 @@ services:
           - auth-service
           - dbup-struct-reset
         volumes:
+          - "./logs:/app/logs" 
           - wait-tool:/tool
         entrypoint: bash -c "/tool/wait4sql db '${STRUCT_DB_RESET_USER}' '${STRUCT_DB_RESET_PWD}' '${STRUCT_DB_RESET}' && ./entrypoint.sh" 
     
