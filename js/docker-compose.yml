@@ -100,7 +100,7 @@ services:
       CONFIG_URL: "${PROTOCOL}://${HOST}:${CONFIG_PORT}"
 
   sdmx-faceted-search:
-    image: siscc/dotstatsuite-sdmx-faceted-search:master
+    image: siscc/dotstatsuite-sdmx-faceted-search:6b8da458
     container_name: sdmx-faceted-search
     ports:
       - "${SFS_PORT}:80"
