@@ -61,7 +61,7 @@ services:
       - "${CONFIG_PORT}:80"
 
   data-lifecycle-manager:
-    image: siscc/dotstatsuite-data-lifecycle-manager:develop
+    image: siscc/dotstatsuite-data-lifecycle-manager:master
     container_name: data-lifecycle-manager-test
     ports:
       - "${DLM_PORT}:7002"
@@ -72,7 +72,7 @@ services:
       TRANSFER_SERVER_URL: "${PROTOCOL}://${HOST}:${TRANSFERT_PORT}/${TRANSFER_API_VERSION}"
 
   data-explorer:
-    image: siscc/dotstatsuite-data-explorer:develop
+    image: siscc/dotstatsuite-data-explorer:master
     container_name: data-explorer
     ports:
       - "${DE_PORT}:80"
@@ -92,7 +92,7 @@ services:
       REDIS_PORT: ${REDIS_PORT}
 
   data-viewer:
-    image: siscc/dotstatsuite-data-viewer:develop
+    image: siscc/dotstatsuite-data-viewer:master
     container_name: data-viewer
     ports:
       - "${VIEWER_PORT}:80"
@@ -100,7 +100,7 @@ services:
       CONFIG_URL: "${PROTOCOL}://${HOST}:${CONFIG_PORT}"
 
   sdmx-faceted-search:
-    image: siscc/dotstatsuite-sdmx-faceted-search:develop
+    image: siscc/dotstatsuite-sdmx-faceted-search:6b8da458
     container_name: sdmx-faceted-search
     ports:
       - "${SFS_PORT}:80"
