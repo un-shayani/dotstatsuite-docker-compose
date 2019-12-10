@@ -1,11 +1,11 @@
 # Dotstatsuite Js / Docker-compose
-All services, in this docker-compose, are made by javascript team.
-To get the all dotstatsuite, you need to add the docker-compose file from the .Net team.
+All services, in this docker-compose, are JavaScript made related.  
+In order to install all .Stat Suite servcies, add the docker-compose file .NET made related.
 
-If you don't work on localhost, you need to change localhost by your domain name or IP. (explain below)
+If you don't work on localhost, you need to change localhost by your domain name or IP. (explained below)
 
 # Table of Contents
-1. [Installation](#instalation)
+1. [Installation](#installation)
     1. [Docker architecture](#docker-architecture)
     2. [Config](#config)
     3. [.env](#.env)
@@ -16,7 +16,7 @@ If you don't work on localhost, you need to change localhost by your domain name
     2. [Update Config](#update-config)
 3. [Overview](#overview)
 
-## Instalation
+## Installation
 ### Docker architecture
 ```
 ├── dotstatsuite
@@ -25,7 +25,7 @@ If you don't work on localhost, you need to change localhost by your domain name
 │   ├── .env
 ```
 
-> **WARNING**: in docker-compose.yml develop image will be download
+> **WARNING**: in docker-compose.yml develop image will be downloaded.
 
 ### Config
 ```bash
@@ -34,11 +34,11 @@ yarn
 yarn dist
 ```
 
-Now choice your architecture mono-tenant or multi-tenants.
+From now on, you need to chose what type of architecture: mono-tenant or multi-tenants.
 
-#### Architecture mono-tenant
+#### Mono-tenant architecture
 
-In that architecture, you only need the default folder. You can delete the others tenants.
+In this architecture type, only the default folder is required. You can delete all of the others tenants.
 
 ```
 ├── config
@@ -64,7 +64,7 @@ In that architecture, you only need the default folder. You can delete the other
 │   │   │   │   │   ├── styles*
 │   ├── package.json
 ```
-#### Architecture multi-tenants
+#### Multi-tenants architecture
 ```
 ├── config
 │   ├── node_modules                       
@@ -106,15 +106,15 @@ In that architecture, you only need the default folder. You can delete the other
 
 #### Settings.json
 
-You need to add http://localhost:port/ in settings.json for your different applications
-e.g.
+You need to add `http://localhost:port/` in `settings.json` for your different applications.  
+e.g.:
 ```json
 "app": {
     "title": "OECD Data Explorer",
     "favicon": "/assets/siscc/data-explorer/images/favicon.ico"
   },
 ```
-will be
+is changed to
 ```json
 "app": {
   "title": "OECD Data Explorer",
@@ -124,7 +124,7 @@ will be
 
 **Data-lifecycle-manager** need your data-explorer URL!
 
-> **WARNING**: If you change port make sure to change also in the settings file and .env!
+> **WARNING**: If you change the port, make sure to also change it in the settings file and .env!
 ```json
 {
   "sdmx": {
@@ -141,13 +141,13 @@ will be
 
 ### .env
 
-if you are note in localhost change HOST in this file
+if you are not in localhost, then change HOST in this file.
 
-> **WARNING**: If you change port make sure to change also in the settings file and .env
+> **WARNING**: If you change the port, make sure to also change it in the settings file and .env!
 
 ### run docker-compose 
 
-For run all services and build your config forlder.
+To run all services and build your config forlder.
 ```
 docker-compose up --build
 ```
@@ -163,7 +163,7 @@ cd keycloak/bin/
 ```
 
 #### Keycloack configuration
-go http://localhost:8080
+go to http://localhost:8080  
 add a client in Clients for master realm
   - client_id: app
   - root_url: http://localhost:7000     (port of dlm)
@@ -183,7 +183,7 @@ yarn
 yarn dist
 ```
 
-> **WARNING**: after each change of config you need to run yarn dist
+> **WARNING**: after each change of config, you need to run yarn dist
 
 ## Overview
 
