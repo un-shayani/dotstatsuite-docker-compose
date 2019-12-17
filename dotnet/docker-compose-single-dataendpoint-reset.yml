@@ -8,9 +8,7 @@ services:
         image: siscc/dotstatsuite-core-sdmxri-nsi
         container_name: nsiws-reset
         ports:
-          - "${NSI_RESET_PORT}:80"
-        env_file:
-         - ./localization.env
+          - "${NSI_RESET_PORT}:80"        
         environment:
             auth__Enabled: ${AUTH_ENABLED}
             auth__authority: http://keycloak:8080/auth/realms/siscc
