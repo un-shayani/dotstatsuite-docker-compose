@@ -154,7 +154,7 @@ services:
           - dbup-common
           
     dbup-struct-reset:
-        image: siscc/dotstatsuite-dbup:c0cbc580
+        image: siscc/dotstatsuite-dbup
         container_name: dbup-struct-reset
         environment:
             EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${STRUCT_DB_RESET};User=sa;Password=${SA_PASSWORD}; --mappingStoreDb --loginName ${STRUCT_DB_RESET_USER} --loginPwd ${STRUCT_DB_RESET_PWD} --force --dropDb 
@@ -165,7 +165,7 @@ services:
         entrypoint: bash -c "/tool/wait4sql db sa ${SA_PASSWORD} && dotnet DotStat.DbUp.dll $$EXECUTION_PARAMETERS"
           
     dbup-data-reset:
-        image: siscc/dotstatsuite-dbup:c0cbc580
+        image: siscc/dotstatsuite-dbup
         container_name: dbup-data-reset
         environment:
             EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${DATA_DB_RESET};User=sa;Password=${SA_PASSWORD}; --dataDb --loginName ${DATA_DB_RESET_USER} --loginPwd ${DATA_DB_RESET_PWD} --force --dropDb 
@@ -176,7 +176,7 @@ services:
         entrypoint: bash -c "/tool/wait4sql db sa ${SA_PASSWORD} && dotnet DotStat.DbUp.dll $$EXECUTION_PARAMETERS"
         
     dbup-struct-stable:
-        image: siscc/dotstatsuite-dbup:c0cbc580
+        image: siscc/dotstatsuite-dbup
         container_name: dbup-struct-stable
         environment:
             EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${STRUCT_DB_STABLE};User=sa;Password=${SA_PASSWORD}; --mappingStoreDb --loginName ${STRUCT_DB_STABLE_USER} --loginPwd ${STRUCT_DB_STABLE_PWD} --force 
@@ -187,7 +187,7 @@ services:
         entrypoint: bash -c "/tool/wait4sql db sa ${SA_PASSWORD} && dotnet DotStat.DbUp.dll $$EXECUTION_PARAMETERS"
         
     dbup-data-stable:
-        image: siscc/dotstatsuite-dbup:c0cbc580
+        image: siscc/dotstatsuite-dbup
         container_name: dbup-data-stable
         environment:
             EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${DATA_DB_STABLE};User=sa;Password=${SA_PASSWORD}; --dataDb --loginName ${DATA_DB_STABLE_USER} --loginPwd ${DATA_DB_STABLE_PWD} --force 
@@ -198,7 +198,7 @@ services:
         entrypoint: bash -c "/tool/wait4sql db sa ${SA_PASSWORD} && dotnet DotStat.DbUp.dll $$EXECUTION_PARAMETERS"
           
     dbup-common:
-        image: siscc/dotstatsuite-dbup:c0cbc580
+        image: siscc/dotstatsuite-dbup
         container_name: dbup-common
         depends_on: 
           - db
