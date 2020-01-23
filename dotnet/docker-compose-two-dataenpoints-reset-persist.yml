@@ -15,6 +15,9 @@ services:
             auth__clientId: stat-suite
             auth__requireHttps: "false"
             auth__validateIssuer: "false"
+            auth__claimsMapping__email: email
+            auth__claimsMapping__groups: groups,
+            auth__claimsMapping__allowAnonymous: "true"
             SpacesInternal__0__Id: reset
             SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=db;Database=${STRUCT_DB_RESET};User=sa;Password=${SA_PASSWORD};
             SpacesInternal__0__DotStatSuiteCoreDataDbConnectionString: Server=db;Database=${DATA_DB_RESET};User=${DATA_DB_RESET_USER};Password=${DATA_DB_RESET_PWD};
@@ -53,7 +56,10 @@ services:
             auth__authority: http://keycloak:8080/auth/realms/siscc
             auth__clientId: stat-suite
             auth__requireHttps: "false"
-            auth__validateIssuer: "false"        
+            auth__validateIssuer: "false" 
+            auth__claimsMapping__email: email
+            auth__claimsMapping__groups: groups
+            auth__claimsMapping__allowAnonymous: "true"
             SpacesInternal__0__Id: stable
             SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=db;Database=${STRUCT_DB_STABLE};User=sa;Password=${SA_PASSWORD};
             SpacesInternal__0__DotStatSuiteCoreDataDbConnectionString: Server=db;Database=${DATA_DB_STABLE};User=${DATA_DB_STABLE_USER};Password=${DATA_DB_STABLE_PWD};
@@ -92,7 +98,7 @@ services:
             auth__scopes__0: openid
             auth__scopes__1: profile
             auth__scopes__2: email
-            auth__claimsMapping__email: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress
+            auth__claimsMapping__email: email
             auth__claimsMapping__groups: groups
             auth__requireHttps: "false"
             auth__validateIssuer: "false"
@@ -142,7 +148,7 @@ services:
             auth__scopes__0: openid
             auth__scopes__1: profile
             auth__scopes__2: email
-            auth__claimsMapping__email: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress
+            auth__claimsMapping__email: email
             auth__claimsMapping__groups: groups
             auth__requireHttps: "false"
             auth__validateIssuer: "false"
