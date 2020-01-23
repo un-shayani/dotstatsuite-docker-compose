@@ -103,7 +103,8 @@ services:
             SmtpEnableSsl: ${SMTP_SSL}
             SmtpUserName: ${SMTP_USER}
             SmtpUserPassword: ${SMTP_PASSWORD}
-            MailFrom: noreply@dlm.org
+            MailFrom: noreply@dlm.org,
+            MaxTextAttributeLength: 150
             DotStatSuiteCoreCommonDbConnectionString: Server=db;Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
             SpacesInternal__0__Id: reset
             SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=db;Database=${STRUCT_DB_RESET};User=sa;Password=${SA_PASSWORD};
