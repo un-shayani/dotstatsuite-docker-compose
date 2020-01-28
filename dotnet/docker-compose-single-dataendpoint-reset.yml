@@ -121,7 +121,7 @@ services:
         entrypoint: bash -c "/tool/wait4sql db sa ${SA_PASSWORD} && dotnet DotStat.DbUp.dll $$EXECUTION_PARAMETERS"
           
     dbup-data-reset:
-        image: siscc/dotstatsuite-dbup
+        image: siscc/dotstatsuite-dbup:master
         container_name: dbup-data-reset
         environment:
             EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${DATA_DB_RESET};User=sa;Password=${SA_PASSWORD}; --dataDb --loginName ${DATA_DB_RESET_USER} --loginPwd ${DATA_DB_RESET_PWD} --force --dropDb 
