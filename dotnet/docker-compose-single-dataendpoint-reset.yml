@@ -19,6 +19,7 @@ services:
             auth__claimsMapping__groups: groups
             auth__claimsMapping__allowAnonymous: "true"
             SpacesInternal__0__Id: reset
+            DotStatSuiteCoreCommonDbConnectionString: Server=db;Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
             SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=db;Database=${STRUCT_DB_RESET};User=sa;Password=${SA_PASSWORD};
             SpacesInternal__0__DotStatSuiteCoreDataDbConnectionString: Server=db;Database=${DATA_DB_RESET};User=${DATA_DB_RESET_USER};Password=${DATA_DB_RESET_PWD};
             SpacesInternal__0__DataImportTimeOutInMinutes: 2
