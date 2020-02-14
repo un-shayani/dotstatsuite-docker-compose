@@ -20,7 +20,7 @@ services:
             auth__claimsMapping__allowAnonymous: "true"
             DotStatSuiteCoreCommonDbConnectionString: Server=db;Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
             SpacesInternal__0__Id: reset
-            SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=db;Database=${STRUCT_DB_RESET};User=sa;Password=${SA_PASSWORD};
+            SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=db;Database=${STRUCT_DB_RESET};User=${STRUCT_DB_RESET_USER};Password=${STRUCT_DB_RESET_PWD};            
             SpacesInternal__0__DotStatSuiteCoreDataDbConnectionString: Server=db;Database=${DATA_DB_RESET};User=${DATA_DB_RESET_USER};Password=${DATA_DB_RESET_PWD};
             SpacesInternal__0__DataImportTimeOutInMinutes: 2
             SpacesInternal__0__DatabaseCommandTimeoutInSec: 60
@@ -28,8 +28,8 @@ services:
             SpacesInternal__0__AutoLog2DBLogLevel: "Notice"
             SQL_SERVER: db
             SQL_DATABASE: ${STRUCT_DB_RESET}
-            SQL_USER: sa
-            SQL_PASSWORD: ${SA_PASSWORD}
+            SQL_USER: ${STRUCT_DB_RESET_USER}
+            SQL_PASSWORD: ${STRUCT_DB_RESET_PWD}
             SENDER_ID: "Reset - DotStat v8"
             DATASPACE_ID: reset            
             MA_DB_VERSION: 6.7
@@ -71,8 +71,8 @@ services:
             MaxTextAttributeLength: 150
             DotStatSuiteCoreCommonDbConnectionString: Server=db;Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
             SpacesInternal__0__Id: reset
-            SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=db;Database=${STRUCT_DB_RESET};User=sa;Password=${SA_PASSWORD};
-            SpacesInternal__0__DotStatSuiteCoreDataDbConnectionString: Server=db;Database=${DATA_DB_RESET};User=sa;Password=${SA_PASSWORD};
+            SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=db;Database=${STRUCT_DB_RESET};User=${STRUCT_DB_RESET_USER};Password=${STRUCT_DB_RESET_PWD};
+            SpacesInternal__0__DotStatSuiteCoreDataDbConnectionString: Server=db;Database=${DATA_DB_RESET};User=${DATA_DB_RESET_USER};Password=${DATA_DB_RESET_PWD};
             SpacesInternal__0__DataImportTimeOutInMinutes: 2
             SpacesInternal__0__DatabaseCommandTimeoutInSec: 60
             SpacesInternal__0__AutoLog2DB: "true"
