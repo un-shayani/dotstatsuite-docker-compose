@@ -73,8 +73,8 @@ services:
             SpacesInternal__0__Id: reset
             SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=db;Database=${STRUCT_DB_RESET};User=sa;Password=${SA_PASSWORD};
             SpacesInternal__0__DotStatSuiteCoreDataDbConnectionString: Server=db;Database=${DATA_DB_RESET};User=sa;Password=${SA_PASSWORD};
-            SpacesInternal__0__DataImportTimeOutInMinutes: 2
-            SpacesInternal__0__DatabaseCommandTimeoutInSec: 60
+            SpacesInternal__0__DataImportTimeOutInMinutes: 30
+            SpacesInternal__0__DatabaseCommandTimeoutInSec: 1800
             SpacesInternal__0__AutoLog2DB: "true"
             SpacesInternal__0__AutoLog2DBLogLevel: "notice"
             SpacesInternal__0__EmailLogLevel: "notice"
