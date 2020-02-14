@@ -50,8 +50,6 @@ services:
         container_name: nsiws-stable
         ports:
           - "${NSI_STABLE_PORT}:80"
-        env_file:
-         - ./localization.env
         environment:
             auth__Enabled: ${AUTH_ENABLED}
             auth__authority: http://keycloak:8080/auth/realms/siscc
