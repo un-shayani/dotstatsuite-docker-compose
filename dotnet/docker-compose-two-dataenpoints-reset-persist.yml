@@ -16,7 +16,7 @@ services:
             auth__requireHttps: "false"
             auth__validateIssuer: "false"
             auth__claimsMapping__email: email
-            auth__claimsMapping__groups: groups,
+            auth__claimsMapping__groups: groups
             auth__allowAnonymous: "true"
             DotStatSuiteCoreCommonDbConnectionString: Server=db;Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
             SpacesInternal__0__Id: reset
