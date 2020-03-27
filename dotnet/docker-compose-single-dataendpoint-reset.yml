@@ -38,6 +38,7 @@ services:
             MA_SQL_PASSWORD: ${SA_PASSWORD}
             #Reset
             MA_ALWAYS_RESET: Y        
+            INSERT_NEW_ITEM_SCHEME_VALUES: "false"
         depends_on: 
           - auth-service
           - dbup-struct-reset
