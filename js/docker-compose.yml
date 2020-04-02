@@ -67,7 +67,7 @@ services:
       - "${DLM_PORT}:7002"
     environment:
       DEFAULT_TENANT: ${DEFAULT_TENANT}
-      CONFIG_URL: "${PROTOCOL}://${HOST}:${CONFIG_PORT}"
+      CONFIG_URL: http://config
       AUTH_SERVER_URL: "${PROTOCOL}://${HOST}:${KEYCLOAK_PORT}"
       TRANSFER_SERVER_URL: "${PROTOCOL}://${HOST}:${TRANSFERT_PORT}/${TRANSFER_API_VERSION}"
 
@@ -77,7 +77,7 @@ services:
     ports:
       - "${DE_PORT}:80"
     environment:
-      CONFIG_URL: "${PROTOCOL}://${HOST}:${CONFIG_PORT}"
+      CONFIG_URL: http://config
       AUTH_SERVER_URL: "${PROTOCOL}://${HOST}:${KEYCLOAK_PORT}"
 
   share:
@@ -86,11 +86,11 @@ services:
     ports:
       - "${SHARE_PORT}:3007"
     environment:
-      CONFIG_URL: "${PROTOCOL}://${HOST}:${CONFIG_PORT}"
+      CONFIG_URL: http://config
       SFS_URL: "${PROTOCOL}://${HOST}:${SFS_PORT}"
       SITE_URL: "${PROTOCOL}://${HOST}:${SHARE_PORT}"
-      REDIS_HOST: ${HOST}
-      REDIS_PORT: ${REDIS_PORT}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
 
   data-viewer:
     image: siscc/dotstatsuite-data-viewer:master
@@ -98,10 +98,10 @@ services:
     ports:
       - "${VIEWER_PORT}:80"
     environment:
-      CONFIG_URL: "${PROTOCOL}://${HOST}:${CONFIG_PORT}"
+      CONFIG_URL:  http://config
 
   sdmx-faceted-search:
-    image: siscc/dotstatsuite-sdmx-faceted-search:6b8da458
+    image: siscc/dotstatsuite-sdmx-faceted-search:master
     container_name: sdmx-faceted-search
     ports:
       - "${SFS_PORT}:80"
@@ -109,11 +109,11 @@ services:
       - solr
     environment:
       SERVER_HOST: ${HOST}
-      CONFIG_URL: "${PROTOCOL}://${HOST}:${CONFIG_PORT}"
-      REDIS_HOST: ${HOST}
-      REDIS_PORT: ${REDIS_PORT}
-      SOLR_HOST: ${HOST}
-      SOLR_PORT: ${SOLR_PORT}
+      CONFIG_URL: http://config
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      SOLR_HOST: solr
+      SOLR_PORT: 8983
     entrypoint:
       - sh
       - -c
