@@ -1,3 +1,5 @@
+:warning: dev folder is only for dev purpose
+
 # Dotstatsuite Js / Docker-compose
 All services, in this docker-compose, are JavaScript made related.  
 In order to install all .Stat Suite servcies, add the docker-compose file .NET made related.
