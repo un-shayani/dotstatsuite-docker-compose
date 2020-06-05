@@ -76,7 +76,7 @@ services:
             SQL_PASSWORD: ${STRUCT_DB_STABLE_PWD}      
             SENDER_ID: "Stable - DotStat v8"
             DATASPACE_ID: stable            
-            MA_DB_VERSION: 6.7
+            MA_DB_VERSION: 6.9
             MA_SQL_USER: sa
             MA_SQL_PASSWORD: ${SA_PASSWORD}
             #Persist
