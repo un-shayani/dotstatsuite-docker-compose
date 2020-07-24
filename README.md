@@ -1027,6 +1027,39 @@ Remember to validate the json configuration files to make sure that the changes 
 
 Please find information on when and how to index data at the following link: https://sis-cc.gitlab.io/dotstatsuite-documentation/using-de/searching-data/indexing-data/#when-and-how-to-index
 
+#### How auto-clean you share service DB
+
+**You need to have cURL install on your machine**
+
+- create file (e.g. autoCleanShareService.sh)
+- add the following line in the autoCleanShareService.sh file, replace localhost, port and api-key if needed
+```bash
+curl -X DELETE http://localhost:3005/cleanup/start?api-key=secret
+```
+
+##### Windows
+
+- Open task Scheduler
+- Create a Task
+In Actions, you need to link your autoCleanShareService.sh file.
+  - add new action
+    - Browse your script autoCleanShareService.share
+    - OK
+you can configure name and triggers as you wish.
+
+###### Unix
+
+open your crontab editor, 
+```bash
+crontab -e
+```
+
+configure your scheduling task and add the path of your script  
+e.g. once a day  
+```bash
+* * */1 * * /root/path/to/autoCleanShareService.sh 
+```
+
 ### Summary of TCP ports 
 
 The TCP ports used by default installation of .Stat Suite v8 are as follows:
