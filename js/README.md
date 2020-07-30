@@ -147,6 +147,10 @@ if you are not in localhost, then change HOST in this file.
 
 > **WARNING**: If you change the port, make sure to also change it in the settings file and .env!
 
+#### analytics
+
+You can change GA_TOKEN in the .env by your google analytics token
+
 ### run docker-compose 
 
 To run all services and build your config forlder.
