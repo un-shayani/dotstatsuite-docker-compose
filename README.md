@@ -174,6 +174,8 @@ Installation of Docker Desktop WSL 2 backend: https://docs.docker.com/docker-for
 
 After installation please make sure that your Docker Desktop client uses Linux containers (this is the default setup): https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers
 
+It is also recommended to increase the size of memory that can be used by the Docker engine to at least a minimum of 8Gb, this can be done in the Docker settings panel.
+
 Install *Git for Windows* from the following link: https://gitforwindows.org/
 
 During installation when asked please choose MinTTY terminal emulator (default selection). Having this bash shell will let you run the unix shell scripts on your Windows environemnt to help your installation.
@@ -401,7 +403,7 @@ In *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/* folder there is a *.env* file conta
 ##### Setting host of Keycloak service
 
 You can leave most of the default values (not in production environments!) in case you are planning to use this .Stat Suite installation only from localhost.
-But if you'd like **to access** the .Stat Suite isntallation **from other machines, you have to update KEYCLOAK_HOST** value in the *.env* file to the hostname or ip address of your machine that runs the Keycloak service, e.g.:
+But if you'd like **to access** the .Stat Suite installation **from other machines, you have to update KEYCLOAK_HOST** value in the *.env* file to the hostname or ip address of your machine that runs the Keycloak service, e.g.:
 
 ```
 KEYCLOAK_HOST=dotstat-demo.myorganization.org
@@ -411,7 +413,7 @@ KEYCLOAK_HOST=dotstat-demo.myorganization.org
 
 The SMTP related parameters are used by the transfer service to send the execution report of import or transfer requests to users.
 The configuration of SMTP service is optional for development, testing or demoing purposes.
-If it is not enabled, the developer or system administrator can review the user's activity in the Transfer service's LOGS table in the database.
+If it is not enabled, the developer or system administrator can review the user's activity in the Transfer service's log files.
 
 In case you would like to have Transfer service to send mails with results of data import and transfer transaction, you can configure SMTP details in the *.env* file.
 By default the docker-compose examples are not configured to send emails.
@@ -672,6 +674,7 @@ HOST=dotstat-demo.myorganization.org
 > |HOST|Hostname or ip address of the machine hosting the docker services|localhost
 > |DEFAULT_TENANT|Id of the default tennant|default
 > |TRANSFER_API_VERSION|API version of Transfer service|1.2
+> |GA_TOKEN|Google Analytics token|''
 
 </details>
 

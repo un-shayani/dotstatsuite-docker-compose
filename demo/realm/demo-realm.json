@@ -505,7 +505,21 @@
     "authenticationFlowBindingOverrides" : { },
     "fullScopeAllowed" : true,
     "nodeReRegistrationTimeout" : -1,
-    "defaultClientScopes" : [ "role_list", "profile", "groups", "email" ],
+    "protocolMappers": [
+		{
+		  "id": "6d4e8871-3691-494d-ade6-f168dc8178c3",
+		  "name": "hardcoded-audience",
+		  "protocol": "openid-connect",
+		  "protocolMapper": "oidc-audience-mapper",
+		  "consentRequired": false,
+		  "config": {
+			"included.client.audience": "stat-suite",
+			"id.token.claim": "false",
+			"access.token.claim": "true"
+		  }
+		}
+	  ],
+    "defaultClientScopes" : [ "role_list", "profile", "groups", "email" ],	  
     "optionalClientScopes" : [ "address", "phone", "offline_access", "microprofile-jwt" ]
   } ],
   "clientScopes" : [ {
