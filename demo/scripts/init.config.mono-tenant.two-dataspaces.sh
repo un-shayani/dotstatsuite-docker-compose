@@ -19,25 +19,28 @@ rm -rf $CONFIG_DIR
 # Get config directory from dotstatsuite-config repository
 git clone https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-config.git $CONFIG_DIR -b master;
 
-# Remove tenant folders not needed (dev)
-rm -r $CONFIG_DIR/data/dev/configs/default/
-rm -r $CONFIG_DIR/data/dev/configs/oecd2/
-rm -r $CONFIG_DIR/data/dev/configs/test/
+# Remove tenant folders not needed (prod)
+rm -r $CONFIG_DIR/data/prod/configs/default/
 
-# Set oecd (tenant) folder to default 
-mv $CONFIG_DIR/data/dev/configs/oecd/ $CONFIG_DIR/data/dev/configs/default/
+# The following are optional to be deleted or may be kept for further reference
+rm -r $CONFIG_DIR/data/prod/configs/abs/
+rm -r $CONFIG_DIR/data/prod/configs/astat/
+rm -r $CONFIG_DIR/data/prod/configs/ins/
+rm -r $CONFIG_DIR/data/prod/configs/oecd/
+rm -r $CONFIG_DIR/data/prod/configs/statec/
+rm -r $CONFIG_DIR/data/prod/configs/statsnz/
 
-# Remove application folder not used
-rm -r $CONFIG_DIR/data/dev/configs/default/webapp/
+# Set the default tenant (using siscc)
+mv $CONFIG_DIR/data/prod/configs/siscc/ $CONFIG_DIR/data/prod/configs/default/
 
 # Copy sample configuration files
-\cp -f $SAMPLE_DIR/mono-tenant-two-dataspaces/datasources.json $CONFIG_DIR/data/dev/configs/datasources.json
-\cp -f $SAMPLE_DIR/mono-tenant-two-dataspaces/tenants.json $CONFIG_DIR/data/dev/configs/tenants.json
-\cp -f $SAMPLE_DIR/mono-tenant-two-dataspaces/default/data-explorer/settings.json $CONFIG_DIR/data/dev/configs/default/data-explorer/settings.json
-\cp -f $SAMPLE_DIR/mono-tenant-two-dataspaces/default/data-lifecycle-manager/settings.json $CONFIG_DIR/data/dev/configs/default/data-lifecycle-manager/settings.json
-\cp -f $SAMPLE_DIR/mono-tenant-two-dataspaces/default/data-viewer/settings.json $CONFIG_DIR/data/dev/configs/default/data-viewer/settings.json
+\cp -f $SAMPLE_DIR/mono-tenant-two-dataspaces/datasources.json $CONFIG_DIR/data/prod/configs/datasources.json
+\cp -f $SAMPLE_DIR/mono-tenant-two-dataspaces/tenants.json $CONFIG_DIR/data/prod/configs/tenants.json
+\cp -f $SAMPLE_DIR/mono-tenant-two-dataspaces/default/data-explorer/settings.json $CONFIG_DIR/data/prod/configs/default/data-explorer/settings.json
+\cp -f $SAMPLE_DIR/mono-tenant-two-dataspaces/default/data-lifecycle-manager/settings.json $CONFIG_DIR/data/prod/configs/default/data-lifecycle-manager/settings.json
+\cp -f $SAMPLE_DIR/mono-tenant-two-dataspaces/default/data-viewer/settings.json $CONFIG_DIR/data/prod/configs/default/data-viewer/settings.json
 
 #Replace server address in JS configuration files
-$SCRIPT_DIR/replace.server.address.sh $CONFIG_DIR/data/dev/configs/ $SERVER_ADDRESS localhost
+$SCRIPT_DIR/replace.server.address.sh $CONFIG_DIR/data/prod/configs/ $SERVER_ADDRESS localhost
 
 echo Mono tenant configuration is done.
