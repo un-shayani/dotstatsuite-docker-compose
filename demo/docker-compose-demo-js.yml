@@ -27,7 +27,7 @@ services:
       - dotstat_network
 
   config:
-    image: siscc/dotstatsuite-config-dev:master
+    image: siscc/dotstatsuite-config-prod:master
     container_name: config
     ports:
       - ${CONFIG_PORT}:80

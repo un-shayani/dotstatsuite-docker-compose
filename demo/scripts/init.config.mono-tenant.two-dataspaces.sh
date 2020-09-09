@@ -17,7 +17,7 @@ echo Sample directory: $SAMPLE_DIR
 rm -rf $CONFIG_DIR
 
 # Get config directory from dotstatsuite-config repository
-git clone https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-config.git $CONFIG_DIR;
+git clone https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-config.git $CONFIG_DIR -b master;
 
 # Remove tenant folders not needed (dev)
 rm -r $CONFIG_DIR/data/dev/configs/default/
