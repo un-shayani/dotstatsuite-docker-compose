@@ -16,6 +16,7 @@ The installation has been tested in the following host operating systems:
   - Ubuntu Server 18.04 LTS
 - Windows
   - MS Windows 10 Pro 1809
+  - MS Windows 10 Pro 1909
 
 The root folder of this git repository's local copy is referenced as **$DOTSTATSUITE-DOCKER-COMPOSE-ROOT** in this document.
 E.g. if you have cloned this repository to */c/git/dotstatsuite-docker-compose/* folder then any mention of *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT* means reference to that folder.
@@ -51,7 +52,7 @@ $ sudo ./start.sh
 
 When the script is executed without a parameter then it starts the services to run locally on your machine:
 - On Windows the following hostname is used: host.docker.internal (which referst to the machine running the docker engine)
-- On Linux one of the IP addresses of the is used (the first one returned by ifconfig)
+- On Linux one of the IP addresses is used (the first one returned by ifconfig)
 
 The actually used hostname/ip address highlighted in green is shown in the 2nd line of the log written by the script:
 
@@ -387,10 +388,10 @@ The *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/docker-compose-demo-dotnet.yml* dock
 > 
 > |Image name|Version|Description|Repository
 > |----------|-------|-----------|-------------
-> |[siscc/dotstatsuite-core-sdmxri-nsi](https://hub.docker.com/r/siscc/dotstatsuite-core-sdmxri-nsi)|latest|SDMX web service (for structure upload/download) plugged to .Stat DB based on ESTAT's NSI WS| https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-sdmxri-nsi-plugin
-> |[siscc/dotstatsuite-core-transfer](https://hub.docker.com/r/siscc/dotstatsuite-core-transfer)|latest|Transfer web service|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-transfer
-> |[siscc/dotstatsuite-core-auth-management](https://hub.docker.com/r/siscc/dotstatsuite-core-auth-management)|latest|Authorization Management web service|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-auth-management
-> |[siscc/dotstatsuite-dbup](https://hub.docker.com/r/siscc/dotstatsuite-dbup)|latest|Database initialization/upgrade tool|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-data-access
+> |[siscc/dotstatsuite-core-sdmxri-nsi](https://hub.docker.com/r/siscc/dotstatsuite-core-sdmxri-nsi)|master|SDMX web service (for structure upload/download) plugged to .Stat DB based on ESTAT's NSI WS| https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-sdmxri-nsi-plugin
+> |[siscc/dotstatsuite-core-transfer](https://hub.docker.com/r/siscc/dotstatsuite-core-transfer)|master|Transfer web service|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-transfer
+> |[siscc/dotstatsuite-core-auth-management](https://hub.docker.com/r/siscc/dotstatsuite-core-auth-management)|master|Authorization Management web service|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-auth-management
+> |[siscc/dotstatsuite-dbup](https://hub.docker.com/r/siscc/dotstatsuite-dbup)|master|Database initialization/upgrade tool|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-data-access
 > |[mcr.microsoft.com/mssql/server](https://hub.docker.com/_/microsoft-mssql-server)|2017-latest-ubuntu|Microsoft SQL Server for Linux|https://github.com/microsoft/mssql-docker
 > |[vigurous/wait4sql](https://hub.docker.com/r/vigurous/wait4sql)|latest|Database startup helper tool|-
 
@@ -627,10 +628,10 @@ The *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/docker-compose-demo-js.yml* docker-c
 > |----------|-------|-----------|------------------------
 > |[solr](https://hub.docker.com/_/solr)|7.7.2|[Apache Solr](https://lucene.apache.org/solr/)|https://github.com/docker-solr/docker-solr
 > |[redis](https://hub.docker.com/_/redis)|5.0.3|[Redis key-value store](https://en.wikipedia.org/wiki/Redis)|https://github.com/docker-library/redis
-> |[siscc/dotstatsuite-config-dev](https://hub.docker.com/r/siscc/dotstatsuite-config-dev)|latest|Configuration server|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-config
+> |[siscc/dotstatsuite-config-prod](https://hub.docker.com/r/siscc/dotstatsuite-config-dev)|master|Configuration server|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-config
 > |[siscc/dotstatsuite-data-lifecycle-manager](https://hub.docker.com/r/siscc/dotstatsuite-data-lifecycle-manager)|master|.Stat Data Lifecycle Manager (DLM)|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-data-lifecycle-manager
 > |[siscc/dotstatsuite-data-explorer](https://hub.docker.com/r/siscc/dotstatsuite-data-explorer)|master|.Stat Data Explorer (DE)|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-data-explorer
-> |[siscc/dotstatsuite-share](https://hub.docker.com/r/siscc/dotstatsuite-share)|latest|Share server|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-share
+> |[siscc/dotstatsuite-share](https://hub.docker.com/r/siscc/dotstatsuite-share)|master|Share server|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-share
 > |[siscc/dotstatsuite-data-viewer](https://hub.docker.com/r/siscc/dotstatsuite-data-viewer)|master|Data viewer server|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-data-viewer
 > |[siscc/dotstatsuite-sdmx-faceted-search](https://hub.docker.com/r/siscc/dotstatsuite-sdmx-faceted-search)|master|SDMX Faceted Search server|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-sdmx-faceted-search
 
@@ -701,15 +702,18 @@ Done.
 >
 > 1. The script clones the [config](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-config) git library *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/ directory.
 > 2. From the local copy of the config repository removes the following tenant folders:
-> - config/data/dev/configs/default/
-> - config/data/dev/configs/oecd2/
-> - config/data/dev/configs/test/
-> 3. Renames *oecd* tenant folder to *default*
-> 4. Removes webapp folder from *default* tenant folder
-> 5. Copies sample files configuration json files from *samples/mono-tenant-two-dataspaces/*
-> 6. Replaces default urls to localhost
+> - config/data/prod/configs/default/
+> - config/data/prod/configs/abs/
+> - config/data/prod/configs/astat/
+> - config/data/prod/configs/ins/
+> - config/data/prod/configs/oecd/
+> - config/data/prod/configs/statec/
+> - config/data/prod/configs/statsnz/
+> 3. Renames *siscc* tenant folder to *default*
+> 4. Copies sample files configuration json files from *samples/mono-tenant-two-dataspaces/*
+> 5. Replaces default urls to localhost
 > 
-> You will have the following directory and file structure in *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/data/dev/configs* folder:
+> You will have the following directory and file structure in *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/data/prod/configs* folder:
 > 
 > ```
 > ├── configs
@@ -738,7 +742,7 @@ To do that:
 - replace links pointing to localhost in *datasources.json* and applications' *settings.json* files. The simplest way to do that is to execute the following script from folder *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* (please replace **hostname_or_ip_address_of_your_server** with the actual hostname/ip address of your server):
 
 ```sh
-$ scripts/replace.server.address.sh config/data/dev/configs/ **hostname_or_ip_address_of_your_server** localhost
+$ scripts/replace.server.address.sh config/data/prod/configs/ **hostname_or_ip_address_of_your_server** localhost
 ```
 
 When the script executed normally you should see no error messages and the following at the end of the log:
@@ -753,7 +757,7 @@ Done. Files updated with the following host address: **hostname_or_ip_address_of
 > The script takes 3 command line parameters in general:
 > 
 > ```sh
-> $ scripts/replace.server.address.sh param1 param2 param3 config/data/dev/configs/ **hostname_or_ip_address_of_your_server** localhost
+> $ scripts/replace.server.address.sh param1 param2 param3
 > ```
 > 
 > The description of the parameters:
@@ -776,14 +780,14 @@ Done. Files updated with the following host address: **hostname_or_ip_address_of
 > Sample log of successfull execution:
 > 
 > ```
-> Working folder: config/data/dev/configs/
+> Working folder: config/data/prod/configs/
 > Replace host to: **hostname_or_ip_address_of_your_server**
 > Replace host from (not mandatory): localhost
 > Files detected:
-> config/data/dev/configs/default/data-lifecycle-manager/settings.json
-> config/data/dev/configs/default/data-explorer/settings.json
-> config/data/dev/configs/default/data-viewer/settings.json
-> config/data/dev/configs/datasources.json
+> config/data/prod/configs/default/data-lifecycle-manager/settings.json
+> config/data/prod/configs/default/data-explorer/settings.json
+> config/data/prod/configs/default/data-viewer/settings.json
+> config/data/prod/configs/datasources.json
 > Done. Files updated with the following host address: **hostname_or_ip_address_of_your_server**
 > ```
 
@@ -808,39 +812,39 @@ Please note that not always obvious to find what makes a json file invalid, e.g.
 Check validity of json configuration files with the following command from *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* folder:
 
 ```sh
-$ scripts/check.json.validity.sh config/data/dev/configs/
+$ scripts/check.json.validity.sh config/data/prod/configs/
 ```
 
 You should see one row for each file verified, either the "Valid JSON" message or the error description.
 <details>
 <summary>Further details ...</summary>
 
-> The script uses jsonlint-php tool to check all json files in the *config/data/dev/configs/* folder.
+> The script uses jsonlint-php tool to check all json files in the *config/data/prod/configs/* folder.
 > 
 > A sample result can be seen below where all files are valid:
 > 
 > ```
-> Valid JSON (config/data/dev/configs/datasources.json)
-> Valid JSON (config/data/dev/configs/tenants.json)
-> Valid JSON (config/data/dev/configs/default/data-lifecycle-manager/i18n/nl.json)
-> Valid JSON (config/data/dev/configs/default/data-lifecycle-manager/i18n/fr.json)
-> Valid JSON (config/data/dev/configs/default/data-lifecycle-manager/i18n/en.json)
-> Valid JSON (config/data/dev/configs/default/data-lifecycle-manager/i18n/ar.json)
-> Valid JSON (config/data/dev/configs/default/data-lifecycle-manager/settings.json)
-> Valid JSON (config/data/dev/configs/default/data-explorer/i18n/es.json)
-> Valid JSON (config/data/dev/configs/default/data-explorer/i18n/nl.json)
-> Valid JSON (config/data/dev/configs/default/data-explorer/i18n/fr.json)
-> Valid JSON (config/data/dev/configs/default/data-explorer/i18n/km.json)
-> Valid JSON (config/data/dev/configs/default/data-explorer/i18n/en.json)
-> Valid JSON (config/data/dev/configs/default/data-explorer/i18n/ar.json)
-> Valid JSON (config/data/dev/configs/default/data-explorer/i18n/it.json)
-> Valid JSON (config/data/dev/configs/default/data-explorer/settings.json)
-> Valid JSON (config/data/dev/configs/default/data-viewer/i18n/nl.json)
-> Valid JSON (config/data/dev/configs/default/data-viewer/i18n/fr.json)
-> Valid JSON (config/data/dev/configs/default/data-viewer/i18n/km.json)
-> Valid JSON (config/data/dev/configs/default/data-viewer/i18n/en.json)
-> Valid JSON (config/data/dev/configs/default/data-viewer/i18n/ar.json)
-> Valid JSON (config/data/dev/configs/default/data-viewer/settings.json)
+> Valid JSON (config/data/prod/configs/datasources.json)
+> Valid JSON (config/data/prod/configs/tenants.json)
+> Valid JSON (config/data/prod/configs/default/data-lifecycle-manager/i18n/nl.json)
+> Valid JSON (config/data/prod/configs/default/data-lifecycle-manager/i18n/fr.json)
+> Valid JSON (config/data/prod/configs/default/data-lifecycle-manager/i18n/en.json)
+> Valid JSON (config/data/prod/configs/default/data-lifecycle-manager/i18n/ar.json)
+> Valid JSON (config/data/prod/configs/default/data-lifecycle-manager/settings.json)
+> Valid JSON (config/data/prod/configs/default/data-explorer/i18n/es.json)
+> Valid JSON (config/data/prod/configs/default/data-explorer/i18n/nl.json)
+> Valid JSON (config/data/prod/configs/default/data-explorer/i18n/fr.json)
+> Valid JSON (config/data/prod/configs/default/data-explorer/i18n/km.json)
+> Valid JSON (config/data/prod/configs/default/data-explorer/i18n/en.json)
+> Valid JSON (config/data/prod/configs/default/data-explorer/i18n/ar.json)
+> Valid JSON (config/data/prod/configs/default/data-explorer/i18n/it.json)
+> Valid JSON (config/data/prod/configs/default/data-explorer/settings.json)
+> Valid JSON (config/data/prod/configs/default/data-viewer/i18n/nl.json)
+> Valid JSON (config/data/prod/configs/default/data-viewer/i18n/fr.json)
+> Valid JSON (config/data/prod/configs/default/data-viewer/i18n/km.json)
+> Valid JSON (config/data/prod/configs/default/data-viewer/i18n/en.json)
+> Valid JSON (config/data/prod/configs/default/data-viewer/i18n/ar.json)
+> Valid JSON (config/data/prod/configs/default/data-viewer/settings.json)
 > ```
 
 </details>
@@ -982,11 +986,11 @@ In case the IP address or the hostname you used previously in your .Stat Suite i
     ```
     HOST=new-dotstat-demo.myorganization.org
     ```
-- **datasources.json** and **settings.json files** within *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/data/dev/configs/* folder.
+- **datasources.json** and **settings.json files** within *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/data/prod/configs/* folder.
     The simplest way to do that is to execute the following script from folder *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* (please replace both **NEW_hostname_or_ip_address_of_your_server** and **OLD_hostname_or_ip_address_of_your_server** with the actual NEW and OLD hostnames/ip addresses of your server):
 
     ```sh
-    $ scripts/replace.server.address.sh config/data/dev/configs/ NEW_hostname_or_ip_address_of_your_server OLD_hostname_or_ip_address_of_your_server
+    $ scripts/replace.server.address.sh config/data/prod/configs/ NEW_hostname_or_ip_address_of_your_server OLD_hostname_or_ip_address_of_your_server
     ```
 	
     When the script executed normally you should see no error messages and the following at the end of the log:
@@ -996,7 +1000,7 @@ In case the IP address or the hostname you used previously in your .Stat Suite i
 	
     Example: To replace *old-dotstat-demo.myorganization.org* to *new-dotstat-demo.myorganization.org* in json configuration files execute the following:
     ```sh
-    $ scripts/replace.server.address.sh config/data/dev/configs/ new-dotstat-demo.myorganization.org old-dotstat-demo.myorganization.org
+    $ scripts/replace.server.address.sh config/data/prod/configs/ new-dotstat-demo.myorganization.org old-dotstat-demo.myorganization.org
     ```
 	
     Remember to validate the json configuration files to make sure that the changes made on the configuration files resulted valid json files, see details [here](#check-validity-of-json-configuration-files-optional-but-recommended)
@@ -1009,7 +1013,7 @@ Please see the following links for further information about configuration and c
 - [Data Explorer customization](https://sis-cc.gitlab.io/dotstatsuite-documentation/configurations/de-customisation/)
 - [Data Lifecycle Management configuration](https://sis-cc.gitlab.io/dotstatsuite-documentation/configurations/dlm-configuration/)
 
-In the default docker-compose installation the configuration files of DE and DLM components are located in *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/data/dev/configs/* folder:
+In the default docker-compose installation the configuration files of DE and DLM components are located in *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/data/prod/configs/* folder:
  
 ```
  ├── configs
