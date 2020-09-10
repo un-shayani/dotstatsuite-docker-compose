@@ -27,13 +27,13 @@ services:
       - dotstat_network
 
   config:
-    image: siscc/dotstatsuite-config-dev:master
+    image: siscc/dotstatsuite-config-prod:master
     container_name: config
     ports:
       - ${CONFIG_PORT}:80
     volumes:
-      - "./config/data/dev/assets:/opt/assets"
-      - "./config/data/dev/configs:/opt/configs"
+      - "./config/data/prod/assets:/opt/assets"
+      - "./config/data/prod/configs:/opt/configs"
     networks:
       - dotstat_network
 
