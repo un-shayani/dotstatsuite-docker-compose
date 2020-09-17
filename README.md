@@ -85,6 +85,12 @@ In this case please start the script with 'sudo' command as follows:
 $ sudo ./stop.sh
 ```
 
+## Architecture
+
+The following diagram shows the topology of the solution created by these scripts. To view diagrams for each component in more detail, see the [Architecture page](Architecture.md).
+
+![](images/OverallArchDiagram.png "Overall Architecture of Solution")
+
 ## Basic Docker customization options
 
 ### Initialization steps
