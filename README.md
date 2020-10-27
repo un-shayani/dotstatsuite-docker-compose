@@ -394,7 +394,7 @@ The *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/docker-compose-demo-dotnet.yml* dock
 > 
 > |Image name|Version|Description|Repository
 > |----------|-------|-----------|-------------
-> |[siscc/dotstatsuite-core-sdmxri-nsi](https://hub.docker.com/r/siscc/dotstatsuite-core-sdmxri-nsi)|master|SDMX web service (for structure upload/download) plugged to .Stat DB based on ESTAT's NSI WS| https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-sdmxri-nsi-plugin
+> |[siscc/sdmxri-nsi-maapi](https://hub.docker.com/r/siscc/sdmxri-nsi-maapi)|master|SDMX web service (for structure upload/download) plugged to .Stat DB based on ESTAT's NSI WS| https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-sdmxri-nsi-ws
 > |[siscc/dotstatsuite-core-transfer](https://hub.docker.com/r/siscc/dotstatsuite-core-transfer)|master|Transfer web service|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-transfer
 > |[siscc/dotstatsuite-core-auth-management](https://hub.docker.com/r/siscc/dotstatsuite-core-auth-management)|master|Authorization Management web service|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-auth-management
 > |[siscc/dotstatsuite-dbup](https://hub.docker.com/r/siscc/dotstatsuite-dbup)|master|Database initialization/upgrade tool|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-data-access
