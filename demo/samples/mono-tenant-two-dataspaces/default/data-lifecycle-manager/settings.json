@@ -70,8 +70,8 @@
     }
   },
   "assets": {
-    "logo": "http://localhost:5007/assets/siscc/data-lifecycle-manager/images/logo.png",
-    "icon": "http://localhost:5007/assets/siscc/data-lifecycle-manager/images/sis-cc-icon.png"
+    "logo": "/assets/siscc/data-lifecycle-manager/images/logo.png",
+    "icon": "/assets/siscc/data-lifecycle-manager/images/sis-cc-icon.png"
   },
-  "styles": "http://localhost:5007/assets/siscc/data-lifecycle-manager/styles/styles.css"
+  "styles": "/assets/siscc/data-lifecycle-manager/styles/styles.css"
 }

@@ -47,6 +47,8 @@ services:
       CONFIG_URL: http://config
       AUTH_SERVER_URL: "${PROTOCOL}://${HOST}:${KEYCLOAK_PORT}"
       TRANSFER_SERVER_URL: "${PROTOCOL}://${HOST}:${TRANSFER_PORT}/${TRANSFER_API_VERSION}"
+    volumes:
+      - "./config/data/prod/assets:/opt/build/assets"
     networks:
       - dotstat_network
 
@@ -58,7 +60,10 @@ services:
     environment:
       CONFIG_URL: http://config
       AUTH_SERVER_URL: "${PROTOCOL}://${HOST}:${KEYCLOAK_PORT}"
+      AUTH_PROVIDER: ${AUTH_PROVIDER}
       GA_TOKEN: ${GA_TOKEN}
+    volumes:
+      - "./config/data/prod/assets:/opt/build/assets"
     networks:
       - dotstat_network
 
@@ -84,6 +89,8 @@ services:
     environment:
       CONFIG_URL:  http://config
       GA_TOKEN: ${GA_TOKEN}
+    volumes:
+      - "./config/data/prod/assets:/opt/build/assets"
     networks:
       - dotstat_network
 

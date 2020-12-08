@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Demo Data viewer",
-    "favicon": "http://localhost:5007/assets/siscc/data-explorer/images/favicon.ico"
+    "favicon": "/assets/siscc/data-explorer/images/favicon.ico"
   },
   "ga": {},
   "share": {
@@ -26,7 +26,7 @@
       "decimals": ["DECIMALS"]
     }
   },
-  "styles": "http://localhost:5007/assets/siscc/data-explorer/styles/styles.css",
+  "styles": "/assets/siscc/data-explorer/styles/styles.css",
   "theme": {
     "table": {
       "yBg": "#B5CEEB",

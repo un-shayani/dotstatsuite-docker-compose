@@ -682,6 +682,7 @@ HOST=dotstat-demo.myorganization.org
 > |DEFAULT_TENANT|Id of the default tennant|default
 > |TRANSFER_API_VERSION|API version of Transfer service|1.2
 > |GA_TOKEN|Google Analytics token|''
+> |AUTH_PROVIDER|Name of your authentification service|''
 
 </details>
 
@@ -773,7 +774,6 @@ Done. Files updated with the following host address: **hostname_or_ip_address_of
 > 
 > The script looks for json configuration files and updates the following patterns:
 > - settings.json files:
->    - "http://**server_address**:5007/assets/siscc/
 >    - "http://**server_address**:3004/api"
 >    - "http://**server_address**:7002"
 >    - "http://**server_address**:3005/api/charts"
