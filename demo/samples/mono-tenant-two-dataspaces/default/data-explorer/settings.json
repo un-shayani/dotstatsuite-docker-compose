@@ -33,7 +33,7 @@
   },
   "viewer": {
     "owner": "SIS-CC",
-    "logo": "http://localhost:5007/assets/siscc/data-explorer/images/sis-cc-logo.png",
+    "logo": "/assets/siscc/data-explorer/images/sis-cc-logo.png",
     "terms": {
       "label": "Terms & Conditions (example)",
       "link": "http://www.oecd.org/termsandconditions/"
@@ -45,13 +45,13 @@
   },
   "app": {
     "title": "Demo Data Explorer",
-    "favicon": "http://localhost:5007/assets/siscc/data-explorer/images/favicon.ico"
+    "favicon": "/assets/siscc/data-explorer/images/favicon.ico"
   },
   "assets": {
-    "header": "http://localhost:5007/assets/siscc/data-explorer/images/sis-cc-logo.png",
-    "subheader": "http://localhost:5007/assets/siscc/data-explorer/images/dotstat-data-explorer-logo.png",
-    "footer": "http://localhost:5007/assets/siscc/data-explorer/images/sis-cc-icon.png",
-    "splash": "http://localhost:5007/assets/siscc/data-explorer/images/dotstat-data-explorer-logo.png"
+    "header": "/assets/siscc/data-explorer/images/sis-cc-logo.png",
+    "subheader": "/assets/siscc/data-explorer/images/dotstat-data-explorer-logo.png",
+    "footer": "/assets/siscc/data-explorer/images/sis-cc-icon.png",
+    "splash": "/assets/siscc/data-explorer/images/dotstat-data-explorer-logo.png"
   },
   "chart": {
     "url": "",
@@ -60,7 +60,7 @@
       "fra-poc": {
         "id": "fra-poc",
         "projection": "mercator",
-        "path": "http://localhost:5007/assets/siscc/data-explorer/maps/fra-poc.json",
+        "path": "/assets/siscc/data-explorer/maps/fra-poc.json",
         "levels": ["dep"],
         "scale": 2000
       }
@@ -142,7 +142,7 @@
     }
   },
   "ga": {},
-  "styles": "http://localhost:5007/assets/siscc/data-explorer/styles/styles.css",
+  "styles": "/assets/siscc/data-explorer/styles/styles.css",
   "search": {
     "endpoint": "http://localhost:3004/api",
     "homeFacetIds": ["Topic", "Thème", "datasourceId", "Frequency", "Institution de santé"],
