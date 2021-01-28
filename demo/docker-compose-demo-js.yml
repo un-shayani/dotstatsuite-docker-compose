@@ -78,6 +78,7 @@ services:
       SITE_URL: "${PROTOCOL}://${HOST}:${SHARE_PORT}"
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      REDIS_DB: ${SHARE_DB_INDEX}
     networks:
       - dotstat_network
 
@@ -105,9 +106,10 @@ services:
       SERVER_HOST: ${HOST}
       CONFIG_URL: http://config
       REDIS_HOST: redis
-      REDIS_PORT: 6379
+      REDIS_PORT: ${REDIS_PORT}
       SOLR_HOST: solr
-      SOLR_PORT: 8983
+      SOLR_PORT: ${SOLR_PORT}
+      REDIS_DB: ${SFS_DB_INDEX}
     entrypoint:
       - sh
       - -c

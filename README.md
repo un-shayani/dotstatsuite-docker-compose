@@ -683,8 +683,21 @@ HOST=dotstat-demo.myorganization.org
 > |TRANSFER_API_VERSION|API version of Transfer service|1.2
 > |GA_TOKEN|Google Analytics token|''
 > |AUTH_PROVIDER|Name of your authentification service|''
+> |SHARE_DB_INDEX|index of share db|'0'
+> |SFS_DB_INDEX|index of sfs db|'1'
 
 </details>
+
+##### Redis db configuration
+
+We are using two databases in redis, respectively for share data and search config.  
+Default indexes are provided by the default parameters `REDIS_DB` and can be overridden.
+
+**Warning:** the version ^7.0.0 of the dotstatsuite introduces the 2 databases.  
+Before this version only there was only one database and flushing search config data was causing the deletion of share data.  
+In order to keep existing share data, default indexes are set to keep existing share data:
+- 0 for share (keep the existing database)
+- 1 for search config (this new database will be automatically created and will require to reindex all dataflows)
 
 ##### Initialization of JavaScript services (monotenant with two dataspaces)
 
