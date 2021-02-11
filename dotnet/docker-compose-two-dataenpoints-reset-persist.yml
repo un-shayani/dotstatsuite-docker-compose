@@ -18,7 +18,6 @@ services:
             auth__validateIssuer: "false"
             auth__showPii: "false"
             # Authorization configuration
-            authorization__enabled: ${AUTH_ENABLED}
             mappingStore__Id__Default: "reset" #Dataspace id
             DotStatSuiteCoreCommonDbConnectionString: Server=db;Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
             # Database configuration
@@ -57,7 +56,6 @@ services:
             auth__validateIssuer: "false"
             auth__showPii: "false"
             # Authorization configuration
-            authorization__enabled: ${AUTH_ENABLED}
             mappingStore__Id__Default: "stable" #Dataspace id
             DotStatSuiteCoreCommonDbConnectionString: Server=db;Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
             # Database configuration

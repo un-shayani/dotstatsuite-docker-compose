@@ -19,7 +19,6 @@ services:
             auth__validateIssuer: "false"
             auth__showPii: "true"
             # Authorization configuration
-            authorization__enabled: ${AUTH_ENABLED}
             mappingStore__Id__Default: "demo-design" #Dataspace id
             DotStatSuiteCoreCommonDbConnectionString: Server=${COMMON_DB_SERVER};Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
             # Database configuration
@@ -60,7 +59,6 @@ services:
             auth__validateIssuer: "false"
             auth__showPii: "true"
             # Authorization configuration
-            authorization__enabled: ${AUTH_ENABLED}
             mappingStore__Id__Default: "demo-release" #Dataspace id
             DotStatSuiteCoreCommonDbConnectionString: Server=${COMMON_DB_SERVER};Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
             # Database configuration
