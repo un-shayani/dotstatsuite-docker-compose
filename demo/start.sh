@@ -10,7 +10,7 @@ CURRENT_OS=$(uname -s)
 echo "OS detected: $CURRENT_OS"
 
 if [ -z "$HOST" ]; then 
-   #If HOST paramter is not provided, use the default hostname/adderss:
+   #If HOST parameter is not provided, use the default hostname/address:
 
    if [ "$CURRENT_OS" == "Darwin" ]; then
       # Max OS X - not tested!!!
