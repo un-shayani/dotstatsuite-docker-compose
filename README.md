@@ -685,7 +685,11 @@ HOST=dotstat-demo.myorganization.org
 > |AUTH_PROVIDER|Name of your authentification service|''
 > |SHARE_DB_INDEX|index of share db|'0'
 > |SFS_DB_INDEX|index of sfs db|'1'
-
+> |SMTP_HOST|SMTP server hostname or IP address|smtp.gmail.com
+> |SMTP_PORT|SMTP server port|587
+> |SMTP_TLS|if true the connection will use TLS|false
+> |SMTP_USER|SMTP server username|*empty*
+> |SMTP_PASSWORD|SMTP server password|*empty*
 </details>
 
 ##### Redis db configuration
@@ -714,6 +718,13 @@ At the end of execution you should see the following message:
 Done. Files updated with the following host address: localhost
 Done.
 ```
+
+##### Setting parameters of SMTP service
+
+Javascript services are using the SMTP parameters as well.
+
+see config links below:
+  - [share service](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-share#config)
 
 <details>
 <summary>Further details on what the script does</summary>
