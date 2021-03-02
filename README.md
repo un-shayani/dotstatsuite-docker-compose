@@ -721,9 +721,9 @@ Done.
 
 ##### Setting parameters of SMTP service
 
-Javascript services are using the SMTP parameters as well.
+Javascript services are using the [SMTP parameters](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-docker-compose#setting-parameters-of-smtp-service) as well.
 
-see config links below:
+You can find more explaination by services, links below:
   - [share service](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-share#config)
 
 <details>
