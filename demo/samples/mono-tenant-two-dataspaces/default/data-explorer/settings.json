@@ -21,7 +21,7 @@
     },
     "period": {
       "boundaries": ["1970", "2025"],
-      "default": ["2015", "2020"]
+      "default": ["2015", "2021"]
     },
     "valueIcons": {
       "Topics": {
@@ -32,10 +32,7 @@
     "frequency": "A"
   },
   "viewer": {
-    "owner": "SIS-CC",
-    "logo": "/assets/siscc/data-explorer/images/sis-cc-logo.png",
     "terms": {
-      "label": "Terms & Conditions (example)",
       "link": "http://www.oecd.org/termsandconditions/"
     },
     "api": {
@@ -44,8 +41,10 @@
     }
   },
   "app": {
-    "title": "Demo Data Explorer",
-    "favicon": "/assets/siscc/data-explorer/images/favicon.ico"
+    "favicon": "/assets/siscc/data-explorer/images/favicon.ico",
+    "footer": {
+      "link": "https://siscc.org/"
+    }
   },
   "assets": {
     "header": "/assets/siscc/data-explorer/images/sis-cc-logo.png",
