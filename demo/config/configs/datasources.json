@@ -1,0 +1,26 @@
+{
+  "demo-release": {
+    "label": "demo-release",
+    "url": "http://nsiws-demo-release/rest",
+    "hasRangeHeader": true,
+    "supportsReferencePartial": true,
+    "hasLastNObservations": false,
+    "indexed": true,
+    "queries": [
+      { "version": "1.0", "categorySchemeId": "TOPICS", "agencyId": "CH1"},
+      { "version": "3.0", "categorySchemeId": "LU1_CS", "agencyId": "LU1"}
+    ]
+  },
+  "demo-design": {
+    "label": "demo-design",
+    "url": "http://nsiws-demo-design/rest",
+    "hasRangeHeader": true,
+    "supportsReferencePartial": true,
+    "hasLastNObservations": true,
+    "indexed": true,
+    "queries": [
+      { "version": "1.0", "categorySchemeId": "TOPICS", "agencyId": "CH1"},
+      { "version": "3.0", "categorySchemeId": "LU1_CS", "agencyId": "LU1"}
+    ]
+  }
+}
