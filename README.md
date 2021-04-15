@@ -618,12 +618,15 @@ Now you are authenticated and should be able to execute the the methods exposed 
 The *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/docker-compose-demo-js.yml* docker-compose file contains definition of JavaScript based services as well as Solr and Redis servers:
 - DLM - .Stat Data Lifecycle Manager
 - DE - .Stat Data Explorer
-- Configuration server
+- Configuration server (not exposed)
 - Share server
 - Data viewer server
 - SDMX faceted search server
 - Apache Solr server
 - Redis server
+
+
+**Config service is not exposed**
 
 #### List of docker containers used in *docker-compose-demo-js.yml*
 
@@ -667,7 +670,6 @@ HOST=dotstat-demo.myorganization.org
 > 
 > | Variable | Description |Default value
 > |----------|-------------|-------------
-> |CONFIG_PORT|Port of configuration service|5007
 > |DLM_PORT|Port of Data Lifecycle Management service|7000
 > |DE_PORT|Port of DataExplorer service|7001
 > |VIEWER_PORT|Port of Data Viewer service|7002
@@ -1063,6 +1065,13 @@ Remember to validate the json configuration files to make sure that the changes 
 
 Please find information on when and how to index data at the following link: https://sis-cc.gitlab.io/dotstatsuite-documentation/using-de/searching-data/indexing-data/#when-and-how-to-index
 
+By default data and structure uploaded by the data-lifecycle-manager are not accessible by anonymous users and only accessible data, without authentification can be indexed.
+
+you can find more details to add a rule to make your data accessible to anonymous user (not logged).
+https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-core-auth-management
+
+Swagger UI of Authorization Management service: http://localhost:94/swagger/index.html
+
 #### How auto-clean you share service DB
 
 **You need to have cURL install on your machine**
@@ -1106,7 +1115,6 @@ The TCP ports used by default installation of .Stat Suite v8 are as follows:
 |DataExplorer service|7001
 |Data Viewer service|7002
 |Keycloak service|8080
-|Configuration service|5007
 |Share service|3005
 |Search service|3004
 |SolR service|8983

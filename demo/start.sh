@@ -28,9 +28,6 @@ COLOR='\033[1;32m'
 NOCOLOR='\033[0m' # No Color
 echo -e "The following host address is being applied on configuration files: $COLOR $HOST $NOCOLOR"
 
-# Remove existing configuration directory (of JavaScript services)
-rm -rf config
-
 # Re-initialize js configuration
 scripts/init.config.mono-tenant.two-dataspaces.sh $HOST
 
