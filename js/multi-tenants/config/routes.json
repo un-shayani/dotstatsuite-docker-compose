@@ -1,0 +1,10 @@
+[
+  { "host": "data-explorer-oecd.localhost", "target": "http://data-explorer", "tenant": "oecd" },
+  { "host": "data-explorer-siscc.localhost", "target": "http://data-explorer", "tenant": "siscc" },
+  { "host": "data-lifecycle-manager-oecd.localhost", "target": "http://data-lifecycle-manager", "tenant": "oecd" },
+  { "host": "data-lifecycle-manager-siscc.localhost", "target": "http://data-lifecycle-manager", "tenant": "siscc" },
+  { "host": "data-viewer-oecd.localhost", "target": "http://data-viewer", "tenant": "oecd" },
+  { "host": "data-viewer-siscc.localhost", "target": "http://data-viewer", "tenant": "siscc" },
+  { "host": "sdmx-faceted-search.localhost", "target": "http://sdmx-faceted-search" },
+  { "host": "share.localhost", "target": "http://share" }
+]
