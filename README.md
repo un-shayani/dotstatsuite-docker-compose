@@ -464,7 +464,7 @@ Further details on setting up a Gmail account for SMTP service can be found here
 > |COMMON_DB_PWD|Password for common database|testLogin(!)Password
 > |COMMON_DB_SERVER|Name of the database server of common database|db (default name of MS SQL instance running in container)
 > |SMTP_HOST|SMTP server hostname or IP address|smtp.gmail.com
-> |SMTP_PORT|SMTP server port|587
+> |SMTP_PORT|SMTP server port|587 (this port is using TLS default )
 > |SMTP_SSL|SMTP server uses SSL|true
 > |SMTP_USER|SMTP server username|*empty*
 > |SMTP_PASSWORD|SMTP server password|*empty*

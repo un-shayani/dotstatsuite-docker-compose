@@ -77,11 +77,11 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_DB: ${SHARE_DB_INDEX}
-      SMTP_HOST: ${SMTP_HOST}
-      SMTP_PORT: ${SMTP_PORT}
-      SMTP_TLS: ${SMTP_TLS}
-      SMTP_USER: ${SMTP_USER}
-      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_host: ${SMTP_HOST}
+      SMTP_port: ${SMTP_PORT}
+      SMTP_secure: ${SMTP_TLS}
+      SMTP_auth_user: ${SMTP_USER}
+      SMTP_auth_pass: ${SMTP_PASSWORD}
     networks:
       - dotstat_network
 
