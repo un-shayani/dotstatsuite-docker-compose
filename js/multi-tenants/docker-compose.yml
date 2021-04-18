@@ -11,18 +11,26 @@ services:
     - bash
     - "-c"
     - "precreate-core sdmx-facet-search; exec solr -f"
-    ports:
-      - "${SOLR_PORT}:8983"
     networks:
       - dotstat_network
   
   redis:
     image: redis:5.0.3
     container_name: redis
-    ports:
-      - "${REDIS_PORT}:6379"
     volumes:
       - redis-data:/data
+    networks:
+      - dotstat_network
+
+  proxy:
+    image: siscc/dotstatsuite-kube-proxy:master
+    container_name: proxy
+    environment:
+      CONFIG_URL: http://config
+    ports:
+      - "80:80"
+    volumes:
+      - "./config/routes.json:/opt/data/routes.json"
     networks:
       - dotstat_network
 
@@ -39,70 +47,49 @@ services:
   data-lifecycle-manager:
     image: siscc/dotstatsuite-data-lifecycle-manager:master
     container_name: data-lifecycle-manager
-    ports:
-      - "${DLM_PORT}:7002"
     environment:
+      SERVER_PORT: 80
       DEFAULT_TENANT: ${DEFAULT_TENANT}
       CONFIG_URL: http://config
       AUTH_SERVER_URL: "${PROTOCOL}://${KEYCLOAK_HOST}:${KEYCLOAK_PORT}"
       TRANSFER_SERVER_URL: "${PROTOCOL}://${HOST}:${TRANSFER_PORT}/${TRANSFER_API_VERSION}"
-    volumes:
-      - "./config/assets:/opt/build/assets"
     networks:
       - dotstat_network
 
   data-explorer:
     image: siscc/dotstatsuite-data-explorer:master
     container_name: data-explorer
-    ports:
-      - "${DE_PORT}:80"
     environment:
       CONFIG_URL: http://config
-      AUTH_SERVER_URL: "${PROTOCOL}://${KEYCLOAK_HOST}:${KEYCLOAK_PORT}"
+      AUTH_SERVER_URL: "${PROTOCOL}://${HOST}:${KEYCLOAK_PORT}"
       AUTH_PROVIDER: ${AUTH_PROVIDER}
-      GA_TOKEN: ${GA_TOKEN}
-    volumes:
-      - "./config/assets:/opt/build/assets"
     networks:
       - dotstat_network
 
   share:
     image: siscc/dotstatsuite-share:master
     container_name: share
-    ports:
-      - "${SHARE_PORT}:3007"
     environment:
       CONFIG_URL: http://config
-      SITE_URL: "${PROTOCOL}://${HOST}:${SHARE_PORT}"
+      SITE_URL: http://share.localhost
       REDIS_HOST: redis
-      REDIS_PORT: 6379
+      REDIS_PORT: ${REDIS_PORT}
       REDIS_DB: ${SHARE_DB_INDEX}
-      SMTP_HOST: ${SMTP_HOST}
-      SMTP_PORT: ${SMTP_PORT}
-      SMTP_TLS: ${SMTP_TLS}
-      SMTP_USER: ${SMTP_USER}
-      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      PORT: 80
     networks:
       - dotstat_network
 
   data-viewer:
     image: siscc/dotstatsuite-data-viewer:master
     container_name: data-viewer
-    ports:
-      - "${VIEWER_PORT}:80"
     environment:
-      CONFIG_URL:  http://config
-      GA_TOKEN: ${GA_TOKEN}
-    volumes:
-      - "./config/assets:/opt/build/assets"
+      CONFIG_URL: http://config
     networks:
       - dotstat_network
 
   sdmx-faceted-search:
     image: siscc/dotstatsuite-sdmx-faceted-search:master
     container_name: sdmx-faceted-search
-    ports:
-      - "${SFS_PORT}:80"
     depends_on:
       - solr
     environment:
@@ -119,8 +106,6 @@ services:
       - "sleep 45s; yarn dist:run"
     networks:
       - dotstat_network
-
-
 
 networks:
   dotstat_network:

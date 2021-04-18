@@ -18,11 +18,8 @@ if [ -z "$HOST" ]; then
    elif [ "$(expr substr $CURRENT_OS 1 5)" == "Linux" ]; then
       # Linux - first ip address displayed by ifconfig
       HOST=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | head -1);
-   else 
-      # Windows with GitBash - host.docker.internal (set by Docker Desktop in hosts file)
-      #HOST=$(ipconfig | grep IPv4 | grep Address | sed -E 's/.*IPv4 Address(\. )*: (([0-9]*\.){3}[0-9]*).*/\2/p' | head -1);
-      #Docker Desktop adds 'host.docker.internal' entry to hosts file so for local access it can be used instead of first IP address
-      HOST=host.docker.internal
+   else
+      HOST=localhost
    fi
 fi
 
@@ -30,9 +27,6 @@ fi
 COLOR='\033[1;32m'
 NOCOLOR='\033[0m' # No Color
 echo -e "The following host address is being applied on configuration files: $COLOR $HOST $NOCOLOR"
-
-# Remove existing configuration directory (of JavaScript services)
-rm -rf config
 
 # Re-initialize js configuration
 scripts/init.config.mono-tenant.two-dataspaces.sh $HOST
