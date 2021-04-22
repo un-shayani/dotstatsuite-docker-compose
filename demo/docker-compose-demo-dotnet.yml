@@ -103,7 +103,7 @@ services:
             DefaultLanguageCode: en
             SmtpHost: ${SMTP_HOST}
             SmtpPort: ${SMTP_PORT}
-            SmtpEnableSsl: ${SMTP_SSL}
+            SmtpEnableSsl: ${SMTP_TLS}
             SmtpUserName: ${SMTP_USER}
             SmtpUserPassword: ${SMTP_PASSWORD}
             MailFrom: noreply@dlm.org

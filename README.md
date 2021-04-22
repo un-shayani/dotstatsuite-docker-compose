@@ -464,7 +464,7 @@ Further details on setting up a Gmail account for SMTP service can be found here
 > |COMMON_DB_PWD|Password for common database|testLogin(!)Password
 > |COMMON_DB_SERVER|Name of the database server of common database|db (default name of MS SQL instance running in container)
 > |SMTP_HOST|SMTP server hostname or IP address|smtp.gmail.com
-> |SMTP_PORT|SMTP server port|587
+> |SMTP_PORT|SMTP server port|587 (this port is using TLS default )
 > |SMTP_SSL|SMTP server uses SSL|true
 > |SMTP_USER|SMTP server username|*empty*
 > |SMTP_PASSWORD|SMTP server password|*empty*
@@ -687,7 +687,11 @@ HOST=dotstat-demo.myorganization.org
 > |AUTH_PROVIDER|Name of your authentification service|''
 > |SHARE_DB_INDEX|index of share db|'0'
 > |SFS_DB_INDEX|index of sfs db|'1'
-
+> |SMTP_HOST|SMTP server hostname or IP address|smtp.gmail.com
+> |SMTP_PORT|SMTP server port|587
+> |SMTP_TLS|if true the connection will use TLS|false
+> |SMTP_USER|SMTP server username|*empty*
+> |SMTP_PASSWORD|SMTP server password|*empty*
 </details>
 
 ##### Redis db configuration
@@ -716,6 +720,13 @@ At the end of execution you should see the following message:
 Done. Files updated with the following host address: localhost
 Done.
 ```
+
+##### Setting parameters of SMTP service
+
+Javascript services are using the [SMTP parameters](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-docker-compose#setting-parameters-of-smtp-service) as well.
+
+You can find more explaination by services, links below:
+  - [share service](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-share#config)
 
 <details>
 <summary>Further details on what the script does</summary>
