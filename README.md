@@ -692,6 +692,7 @@ HOST=dotstat-demo.myorganization.org
 > |SMTP_TLS|if true the connection will use TLS|false
 > |SMTP_USER|SMTP server username|*empty*
 > |SMTP_PASSWORD|SMTP server password|*empty*
+> |SHARE_MAIL_FROM|adress mail share service will use|*empty*
 </details>
 
 ##### Redis db configuration
