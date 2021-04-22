@@ -82,6 +82,7 @@ services:
       SMTP_secure: ${SMTP_TLS}
       SMTP_auth_user: ${SMTP_USER}
       SMTP_auth_pass: ${SMTP_PASSWORD}
+      MAIL_FROM: ${SHARE_MAIL_FROM}
     networks:
       - dotstat_network
 
