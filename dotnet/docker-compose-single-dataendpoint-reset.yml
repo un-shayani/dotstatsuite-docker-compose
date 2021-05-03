@@ -110,7 +110,7 @@ services:
         image: siscc/dotstatsuite-dbup
         container_name: dbup-struct-reset
         environment:
-            EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${STRUCT_DB_RESET};User=sa;Password=${SA_PASSWORD}; --mappingStoreDb --loginName ${STRUCT_DB_RESET_USER} --loginPwd ${STRUCT_DB_RESET_PWD} --force --dropDb
+            EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${STRUCT_DB_RESET};User=sa;Password=${SA_PASSWORD}; --mappingStoreDb --loginName ${STRUCT_DB_RESET_USER} --loginPwd ${STRUCT_DB_RESET_PWD} --force --dropDb --alterPassword
         depends_on:
           - db
         volumes:
@@ -121,7 +121,7 @@ services:
         image: siscc/dotstatsuite-dbup
         container_name: dbup-data-reset
         environment:
-            EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${DATA_DB_RESET};User=sa;Password=${SA_PASSWORD}; --dataDb --loginName ${DATA_DB_RESET_USER} --loginPwd ${DATA_DB_RESET_PWD} --force --dropDb
+            EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${DATA_DB_RESET};User=sa;Password=${SA_PASSWORD}; --dataDb --loginName ${DATA_DB_RESET_USER} --loginPwd ${DATA_DB_RESET_PWD} --force --dropDb --alterPassword
         depends_on:
           - db
         volumes:
@@ -132,7 +132,7 @@ services:
         image: siscc/dotstatsuite-dbup
         container_name: dbup-common
         environment:
-            EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${COMMON_DB};User=sa;Password=${SA_PASSWORD}; --commonDb --loginName ${COMMON_DB_USER} --loginPwd ${COMMON_DB_PWD} --force --dropDb
+            EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${COMMON_DB};User=sa;Password=${SA_PASSWORD}; --commonDb --loginName ${COMMON_DB_USER} --loginPwd ${COMMON_DB_PWD} --force --dropDb --alterPassword
         depends_on:
           - db
         volumes:
