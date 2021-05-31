@@ -1075,6 +1075,14 @@ Remember to validate the json configuration files to make sure that the changes 
 
 #### Indexing data 
 
+before indexing data, you have to **create a collection**
+
+Your tenant name should be `default` else you have to change name in the url below. You can copy past this url in your browser or using postman.
+```
+http://localhost:8983/solr/admin/collections?action=CREATE&name=default&numShards=1&collection.configName=_default
+```
+This url will create a collection in solr. You can see your collection [here](http://localhost:8983/solr/#/~collections)
+
 Please find information on when and how to index data at the following link: https://sis-cc.gitlab.io/dotstatsuite-documentation/using-de/searching-data/indexing-data/#when-and-how-to-index
 
 By default data and structure uploaded by the data-lifecycle-manager are not accessible by anonymous users and only accessible data, without authentification can be indexed.

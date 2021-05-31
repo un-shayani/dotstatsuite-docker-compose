@@ -4,7 +4,6 @@
 # Initialization #
 ##################
 HOST=$1
-
 #determine current OS
 CURRENT_OS=$(uname -s)
 echo "OS detected: $CURRENT_OS"
@@ -31,6 +30,9 @@ echo -e "The following host address is being applied on configuration files: $CO
 # Re-initialize js configuration
 scripts/init.config.mono-tenant.two-dataspaces.sh $HOST
 
+# Remove existing configuration directory (of JavaScript services)
+rm -rf config/i18n
+./scripts/download-latest-i18n.sh
 # Apply host value at KEYCLOAK_HOST variable in ENV file
 sed -Ei "s#^KEYCLOAK_HOST=.*#KEYCLOAK_HOST=$HOST#g" .env
 
