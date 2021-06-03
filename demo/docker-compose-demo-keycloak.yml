@@ -21,7 +21,7 @@ services:
         - dotstat_network
 
   keycloak:
-    image: siscc/dotstatsuite-keycloak:develop
+    image: siscc/dotstatsuite-keycloak:master
     container_name: keycloak
     depends_on:
         - postgres

@@ -4,6 +4,7 @@
 # Initialization #
 ##################
 HOST=$1
+DIR_CONFIG='./config'
 #determine current OS
 CURRENT_OS=$(uname -s)
 echo "OS detected: $CURRENT_OS"
@@ -25,14 +26,26 @@ fi
 # Display the hostname/ip address that will be applied on configuration files
 COLOR='\033[1;32m'
 NOCOLOR='\033[0m' # No Color
-echo -e "The following host address is being applied on configuration files: $COLOR $HOST $NOCOLOR"
+# Remove existing configuration directory (of JavaScript services)
+if [[ -d $DIR_CONFIG ]]; then
+   echo -e "Do you wish to erase the config folder (if yes, latest one will be downloaded with the host adress: $COLOR $HOST $NOCOLOR)? (Y/N)"
+   while true; do
+      read -p "" yn
+      case $yn in
+         [Yy]* ) ./scripts/download-config.sh; break;;
+         [Nn]* ) break;;
+         * ) echo "Please answer yes or no.";;
+      esac
+   done
+fi
+if [[ ! -d $DIR_CONFIG ]]; then
+   ./scripts/download-config.sh;
+fi
+
 
 # Re-initialize js configuration
 scripts/init.config.mono-tenant.two-dataspaces.sh $HOST
 
-# Remove existing configuration directory (of JavaScript services)
-rm -rf config/i18n
-./scripts/download-latest-i18n.sh
 # Apply host value at KEYCLOAK_HOST variable in ENV file
 sed -Ei "s#^KEYCLOAK_HOST=.*#KEYCLOAK_HOST=$HOST#g" .env
 
