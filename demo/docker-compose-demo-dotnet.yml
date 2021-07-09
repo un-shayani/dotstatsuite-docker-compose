@@ -26,6 +26,9 @@ services:
             SQL_DATABASE: ${STRUCT_DB_DESIGN}
             SQL_USER: ${STRUCT_DB_DESIGN_USER}
             SQL_PASSWORD: ${STRUCT_DB_DESIGN_PWD}
+            # Dissemination database configuration
+            disseminationDbConnection__dbType: SqlServer
+            disseminationDbConnection__connectionString: Server=${DATA_DB_DESIGN_SERVER};Database=${DATA_DB_DESIGN};User=${DATA_DB_DESIGN_USER};Password=${DATA_DB_DESIGN_PWD};
             # MAAPI.NET configuration
             MA_SQL_USER: ${DB_SA_USER}
             MA_SQL_PASSWORD: ${DB_SA_PASSWORD}
@@ -66,6 +69,9 @@ services:
             SQL_DATABASE: ${STRUCT_DB_RELEASE}
             SQL_USER: ${STRUCT_DB_RELEASE_USER}
             SQL_PASSWORD: ${STRUCT_DB_RELEASE_PWD}
+            # Dissemination database configuration
+            disseminationDbConnection__dbType: SqlServer
+            disseminationDbConnection__connectionString: Server=${DATA_DB_RELEASE_SERVER};Database=${DATA_DB_RELEASE};User=${DATA_DB_RELEASE_USER};Password=${DATA_DB_RELEASE_PWD};
             # MAAPI.NET configuration
             MA_SQL_USER: ${DB_SA_USER}
             MA_SQL_PASSWORD: ${DB_SA_PASSWORD}
