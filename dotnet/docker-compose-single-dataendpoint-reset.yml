@@ -25,6 +25,9 @@ services:
             SQL_DATABASE: ${STRUCT_DB_RESET}
             SQL_USER: ${STRUCT_DB_RESET_USER}
             SQL_PASSWORD: ${STRUCT_DB_RESET_PWD}
+            # Dissemination database configuration
+            disseminationDbConnection__dbType: SqlServer
+            disseminationDbConnection__connectionString: Server=db;Database=${DATA_DB_RESET};User=${DATA_DB_RESET_USER};Password=${DATA_DB_RESET_PWD};
             # MAAPI.NET configuration
             MA_SQL_USER: sa
             MA_SQL_PASSWORD: ${SA_PASSWORD}
