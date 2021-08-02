@@ -10,9 +10,9 @@ services:
     volumes:
         - postgres_data:/var/lib/postgresql/data
     environment:
-        POSTGRES_DB: ${KEYCLOAK_DB}
-        POSTGRES_USER: sa
-        POSTGRES_PASSWORD: ${SA_PASSWORD}
+        POSTGRES_DB: "${KEYCLOAK_DB}"
+        POSTGRES_USER: "sa"
+        POSTGRES_PASSWORD: "${SA_PASSWORD}"
   keycloak:    
     image: jboss/keycloak:7.0.0
     container_name: kc
@@ -23,12 +23,12 @@ services:
     volumes:
         - "./keycloak:/opt/jboss/import"     
     environment:
-        - DB_VENDOR=POSTGRES
-        - DB_SCHEMA=public
-        - KEYCLOAK_USER=${KEYCLOAK_USER}
-        - KEYCLOAK_PASSWORD=${KEYCLOAK_PWD}                       
-        - DB_USER=sa
-        - DB_PASSWORD=${SA_PASSWORD}
-        - DB_ADDR=postgres
-        - DB_DATABASE=${KEYCLOAK_DB}
-        - KEYCLOAK_IMPORT=import/siscc-realm.json
+          DB_VENDOR: "POSTGRES"
+          DB_SCHEMA: "public"
+          KEYCLOAK_USER: "${KEYCLOAK_USER}"
+          KEYCLOAK_PASSWORD: "${KEYCLOAK_PWD}                       "
+          DB_USER: "sa"
+          DB_PASSWORD: "${SA_PASSWORD}"
+          DB_ADDR: "postgres"
+          DB_DATABASE: "${KEYCLOAK_DB}"
+          KEYCLOAK_IMPORT: "import/siscc-realm.json"
