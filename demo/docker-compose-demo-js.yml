@@ -32,9 +32,7 @@ services:
       - dotstat_network
 
   config:
-    #image: siscc/dotstatsuite-config:master
-    # Temporary workaround:
-    image: siscc/dotstatsuite-config:v8.0.0
+    image: siscc/dotstatsuite-config:master
     container_name: config
     volumes:
       - "./config/assets:/opt/assets"
@@ -44,14 +42,12 @@ services:
       - dotstat_network
 
   data-lifecycle-manager:
-    #image: siscc/dotstatsuite-data-lifecycle-manager:master
-    # Temporary workaround:
-    image: siscc/dotstatsuite-data-lifecycle-manager:v8.0.0
+    image: siscc/dotstatsuite-data-lifecycle-manager:master
     container_name: data-lifecycle-manager
     ports:
       - "${DLM_PORT}:7002"
     environment:
-      DEFAULT_TENANT: ${DEFAULT_TENANT}
+      DEFAULT_TENANT: ${DEFAULT_TENANT_DLM}
       CONFIG_URL: http://config
       AUTH_SERVER_URL: "${PROTOCOL}://${KEYCLOAK_HOST}:${KEYCLOAK_PORT}"
       TRANSFER_SERVER_URL: "${PROTOCOL}://${HOST}:${TRANSFER_PORT}/${TRANSFER_API_VERSION}"
@@ -61,14 +57,13 @@ services:
       - dotstat_network
 
   data-explorer:
-    #image: siscc/dotstatsuite-data-explorer:master
-    # Temporary workaround:
-    image: siscc/dotstatsuite-data-explorer:v8.0.0
+    image: siscc/dotstatsuite-data-explorer:master
     container_name: data-explorer
     ports:
       - "${DE_PORT}:80"
     environment:
       CONFIG_URL: http://config
+      DEFAULT_TENANT: ${DEFAULT_TENANT_DE}
       AUTH_SERVER_URL: "${PROTOCOL}://${KEYCLOAK_HOST}:${KEYCLOAK_PORT}"
       AUTH_PROVIDER: ${AUTH_PROVIDER}
       GA_TOKEN: ${GA_TOKEN}
@@ -78,9 +73,7 @@ services:
       - dotstat_network
 
   share:
-    #image: siscc/dotstatsuite-share:master
-    # Temporary workaround:
-    image: siscc/dotstatsuite-share:v8.0.0
+    image: siscc/dotstatsuite-share:master
     container_name: share
     ports:
       - "${SHARE_PORT}:3007"
@@ -100,14 +93,13 @@ services:
       - dotstat_network
 
   data-viewer:
-    #image: siscc/dotstatsuite-data-viewer:master
-    # Temporary workaround:
-    image: siscc/dotstatsuite-data-viewer:v8.0.0
+    image: siscc/dotstatsuite-data-viewer:master
     container_name: data-viewer
     ports:
       - "${VIEWER_PORT}:80"
     environment:
       CONFIG_URL: http://config
+      DEFAULT_TENANT: ${DEFAULT_TENANT}
       GA_TOKEN: ${GA_TOKEN}
     volumes:
       - "./config/assets:/opt/build/assets"
@@ -115,9 +107,7 @@ services:
       - dotstat_network
 
   sfs:
-    #image: siscc/dotstatsuite-sdmx-faceted-search:master
-    # Temporary workaround:
-    image: siscc/dotstatsuite-sdmx-faceted-search:v8.0.0
+    image: siscc/dotstatsuite-sdmx-faceted-search:master
     container_name: sfs
     ports:
       - "${SFS_PORT}:80"
