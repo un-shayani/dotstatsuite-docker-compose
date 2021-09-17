@@ -1,11 +1,11 @@
 # The dotstatsuite-docker-compose repository
 
-This repository contains .Stat Suite docker-compose sample files to ease deployments for developments, tests, pilots and demos using docker containers.
-They can also be used as a starting point to setup production environments, but for that still need to be complemented with scaling, archiving, security configurations, etc.
+This repository contains .Stat Suite docker-compose sample files to ease deployments for developments, tests, pilots and demos using docker containers.  
+They can also be used as a starting point to setup production environments, but for that they still need to be complemented with scaling, archiving, security configurations, etc.
 
 # Setup of mono-tenant .Stat Suite v8 docker-based installation with two dataspaces
 
-The aim of this document to provide a reference manual for setting up a demo .StatSuite v8 installation: a mono-tenant configuration with two dataspaces (*design* and *release*) using KeyCloak service for authentication.
+The aim of this document is to provide a reference manual for setting up a demo of .Stat Suite: a mono-tenant configuration with two dataspaces (*design* and *release*) using KeyCloak service for authentication.
 
 For further details on the requirements please refer to the following GitLab ticket: https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-docker-compose/-/issues/4#note_373485821
 
@@ -14,12 +14,31 @@ This repository contains sample configuration files and unix shell scripts to he
 The installation has been tested in the following host operating systems:
 - Linux
   - Ubuntu Server 18.04 LTS
-- Windows
-  - MS Windows 10 Pro 1809
-  - MS Windows 10 Pro 1909
+- Windows 10 Pro
+  - MS Windows 10 Pro 1809 (Hyper-V mode)
+  - MS Windows 10 Pro 1909 (Hyper-V mode)
+  - MS Windows 10 Pro 2004 (Hyper-V mode, WSL 2 mode)
+  - MS Windows 10 Pro 20H2 (WSL 2 mode)
+  - MS Windows 10 Pro 21H1 (WSL 2 mode)
+- Windows 10 Home (WSL 2 mode)
+  - MS Windows 10 Home 2004
+  - MS Windows 10 Home 20H2
+  - MS Windows 10 Home 21H1
 
 The root folder of this git repository's local copy is referenced as **$DOTSTATSUITE-DOCKER-COMPOSE-ROOT** in this document.
 E.g. if you have cloned this repository to */c/git/dotstatsuite-docker-compose/* folder then any mention of *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT* means reference to that folder.
+
+> Please note the this docker-compose example is meant for a one-time demo only. 
+> This installation uses the 'master' tag when referencing .Stat images and these images are not automatically refreshed in your local environment in case of a new release is published.
+> Upon a new release there may be also non-backward compatible changes in the scripts, docker-compose files or configuration files in config folder.
+>
+> ***In case a new .Stat Suite version is to be demoed, we suggest to create a fresh installation of .Stat Suite docker compose demo, and make sure to have the most recent 'master' images present in your local system.***
+> 
+> In order to use the proper versions of the images, you should either 
+> - manually remove them (see sample script *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/scripts/remove.images.sh*) so then the most recent version of them will be downloaded at the first start of the demo setup, or
+> - manually update them (see sample script *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/scripts/update.images.sh*).
+>
+> If earlier versions of .Stat Suite images, docker-compose files or configuration files are used, the demo installation may not work properly.
 
 ## Table of contents
 
@@ -170,24 +189,30 @@ For editing json and yml configuration files you can use *nano* or any other tex
 
 Install *Docker Desktop* from the following link: https://www.docker.com/products/docker-desktop
 
-- *Hyper-V* installation (older way):
-Installation of Docker Desktop CE (Community Edition): https://docs.docker.com/docker-for-windows/install/
-When prompted, ensure the *Enable Hyper-V Windows Features* option is selected on the *Configuration* page (it is the default selection in the installer), this is required for running Linux based containers on a Windows machine.
+- *WSL 2* mode (recommended):
+From Windows 10, version 2004 or higher another option could be to use the Docker Desktop WSL 2 backend.  
+WSL offers many advantages compared to Hyper-V solution, including performance gains.  
+Installation of Docker Desktop WSL 2 backend: https://docs.docker.com/docker-for-windows/wsl/  
+If you decide to limit the memory allocated to docker in WSL 2 mode, then you should allocate at least 8GB of RAM.  
+This can be set in `%UserProfile%\.wslconfig` file (may be missing by default), e.g.:
+```
+[wsl2]
+memory=8GB # Limits VM memory in WSL 2 to 8 GB
+processors=2 # Makes the WSL 2 VM use two virtual processors
+```
 
-- *WSL 2* installation (new way):
-From Windows 10, version 2004 or higher another option could be to use the Docker Desktop WSL 2 backend.
-We haven't yet tested this option, but WSL seems to be the future of docker development on Windows, and apparently offers many advantages compared to Hyper-V solution, including performance gains.
-Installation of Docker Desktop WSL 2 backend: https://docs.docker.com/docker-for-windows/wsl/
+- *Hyper-V* mode:
+Installation of Docker Desktop CE (Community Edition): https://docs.docker.com/docker-for-windows/install/  
+When prompted, ensure the *Enable Hyper-V Windows Features* option is selected on the *Configuration* page (it is the default selection in the installer), this is required for running Linux based containers on a Windows machine.  
+When choosing Hyper-V mode, we recommend to allocate at least 8 GBs of RAM to Docker (`Settings->Resources->Advanced->Memory`), and also please add the *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT* folder as a Shared folder (`Settings->Resources->File Sharing`).
 
-After installation please make sure that your Docker Desktop client uses Linux containers (this is the default setup): https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers
-
-It is also recommended to increase the size of memory that can be used by the Docker engine to at least a minimum of 8Gb, this can be done in the Docker settings panel.
+After installation, make sure that your Docker Desktop client uses Linux containers (which is the default setup): https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers
 
 Install *Git for Windows* from the following link: https://gitforwindows.org/
 
-During installation when asked please choose MinTTY terminal emulator (default selection). Having this bash shell will let you run the unix shell scripts on your Windows environemnt to help your installation.
+During installation when asked, please choose MinTTY terminal emulator (default selection). Having this bash shell will let you run the unix shell scripts on your Windows environemnt to help your installation.
 
-When the installations are done check the verison of docker and docker compose by executing the following script in a Git Bash terminal window:
+When the installations are done, check the version of docker and docker compose by executing the following script in a Git Bash terminal window:
 
 ```sh
 $ docker --version && docker-compose --version
