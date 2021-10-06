@@ -67,6 +67,7 @@ services:
       AUTH_SERVER_URL: "${PROTOCOL}://${KEYCLOAK_HOST}:${KEYCLOAK_PORT}"
       AUTH_PROVIDER: ${AUTH_PROVIDER}
       GA_TOKEN: ${GA_TOKEN}
+      GTM_TOKEN: ${GTM_TOKEN_DE}
     volumes:
       - "./config/assets:/opt/build/assets"
     networks:
@@ -101,6 +102,7 @@ services:
       CONFIG_URL: http://config
       DEFAULT_TENANT: ${DEFAULT_TENANT}
       GA_TOKEN: ${GA_TOKEN}
+      GTM_TOKEN: ${GTM_TOKEN_DV}
     volumes:
       - "./config/assets:/opt/build/assets"
     networks:
