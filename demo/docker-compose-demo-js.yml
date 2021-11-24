@@ -47,10 +47,12 @@ services:
     ports:
       - "${DLM_PORT}:7002"
     environment:
+      ROBOTS_POLICY: ${ROBOTS_POLICY_DLM}
       DEFAULT_TENANT: ${DEFAULT_TENANT_DLM}
       CONFIG_URL: http://config
       AUTH_SERVER_URL: "${PROTOCOL}://${KEYCLOAK_HOST}:${KEYCLOAK_PORT}"
       TRANSFER_SERVER_URL: "${PROTOCOL}://${HOST}:${TRANSFER_PORT}/${TRANSFER_API_VERSION}"
+      AUTHZ_SERVER_URL: "${PROTOCOL}://${HOST}:${AUTH_PORT}/${AUTHZ_API_VERSION}"
     volumes:
       - "./config/assets:/opt/build/assets"
     networks:
@@ -68,6 +70,7 @@ services:
       AUTH_PROVIDER: ${AUTH_PROVIDER}
       GA_TOKEN: ${GA_TOKEN}
       GTM_TOKEN: ${GTM_TOKEN_DE}
+      ROBOTS_POLICY: ${ROBOTS_POLICY_DE}
     volumes:
       - "./config/assets:/opt/build/assets"
     networks:
@@ -90,6 +93,8 @@ services:
       SMTP_auth_user: ${SMTP_USER}
       SMTP_auth_pass: ${SMTP_PASSWORD}
       MAIL_FROM: ${SHARE_MAIL_FROM}
+      API_KEY: ${API_KEY_SHARE}
+      SECRET_KEY: ${SECRET_KEY_SHARE}
     networks:
       - dotstat_network
 
@@ -103,6 +108,7 @@ services:
       DEFAULT_TENANT: ${DEFAULT_TENANT}
       GA_TOKEN: ${GA_TOKEN}
       GTM_TOKEN: ${GTM_TOKEN_DV}
+      ROBOTS_POLICY: ${ROBOTS_POLICY_DV}
     volumes:
       - "./config/assets:/opt/build/assets"
     networks:
@@ -122,6 +128,7 @@ services:
       SOLR_HOST: solr
       SOLR_PORT: ${SOLR_PORT}
       REDIS_DB: ${SFS_DB_INDEX}
+      API_KEY: ${API_KEY_SFS}
     networks:
       - dotstat_network
 
