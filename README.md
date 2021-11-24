@@ -693,8 +693,8 @@ HOST=dotstat-demo.myorganization.org
 > Location of JavaScript service parameters:
 > *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/**.env***
 > 
-> | Variable | Description |Default value
-> |----------|-------------|-------------
+> | Variable | Description | Default value 
+> |----------|-------------|---------------
 > |DLM_PORT|Port of Data Lifecycle Management service|7000
 > |DE_PORT|Port of DataExplorer service|7001
 > |VIEWER_PORT|Port of Data Viewer service|7002
@@ -708,6 +708,7 @@ HOST=dotstat-demo.myorganization.org
 > |HOST|Hostname or ip address of the machine hosting the docker services|localhost
 > |DEFAULT_TENANT|Id of the default tennant|default
 > |TRANSFER_API_VERSION|API version of Transfer service|1.2
+> |AUTH_API_VERSION|API version of Auth service|1.1
 > |GA_TOKEN|Google Analytics token|''
 > |AUTH_PROVIDER|Name of your authentification service|''
 > |SHARE_DB_INDEX|index of share db|'0'
@@ -718,6 +719,12 @@ HOST=dotstat-demo.myorganization.org
 > |SMTP_USER|SMTP server username|*empty*
 > |SMTP_PASSWORD|SMTP server password|*empty*
 > |SHARE_MAIL_FROM|adress mail share service will use|*empty*
+> |API_KEY_SFS|api-key to sfs requets|secret
+> |API_KEY_SHARE|api-key to share requets|secret
+> |SECRET_KEY|generated token for email|secret
+> |ROBOTS_POLICY_DV|webcrawler configuration|all
+> |ROBOTS_POLICY_DE|webcrawler configuration|all
+> |ROBOTS_POLICY_DLM|webcrawler configuration|"no index, no follow"
 </details>
 
 ##### Redis db configuration
