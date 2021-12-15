@@ -7,11 +7,11 @@ echo "JSON files detected :"
 find $1 -type f -name "tenants.json"
 find $1 -type f -name "datasources.json"
 
-find $1 -type f -name "settings.json" -exec sed -Ei 's#"https://sfs-qa.siscc.org/api"|"http://'$3':3004/api"#"http://'$2':3004/api"#g' {} +
+find $1 -type f -name "settings.json" -exec sed -Ei 's#"http://localhost:3004/api"|"http://'$3':3004/api"#"http://'$2':3004/api"#g' {} +
 
 find $1 -type f -name "settings.json" -exec sed -Ei 's#"http://localhost:7002"|"http://'$3':7002"#"http://'$2':7002"#g' {} +
 
-find $1 -type f -name "settings.json" -exec sed -Ei 's#"http://localhost:3005/api/charts"|"http://'$3':3005/api/charts"#"http://'$2':3005/api/charts"#g' {} +
+find $1 -type f -name "settings.json" -exec sed -Ei 's#"http://localhost:3005/api"|"http://'$3':3005/api"#"http://'$2':3005/api"#g' {} +
 
 find $1 -type f -name "settings.json" -exec sed -Ei 's#"http://localhost:3005"|"http://'$3':3005"#"http://'$2':3005"#g' {} +
 

@@ -38,6 +38,9 @@ services:
       - "./config/assets:/opt/assets"
       - "./config/configs:/opt/configs"
       - "./config/i18n:/opt/i18n"
+    environment:
+      - BUCKET_PROVIDER=fs
+      - DATA_DIR=/opt/
     networks:
       - dotstat_network
 
@@ -50,7 +53,6 @@ services:
       ROBOTS_POLICY: ${ROBOTS_POLICY_DLM}
       DEFAULT_TENANT: ${DEFAULT_TENANT_DLM}
       CONFIG_URL: http://config
-      AUTH_SERVER_URL: "${PROTOCOL}://${KEYCLOAK_HOST}:${KEYCLOAK_PORT}"
       TRANSFER_SERVER_URL: "${PROTOCOL}://${HOST}:${TRANSFER_PORT}/${TRANSFER_API_VERSION}"
       AUTHZ_SERVER_URL: "${PROTOCOL}://${HOST}:${AUTH_PORT}/${AUTHZ_API_VERSION}"
     volumes:
@@ -66,7 +68,6 @@ services:
     environment:
       CONFIG_URL: http://config
       DEFAULT_TENANT: ${DEFAULT_TENANT_DE}
-      AUTH_SERVER_URL: "${PROTOCOL}://${KEYCLOAK_HOST}:${KEYCLOAK_PORT}"
       AUTH_PROVIDER: ${AUTH_PROVIDER}
       GA_TOKEN: ${GA_TOKEN}
       GTM_TOKEN: ${GTM_TOKEN_DE}
@@ -83,7 +84,7 @@ services:
       - "${SHARE_PORT}:3007"
     environment:
       CONFIG_URL: http://config
-      SITE_URL: "${PROTOCOL}://${HOST}:${SHARE_PORT}"
+      SITE_URL: "${PROTOCOL}://${HOST}:${DE_PORT}/share"
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_DB: ${SHARE_DB_INDEX}
