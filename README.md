@@ -643,9 +643,9 @@ Now you are authenticated and should be able to execute the the methods exposed 
 The *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/docker-compose-demo-js.yml* docker-compose file contains definition of JavaScript based services as well as Solr and Redis servers:
 - DLM - .Stat Data Lifecycle Manager
 - DE - .Stat Data Explorer
+- DV - .Stat Data viewer
 - Configuration server (not exposed)
 - Share server
-- Data viewer server
 - SDMX faceted search server
 - Apache Solr server
 - Redis server
@@ -660,13 +660,13 @@ The *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/docker-compose-demo-js.yml* docker-c
 
 > |Image name|Version|Description|Official site/Repository
 > |----------|-------|-----------|------------------------
-> |[solr](https://hub.docker.com/_/solr)|7.7.2|[Apache Solr](https://lucene.apache.org/solr/)|https://github.com/docker-solr/docker-solr
+> |[solr](https://hub.docker.com/_/solr)|8.7.0|[Apache Solr](https://lucene.apache.org/solr/)|https://github.com/docker-solr/docker-solr
 > |[redis](https://hub.docker.com/_/redis)|5.0.3|[Redis key-value store](https://en.wikipedia.org/wiki/Redis)|https://github.com/docker-library/redis
 > |[siscc/dotstatsuite-config](https://hub.docker.com/r/siscc/dotstatsuite-config)|master|Configuration server|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-config
 > |[siscc/dotstatsuite-data-lifecycle-manager](https://hub.docker.com/r/siscc/dotstatsuite-data-lifecycle-manager)|master|.Stat Data Lifecycle Manager (DLM)|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-data-lifecycle-manager
 > |[siscc/dotstatsuite-data-explorer](https://hub.docker.com/r/siscc/dotstatsuite-data-explorer)|master|.Stat Data Explorer (DE)|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-data-explorer
 > |[siscc/dotstatsuite-share](https://hub.docker.com/r/siscc/dotstatsuite-share)|master|Share server|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-share
-> |[siscc/dotstatsuite-data-viewer](https://hub.docker.com/r/siscc/dotstatsuite-data-viewer)|master|Data viewer server|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-data-viewer
+> |[siscc/dotstatsuite-data-viewer](https://hub.docker.com/r/siscc/dotstatsuite-data-viewer)|master|DV - .Stat Data viewer|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-data-viewer
 > |[siscc/dotstatsuite-sdmx-faceted-search](https://hub.docker.com/r/siscc/dotstatsuite-sdmx-faceted-search)|master|SDMX Faceted Search server|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-sdmx-faceted-search
 
 </details>
@@ -713,7 +713,7 @@ HOST=dotstat-demo.myorganization.org
 > |AUTH_PROVIDER|Name of your authentification service|''
 > |SHARE_DB_INDEX|index of share db|'0'
 > |SFS_DB_INDEX|index of sfs db|'1'
-> |SMTP_HOST|SMTP server hostname or IP address|smtp.gmail.com
+> |SMTP_HOST|SMTP server hostname or IP address|*empty*
 > |SMTP_PORT|SMTP server port|587
 > |SMTP_TLS|if true the connection will use TLS|false
 > |SMTP_USER|SMTP server username|*empty*
@@ -1144,7 +1144,7 @@ In Actions, you need to link your autoCleanShareService.sh file.
     - OK
 you can configure name and triggers as you wish.
 
-###### Unix
+##### Unix
 
 open your crontab editor, 
 ```bash
@@ -1178,3 +1178,10 @@ The TCP ports used by default installation of .Stat Suite v8 are as follows:
 |MS SQL Server|1434
 |SMTP server port|587
 |Postgress DB|5432
+
+
+# Youtube video
+
+## How to install .Stat Suite using docker compose in less than 10 minutes
+
+[![](https://i.ytimg.com/vi/9D4Q9K33JJg/hq720.jpg)](https://www.youtube.com/embed/9D4Q9K33JJg "How to install Stat Suite using docker compose in less than 10 minutes")
