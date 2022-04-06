@@ -3,6 +3,8 @@
 This repository contains .Stat Suite docker-compose sample files to ease deployments for developments, tests, pilots and demos using docker containers.  
 They can also be used as a starting point to setup production environments, but for that they still need to be complemented with scaling, archiving, security configurations, etc.
 
+> **IMPORTANT NOTE: This demo comes with a localhost setup and for instance without HTTPS support (which is a layer not handled by the .Stat Suite). You can in addition setup a proxy that will handle HTTPS for all the services, but this setup will also depend on your target, IIS for Windows, Ingress in GCP, nginx, etc. Therefore, this can only work as-is in a local environment and this is what we will always ensure. We will not provide support for any modification that you may apply to these default demo files.** 
+
 # Setup of mono-tenant .Stat Suite v8 docker-based installation with two dataspaces
 
 The aim of this document is to provide a reference manual for setting up a demo of .Stat Suite: a mono-tenant configuration with two dataspaces (*design* and *release*) using KeyCloak service for authentication.
