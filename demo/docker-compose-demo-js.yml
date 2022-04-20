@@ -39,6 +39,7 @@ services:
       - "${MONGO_PORT}:27017"
     volumes:
       - mongo-data:/data/db
+      - mongo-data:/data/configdb
     networks:
       - dotstat_network
 
