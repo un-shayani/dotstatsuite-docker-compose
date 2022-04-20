@@ -643,7 +643,7 @@ Now you are authenticated and should be able to execute the the methods exposed 
 
 ### JavaScript services
 
-The *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/docker-compose-demo-js.yml* docker-compose file contains definition of JavaScript based services as well as Solr and Redis servers:
+The *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/docker-compose-demo-js.yml* docker-compose file contains definition of JavaScript based services as well as Solr, Redis and Mongo servers:
 - DLM - .Stat Data Lifecycle Manager
 - DE - .Stat Data Explorer
 - DV - .Stat Data viewer
@@ -652,6 +652,7 @@ The *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/docker-compose-demo-js.yml* docker-c
 - SDMX faceted search server
 - Apache Solr server
 - Redis server
+- Mongo server
 
 
 **Config service is not exposed**
@@ -665,6 +666,7 @@ The *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/docker-compose-demo-js.yml* docker-c
 > |----------|-------|-----------|------------------------
 > |[solr](https://hub.docker.com/_/solr)|8.7.0|[Apache Solr](https://lucene.apache.org/solr/)|https://github.com/docker-solr/docker-solr
 > |[redis](https://hub.docker.com/_/redis)|5.0.3|[Redis key-value store](https://en.wikipedia.org/wiki/Redis)|https://github.com/docker-library/redis
+> |[Mongo](https://hub.docker.com/_/Mongo)|5.0.6|[Mongo document-oriented database ](https://en.wikipedia.org/wiki/MongoDB)|https://github.com/mongodb/mongo
 > |[siscc/dotstatsuite-config](https://hub.docker.com/r/siscc/dotstatsuite-config)|master|Configuration server|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-config
 > |[siscc/dotstatsuite-data-lifecycle-manager](https://hub.docker.com/r/siscc/dotstatsuite-data-lifecycle-manager)|master|.Stat Data Lifecycle Manager (DLM)|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-data-lifecycle-manager
 > |[siscc/dotstatsuite-data-explorer](https://hub.docker.com/r/siscc/dotstatsuite-data-explorer)|master|.Stat Data Explorer (DE)|https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-data-explorer
@@ -732,14 +734,8 @@ HOST=dotstat-demo.myorganization.org
 
 ##### Redis db configuration
 
-We are using two databases in redis, respectively for share data and search config.  
+We are using one database in redis, for shared data .  
 Default indexes are provided by the default parameters `REDIS_DB` and can be overridden.
-
-**Warning:** the version ^7.0.0 of the dotstatsuite introduces the 2 databases.  
-Before this version only there was only one database and flushing search config data was causing the deletion of share data.  
-In order to keep existing share data, default indexes are set to keep existing share data:
-- 0 for share (keep the existing database)
-- 1 for search config (this new database will be automatically created and will require to reindex all dataflows)
 
 ##### Initialization of JavaScript services (monotenant with two dataspaces)
 
@@ -1174,6 +1170,7 @@ The TCP ports used by default installation of .Stat Suite v8 are as follows:
 |Search service|3004
 |SolR service|8983
 |Redis service|6379
+|Mongo service|27017
 |NSI WS - Design instance|80
 |NSI WS - Release instance|81
 |Transfer service|93

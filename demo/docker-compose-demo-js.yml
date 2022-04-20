@@ -3,6 +3,7 @@ version: "3.5"
 volumes:
   redis-data:
   solr-data:
+  mongo-data:
   
 services:
   solr:
@@ -28,6 +29,16 @@ services:
       - "${REDIS_PORT}:6379"
     volumes:
       - redis-data:/data
+    networks:
+      - dotstat_network
+  
+  mongo:
+    image: mongo:5.0.6
+    container_name: mongo
+    ports:
+      - "${MONGO_PORT}:27017"
+    volumes:
+      - mongo-data:/data/db
     networks:
       - dotstat_network
 
@@ -86,7 +97,7 @@ services:
       CONFIG_URL: http://config
       SITE_URL: "${PROTOCOL}://${HOST}:${DE_PORT}/share"
       REDIS_HOST: redis
-      REDIS_PORT: 6379
+      REDIS_PORT: ${REDIS_PORT}
       REDIS_DB: ${SHARE_DB_INDEX}
       SMTP_host: ${SMTP_HOST}
       SMTP_port: ${SMTP_PORT}
@@ -124,11 +135,10 @@ services:
     environment:
       DEFAULT_TENANT: ${DEFAULT_TENANT}
       CONFIG_URL: http://config
-      REDIS_HOST: redis
-      REDIS_PORT: ${REDIS_PORT}
+      MONGODB_URL: mongodb://mongo:${MONGO_PORT}
+      MONGODB_DATABASE: "sfs"
       SOLR_HOST: solr
       SOLR_PORT: ${SOLR_PORT}
-      REDIS_DB: ${SFS_DB_INDEX}
       API_KEY: ${API_KEY_SFS}
     networks:
       - dotstat_network
