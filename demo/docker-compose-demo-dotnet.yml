@@ -3,9 +3,10 @@
 
 version: "3.5"
 services:
-
+ 
+      
     nsiws-demo-design:
-        image: siscc/sdmxri-nsi-maapi:beta-1
+        image: siscc/sdmxri-nsi-maapi:develop
         container_name: nsiws-demo-design
         ports:
           - "${NSI_DESIGN_PORT}:80"
@@ -38,15 +39,15 @@ services:
             SENDER_ID: "demo-design - DotStat v8"
             enableReleaseManagement: "true"
             # Messaging configuration
-            #messaging__enabled: ${MESSAGING_ENABLED}
-            #messaging__hostName: ${MESSAGING_HOSTNAME} 
-            #messaging__virtualHost: ${MESSAGING_VIRTUALHOST} 
-            #messaging__port: ${MESSAGING_PORT}
-            #messaging__queueName: ${MESSAGING_QUEUENAME}
-            #messaging__userName: ${MESSAGING_USER}
-            #messaging__password: ${MESSAGING_PWD}
-            #messaging__queueDurable: ${MESSAGING_QUEUEDURABLE}
-            #messaging__deliveryMode: ${MESSAGING_DELIVERYMODE}
+            messaging__enabled: ${MESSAGING_ENABLED}
+            messaging__hostName: ${MESSAGING_HOSTNAME} 
+            messaging__virtualHost: ${MESSAGING_VIRTUALHOST} 
+            messaging__port: ${MESSAGING_PORT}
+            messaging__queueName: ${MESSAGING_QUEUENAME}
+            messaging__userName: ${MESSAGING_USER}
+            messaging__password: ${MESSAGING_PWD}
+            messaging__queueDurable: ${MESSAGING_QUEUEDURABLE}
+            messaging__deliveryMode: ${MESSAGING_DELIVERYMODE}
         depends_on:
           - auth-service
           - dbup-struct-design
@@ -59,7 +60,7 @@ services:
           - dotstat_network
 
     nsiws-demo-release:
-        image: siscc/sdmxri-nsi-maapi:beta-1
+        image: siscc/sdmxri-nsi-maapi:develop
         container_name: nsiws-demo-release
         ports:
           - "${NSI_RELEASE_PORT}:80"
@@ -113,7 +114,7 @@ services:
           - dotstat_network
 
     transfer-service:
-        image: moksman/dotstatsuite-core-transfer:beta-27
+        image: siscc/dotstatsuite-core-transfer:develop
         container_name: transfer-service
         environment:
             auth__Enabled: ${AUTH_ENABLED}
@@ -151,15 +152,15 @@ services:
             SpacesInternal__1__DatabaseCommandTimeoutInSec: 60
             SpacesInternal__1__AutoLog2DB: "true"
             SpacesInternal__1__AutoLog2DBLogLevel: "Notice"
-            messaging__enabled: ${MESSAGING_ENABLED}
-            messaging__hostName: ${MESSAGING_HOSTNAME} 
-            messaging__virtualHost: ${MESSAGING_VIRTUALHOST} 
-            messaging__port: ${MESSAGING_PORT}
-            messaging__queueName: ${MESSAGING_QUEUENAME}
-            messaging__userName: ${MESSAGING_USER}
-            messaging__password: ${MESSAGING_PWD}
-            messaging__queueDurable: ${MESSAGING_QUEUEDURABLE}
-            messaging__deliveryMode: ${MESSAGING_DELIVERYMODE}
+            # messaging__enabled: ${MESSAGING_ENABLED}
+            # messaging__hostName: ${MESSAGING_HOSTNAME} 
+            # messaging__virtualHost: ${MESSAGING_VIRTUALHOST} 
+            # messaging__port: ${MESSAGING_PORT}
+            # messaging__queueName: ${MESSAGING_QUEUENAME}
+            # messaging__userName: ${MESSAGING_USER}
+            # messaging__password: ${MESSAGING_PWD}
+            # messaging__queueDurable: ${MESSAGING_QUEUEDURABLE}
+            # messaging__deliveryMode: ${MESSAGING_DELIVERYMODE}
         volumes:
           - "./logs:/app/logs"
         ports:
@@ -170,6 +171,7 @@ services:
           - dbup-struct-design
           - dbup-data-release
           - dbup-struct-release
+          - rabbit-mq
         networks:
           - dotstat_network
 
@@ -287,22 +289,22 @@ services:
         networks:
           - dotstat_network
 
+     
     rabbit-mq:
-        image: rabbitmq:3.8.9-management
-        container_name: rabbit-mq
-        environment:
-          RABBITMQ_DEFAULT_USER: "user"
-          RABBITMQ_DEFAULT_PASS: "password"
-        hostname: my-rabbit-mq
-        ports:
+      image: rabbitmq:3.8.9-management
+      container_name: rabbit-mq
+      environment:
+          RABBITMQ_DEFAULT_USER: ${MESSAGING_USER}
+          RABBITMQ_DEFAULT_PASS: ${MESSAGING_PWD}
+      hostname: my-rabbit-mq
+      ports:
           - "${MESSAGING_BROKERGUIPORT}:15672"
           - "${MESSAGING_PORT}:5672"
-        volumes:
-          - "./rabbitmq/data/:/var/lib/rabbitmq/mnesia/"    
-          - "./logs:/var/log/rabbitmq/log"         
-        networks:
-          - dotstat_network 
-      
+      volumes:
+          - "./rabbitmq/data/:/var/lib/rabbitmq/mnesia/"    #data 
+          - "./logs:/var/log/rabbitmq/log"     #logs     
+      networks:
+          - dotstat_network     
 volumes:
   db-data:
   wait-tool:
