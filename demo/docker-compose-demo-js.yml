@@ -63,7 +63,6 @@ services:
       - "${DLM_PORT}:7002"
     environment:
       ROBOTS_POLICY: ${ROBOTS_POLICY_DLM}
-      DEFAULT_TENANT: ${DEFAULT_TENANT_DLM}
       CONFIG_URL: http://config
       TRANSFER_SERVER_URL: "${PROTOCOL}://${HOST}:${TRANSFER_PORT}/${TRANSFER_API_VERSION}"
       AUTHZ_SERVER_URL: "${PROTOCOL}://${HOST}:${AUTH_PORT}/${AUTHZ_API_VERSION}"
@@ -79,7 +78,6 @@ services:
       - "${DE_PORT}:80"
     environment:
       CONFIG_URL: http://config
-      DEFAULT_TENANT: ${DEFAULT_TENANT_DE}
       AUTH_PROVIDER: ${AUTH_PROVIDER}
       GA_TOKEN: ${GA_TOKEN}
       GTM_TOKEN: ${GTM_TOKEN_DE}
