@@ -17,6 +17,7 @@ This repository contains sample configuration files and unix shell scripts to he
 The installation has been tested in the following host operating systems:
 - Linux
   - Ubuntu Server 18.04 LTS
+  - Ubuntu Ubuntu 22.04 LTS
 - Windows 10 Pro
   - MS Windows 10 Pro 1809 (Hyper-V mode)
   - MS Windows 10 Pro 1909 (Hyper-V mode)
@@ -73,12 +74,11 @@ $ sudo ./start.sh
 ```
 
 When the script is executed without a parameter then it starts the services to run locally on your machine:
-- On Windows the following hostname is used: localhost
-- On Linux one of the IP addresses is used (the first one returned by ifconfig)
+- On Windows and Linux the following hostname is used: localhost
 
 The actually used hostname/ip address highlighted in green is shown in the 2nd line of the log written by the script:
 
->The following host address is being applied on configuration files:  host.docker.internal
+>The following host address is being applied on configuration files:  localhost
 
 If you want to make your demo installation accessible from other computers (e.g. when installation is done on a VM in the cloud) you have to provide the hostname/ip address of your host machine, e.g. when the hostname is *dotstat-demo.myorganization.org*:
 
@@ -753,28 +753,12 @@ Done. Files updated with the following host address: localhost
 Done.
 ```
 
-##### Setting parameters of SMTP service
-
-Javascript services are using the [SMTP parameters](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-docker-compose#setting-parameters-of-smtp-service) as well.
-
-You can find more explaination by services, links below:
-  - [share service](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-share#config)
-
 <details>
 <summary>Further details on what the script does</summary>
-
 > The script is executed in *line 38* of start.sh.
 >
-> 1. The script clones the [siscc-config-data](https://gitlab.com/sis-cc/topologies/siscc-config-data) git library *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/ directory.
-> 2. From the local copy of the config repository removes the following tenant folders:
-> - config/configs/default/
-> - config/configs/abs/
-> - config/configs/astat/
-> - config/configs/ins/
-> - config/configs/oecd/
-> - config/configs/statec/
-> - config/configs/statsnz/
-> 3. Renames *siscc* tenant folder to *default*
+> 1. The script clones the [config-data](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-config-data) git library *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/ directory.
+> 3. Renames tenant folder to *default*
 > 4. Copies sample files configuration json files from *samples/mono-tenant-two-dataspaces/*
 > 5. Replaces default urls to localhost
 > 
@@ -782,9 +766,11 @@ You can find more explaination by services, links below:
 > 
 > ```
 > ├── configs
-> │   ├── datasources.json
 > │   ├── tenants.json
+> │   ├── sfs.json
 > │   ├── default
+> │   │   ├── sfs
+> │   │   |   ├── settings.json
 > │   │   ├── data-explorer
 > │   │   │   ├── i18n
 > │   │   │   │   ├── en.js
@@ -808,12 +794,12 @@ You can find more explaination by services, links below:
 </details>
 
 ##### Changing localhost to hostname or ip address (optional)
-At this point the front-end services are configured to be used from localhost and if you are planning to access your .Stat Suite installation from your local machine only, you can skip this section.
+At this point the js services are configured to be used from localhost and if you are planning to access your .Stat Suite installation from your local machine only, you can skip this section.
 
 If you want to use the services from other location then the localhost reference should be replaced to the actual hostname or ip address of the server.
 To do that:
 - edit the .env file and replace value of HOST to the hostname/ip address of your server (to the same value used at backend config)
-- replace links pointing to localhost in *datasources.json* and applications' *settings.json* files. The simplest way to do that is to execute the following script from folder *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* (please replace **hostname_or_ip_address_of_your_server** with the actual hostname/ip address of your server):
+- replace links pointing to localhost in *tenants.json* and applications' *settings.json* files. The simplest way to do that is to execute the following script from folder *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* (please replace **hostname_or_ip_address_of_your_server** with the actual hostname/ip address of your server):
 
 ```sh
 $ scripts/replace.server.address.sh config/configs/ **hostname_or_ip_address_of_your_server** localhost
@@ -846,7 +832,7 @@ Done. Files updated with the following host address: **hostname_or_ip_address_of
 >    - "http://**server_address**:3005/api/charts"
 >    - "http://**server_address**:3005"
 >    - "http://**server_address**:7001"
-> - datasources.json file:
+> - tenants.json file:
 >    - "http://**server_address**:
 >    - "http://**server_address**/
 > 
@@ -860,7 +846,7 @@ Done. Files updated with the following host address: **hostname_or_ip_address_of
 > config/configs/default/data-lifecycle-manager/settings.json
 > config/configs/default/data-explorer/settings.json
 > config/configs/default/data-viewer/settings.json
-> config/configs/datasources.json
+> config/configs/tenants.json
 > Done. Files updated with the following host address: **hostname_or_ip_address_of_your_server**
 > ```
 
@@ -872,7 +858,6 @@ Javascript services expect valid JSON configuration files in order to function p
 In case you experience broken/weird functionality on user interface of DLM and/or DE after a change in configuration file(s) there is a chance of accidental mistake made in one of the config files, turning it to an invalid JSON file.
 
 It is recommended to check validity of the following JSON configuration files:
-- datasources.json
 - tenants.json
 - default/data-lifecycle-manager/settings.json
 - default/data-explorer/settings.json
@@ -898,7 +883,6 @@ You should see one row for each file verified, either the "Valid JSON" message o
 > A sample result can be seen below where all files are valid:
 > 
 > ```
-> Valid JSON (config/configs/datasources.json)
 > Valid JSON (config/configs/tenants.json)
 > Valid JSON (config/configs/default/data-lifecycle-manager/i18n/nl.json)
 > Valid JSON (config/configs/default/data-lifecycle-manager/i18n/fr.json)
@@ -926,6 +910,14 @@ You should see one row for each file verified, either the "Valid JSON" message o
 ###### Validation on Windows
 
 An option for validity checking of Json files on Windows could be Notepad++ with JSONViewer plugin but any tool of your preference could be used.
+
+
+##### Setting parameters of SMTP service
+
+Javascript services are using the [SMTP parameters](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-docker-compose#setting-parameters-of-smtp-service) as well.
+
+You can find more explaination by services, links below:
+  - [share service](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-share#config)
 
 #### Start JavaScript services
 
@@ -1060,7 +1052,7 @@ In case the IP address or the hostname you used previously in your .Stat Suite i
     ```
     HOST=new-dotstat-demo.myorganization.org
     ```
-- **datasources.json** and **settings.json files** within *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/configs/* folder.
+- **tenants.json** and **settings.json files** within *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/configs/* folder.
     The simplest way to do that is to execute the following script from folder *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* (please replace both **NEW_hostname_or_ip_address_of_your_server** and **OLD_hostname_or_ip_address_of_your_server** with the actual NEW and OLD hostnames/ip addresses of your server):
 
     ```sh
@@ -1091,9 +1083,11 @@ In the default docker-compose installation the configuration files of DE and DLM
  
 ```
  ├── configs
- │   ├── datasources.json
- │   ├── tenants.json 
+ │   ├── tenants.json
+ │   ├── sfs.json
  │   ├── default
+ │   │   ├── sfs
+ │   │   │   ├── settings.json
  │   │   ├── data-explorer
  │   │   │   ├── settings.json
  │   │   ├── data-lifecycle-manager
