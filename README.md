@@ -17,7 +17,7 @@ This repository contains sample configuration files and unix shell scripts to he
 The installation has been tested in the following host operating systems:
 - Linux
   - Ubuntu Server 18.04 LTS
-  - Ubuntu Ubuntu 22.04 LTS
+  - Ubuntu 22.04 LTS
 - Windows 10 Pro
   - MS Windows 10 Pro 1809 (Hyper-V mode)
   - MS Windows 10 Pro 1909 (Hyper-V mode)
@@ -148,43 +148,14 @@ While granting the permissions, the command displays the list of script files th
 
 ##### Installation of prerequisites
 
-For using docker compose on Linux system *docker.io* and *docker-compose* components need to be installed.
+For using docker compose on Linux system. Docker engine need to be installed.
 
-Run the following script to initialize your system for runnin docker containers with docker-compose.
-
-```sh
-$ init/initialization.linux.sh
-```
-
-<details>
-<summary>Further details on what the script does</summary>
-
-> Please note that on Linux systems the script may need elevated privileges to execute.
-> In such a case use *sudo* prefix that will run the command with elevated privileges.
-> ```sh
-> $ sudo init/initialization.linux.sh
-> ```
-> 
-> The script installs the following:
-> - docker.io package
-> - get docker-compose version 1.25.5
-> - jsonlint package - for easy validation of JSON files
-
-</details>
-
-When the script executed you shall see the following on your screen (version numbers may be higher):
+See how to install docker engine on docker website: https://docs.docker.com/engine/install/ubuntu/
 
 ```
- Usage: jsonlint file [options]
- 
- Options:
-   -q, --quiet     Cause jsonlint to be quiet when no errors are found
-   -h, --help      Show this message
- Docker version 19.03.6, build 369ce74a3c
- docker-compose version 1.25.5, build 8a1c60f6
+  docker --version
+  Docker version 20.10.x
 ```
-
-For editing json and yml configuration files you can use *nano* or any other text editor of your preference.
 
 #### Windows (desktop)
 
@@ -215,17 +186,16 @@ Install *Git for Windows* from the following link: https://gitforwindows.org/
 
 During installation when asked, please choose MinTTY terminal emulator (default selection). Having this bash shell will let you run the unix shell scripts on your Windows environemnt to help your installation.
 
-When the installations are done, check the version of docker and docker compose by executing the following script in a Git Bash terminal window:
+When the installations are done, check the version of docker by executing the following script in a Git Bash terminal window:
 
 ```sh
-$ docker --version && docker-compose --version
+  docker --version
 ```
 
 You shall see the following on your screen (version numbers can be higher):
 
 ```
- Docker version 19.03.8, build afacb8b
- docker-compose version 1.25.5, build 8a1c60f6
+  Docker version 20.10.x
 ```
 
 In order to run docker containers, the Docker Desktop client application has to be started and running in Linux containers mode.
@@ -281,7 +251,7 @@ Open a new bash (Linux) or Git Bash (Windows) terminal. Please navigate to *$DOT
 Start KeyCloak service with the following command:
 
 ```sh
-$ docker-compose -f ./docker-compose-demo-keycloak.yml up
+$ docker compose -f ./docker-compose-demo-keycloak.yml up
 ```
 
 The keycloak container has started properly if you see the following log entry from keycloak service in the last row:
@@ -304,7 +274,7 @@ Please note that it may take a while for Keycloak service to start up.
 > If you prefer to start containers running in the background please execute the following command instead:
 > 
 > ```sh
-> $ ./docker-compose -f ./docker-compose-demo-keycloak.yml up -d
+> $ ./docker compose -f ./docker-compose-demo-keycloak.yml up -d
 > ```
 > 
 > Please note that when containers are run in the background they are executed in detached mode and their logs are not displayed in the current window.
@@ -313,7 +283,7 @@ Please note that it may take a while for Keycloak service to start up.
 > To terminate keycloak containers running in the background execute the following command:
 > 
 > ```sh
-> $ ./docker-compose -f ./docker-compose-demo-keycloak.yml down
+> $ ./docker compose -f ./docker-compose-demo-keycloak.yml down
 > ```
 > 
 
@@ -512,7 +482,7 @@ Please navigate to *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* folder.
 Start the backend services with the following command:
 
 ```
-$ docker-compose -f ./docker-compose-demo-dotnet.yml up
+$ docker compose -f ./docker-compose-demo-dotnet.yml up
 ```
 
 Please note that it may take a while for all the service defined in the file to start up, especially the database instance.
@@ -529,7 +499,7 @@ Please note that it may take a while for all the service defined in the file to 
 > 
 > If you prefer to start containers running in the background please execute the following command instead:
 > ```sh
-> $ docker-compose -f ./docker-compose-demo-dotnet.yml up -d
+> $ docker compose -f ./docker-compose-demo-dotnet.yml up -d
 > ```
 > 
 > Please note that when containers are run in the background they are executed in detached mode and their logs are not displayed in the current window.
@@ -538,7 +508,7 @@ Please note that it may take a while for all the service defined in the file to 
 > To terminate .Net back-end containers running in the background execute the following command:
 > 
 > ```sh
-> $ docker-compose -f ./docker-compose-demo-dotnet.yml down
+> $ docker compose -f ./docker-compose-demo-dotnet.yml down
 > ```
 
 </details>
@@ -924,7 +894,7 @@ You can find more explaination by services, links below:
 Open a new bash (Linux) or Git Bash (Windows) terminal. Please navigate to *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* folder and start the services with the following command:
 
 ```sh
-$ docker-compose -f ./docker-compose-demo-js.yml up
+$ docker compose -f ./docker-compose-demo-js.yml up
 ```
 
 <details>
@@ -939,7 +909,7 @@ $ docker-compose -f ./docker-compose-demo-js.yml up
 > 
 > If you prefer to start containers running in the background please execute the following command instead:
 > ```sh
-> $ docker-compose -f ./docker-compose-demo-js.yml up -d
+> $ docker compose -f ./docker-compose-demo-js.yml up -d
 > ```
 > 
 > Please note that when containers are run in the background they are executed in detached mode and their logs are not displayed in the current window.
@@ -948,7 +918,7 @@ $ docker-compose -f ./docker-compose-demo-js.yml up
 > To terminate the JavaScript containers running in the background execute the following command:
 > 
 > ```sh
-> $ docker-compose -f ./docker-compose-demo-js.yml down
+> $ docker compose -f ./docker-compose-demo-js.yml down
 > ```
 
 </details>
@@ -1035,7 +1005,6 @@ The command displays the logs written by *nsiws-demo-release* so far and does no
 
 For further reference please see the following links:
 - [docker logs](https://docs.docker.com/engine/reference/commandline/logs/)
-- [docker-compose logs](https://docs.docker.com/compose/reference/logs/)
 
 #### Changing the IP address/hostname of your machine
 
