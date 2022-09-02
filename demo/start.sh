@@ -16,7 +16,7 @@ if [ -z "$HOST" ]; then
       # Max OS X - not tested!!!
       HOST=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | head -1); 
    else
-      HOST=localhost
+      HOST="host.docker.internal"
    fi
 fi
 
@@ -25,7 +25,7 @@ COLOR='\033[1;32m'
 NOCOLOR='\033[0m' # No Color
 # Remove existing configuration directory (of JavaScript services)
 if [ -d $DIR_CONFIG ]; then
-   echo -e "Do you wish to erase the config folder (if yes, latest one will be downloaded with the host adress: $COLOR $HOST $NOCOLOR)? (Y/N)"
+   echo -e "Delete config ? (if yes, latest one will be downloaded with the host adress: $COLOR $HOST $NOCOLOR)? (Y/N)"
    while true; do
       read -p "" yn
       case $yn in
