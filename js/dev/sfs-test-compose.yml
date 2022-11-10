@@ -1,14 +1,14 @@
 version: "3"
 
 volumes:
-  redis-data:
+  mongo-data:
   solr-data:
 
 services:
   solr:
     image: solr:8.7.0
     container_name: solr
-    entrypoint: 
+    entrypoint:
       - docker-entrypoint.sh
       - solr
       - start
@@ -16,13 +16,14 @@ services:
       - -f
     ports:
       - "${SOLR_PORT}:8983"
-    volumes: 
+    volumes:
       - solr-data:/var/solr
 
-  redis:
-    image: redis:5.0.3
-    container_name: redis
+  mongo:
+    image: mongo:5.0.6
+    container_name: mongo
     ports:
-      - "${REDIS_PORT}:6379"
+      - "${MONGO_PORT}:27017"
     volumes:
-      - redis-data:/data
+      - mongo-data:/data/db
+      - mongo-data:/data/configdb
