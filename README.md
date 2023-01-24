@@ -662,15 +662,16 @@ HOST=dotstat-demo.myorganization.org
 
 ##### Additional Nginx configuration
 
-JavaScript services might need an additional configuration provided in order the static files have been served correctly on your local environment. This configuration takes part of Nginx config. It tells Nginx to serve those files from the folder you've build the project. 
-You can use this configurarion sample:
+JavaScript services might need an additional configuration provided in the order than the static files have been served on your local environment. This configuration takes part of Nginx config. It tells Nginx to serve those files from the folder you have built the project.  
+You can use this configuration sample:
+
 ```
 location /static { 
   root <path to **build** folder>; 
 }
 ```
 
-You might also need to mount those files in case you dockerize Nginx server. Just add **-v \<local path\>:\<remote path\>** if you run Nginx as a separtate container, or a volume description in you run it as a part of the compose setup. 
+You might also need to mount those files in case you dockerize Nginx server. Just add **-v \<local path\>:\<remote path\>** if you run Nginx as a separtate container, or a volume description if you run it as part of the compose setup.
 
 ##### List and description of JavaScript service parameters with defaults
 
