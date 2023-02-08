@@ -1,0 +1,54 @@
+version: "3"
+
+volumes:
+  mongo-data:
+  solr-data:
+
+services:
+  solr:
+    image: solr:8.7.0
+    container_name: solr
+    entrypoint: 
+      - docker-entrypoint.sh
+      - solr
+      - start
+      - -c
+      - -f
+    ports:
+      - ${SOLR_PORT}:8983
+    volumes: 
+      - solr-data:/var/solr
+    networks:
+      - loop_network
+
+  mongo:
+    image: mongo:5.0.6
+    container_name: mongo
+    ports:
+      - ${MONGO_PORT}:27017
+    volumes:
+      - mongo-data:/data/db
+      - mongo-data:/data/configdb
+    networks:
+      - loop_network
+
+  sfs:
+    image: siscc/dotstatsuite-sdmx-faceted-search:master
+    container_name: sfs
+    ports:
+      - ${SFS_PORT}:80
+    restart: always
+    networks:
+      - loop_network
+    environment:
+      DEFAULT_TENANT: ${DEFAULT_TENANT}
+      CONFIG_URL: ${CONFIG_URL}
+      MONGODB_URL: mongodb://mongo:${MONGO_PORT}
+      MONGODB_DATABASE: sfs
+      SOLR_HOST: solr
+      SOLR_PORT: ${SOLR_PORT}
+      API_KEY: ${API_KEY_SFS}
+
+networks:
+  loop_network:
+    name: loop_hole_network
