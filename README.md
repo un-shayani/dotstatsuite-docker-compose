@@ -17,6 +17,7 @@ This repository contains sample configuration files and unix shell scripts to he
 The installation has been tested in the following host operating systems:
 - Linux
   - Ubuntu Server 18.04 LTS
+  - Ubuntu 22.04 LTS
 - Windows 10 Pro
   - MS Windows 10 Pro 1809 (Hyper-V mode)
   - MS Windows 10 Pro 1909 (Hyper-V mode)
@@ -73,12 +74,11 @@ $ sudo ./start.sh
 ```
 
 When the script is executed without a parameter then it starts the services to run locally on your machine:
-- On Windows the following hostname is used: localhost
-- On Linux one of the IP addresses is used (the first one returned by ifconfig)
+- On Windows and Linux the following hostname is used: localhost
 
 The actually used hostname/ip address highlighted in green is shown in the 2nd line of the log written by the script:
 
->The following host address is being applied on configuration files:  host.docker.internal
+>The following host address is being applied on configuration files:  localhost
 
 If you want to make your demo installation accessible from other computers (e.g. when installation is done on a VM in the cloud) you have to provide the hostname/ip address of your host machine, e.g. when the hostname is *dotstat-demo.myorganization.org*:
 
@@ -148,43 +148,14 @@ While granting the permissions, the command displays the list of script files th
 
 ##### Installation of prerequisites
 
-For using docker compose on Linux system *docker.io* and *docker-compose* components need to be installed.
+For using docker compose on Linux system. Docker engine need to be installed.
 
-Run the following script to initialize your system for runnin docker containers with docker-compose.
-
-```sh
-$ init/initialization.linux.sh
-```
-
-<details>
-<summary>Further details on what the script does</summary>
-
-> Please note that on Linux systems the script may need elevated privileges to execute.
-> In such a case use *sudo* prefix that will run the command with elevated privileges.
-> ```sh
-> $ sudo init/initialization.linux.sh
-> ```
-> 
-> The script installs the following:
-> - docker.io package
-> - get docker-compose version 1.25.5
-> - jsonlint package - for easy validation of JSON files
-
-</details>
-
-When the script executed you shall see the following on your screen (version numbers may be higher):
+See how to install docker engine on docker website: https://docs.docker.com/engine/install/ubuntu/
 
 ```
- Usage: jsonlint file [options]
- 
- Options:
-   -q, --quiet     Cause jsonlint to be quiet when no errors are found
-   -h, --help      Show this message
- Docker version 19.03.6, build 369ce74a3c
- docker-compose version 1.25.5, build 8a1c60f6
+  docker --version
+  Docker version 20.10.x
 ```
-
-For editing json and yml configuration files you can use *nano* or any other text editor of your preference.
 
 #### Windows (desktop)
 
@@ -215,17 +186,16 @@ Install *Git for Windows* from the following link: https://gitforwindows.org/
 
 During installation when asked, please choose MinTTY terminal emulator (default selection). Having this bash shell will let you run the unix shell scripts on your Windows environemnt to help your installation.
 
-When the installations are done, check the version of docker and docker compose by executing the following script in a Git Bash terminal window:
+When the installations are done, check the version of docker by executing the following script in a Git Bash terminal window:
 
 ```sh
-$ docker --version && docker-compose --version
+  docker --version
 ```
 
 You shall see the following on your screen (version numbers can be higher):
 
 ```
- Docker version 19.03.8, build afacb8b
- docker-compose version 1.25.5, build 8a1c60f6
+  Docker version 20.10.x
 ```
 
 In order to run docker containers, the Docker Desktop client application has to be started and running in Linux containers mode.
@@ -281,7 +251,7 @@ Open a new bash (Linux) or Git Bash (Windows) terminal. Please navigate to *$DOT
 Start KeyCloak service with the following command:
 
 ```sh
-$ docker-compose -f ./docker-compose-demo-keycloak.yml up
+$ docker compose -f ./docker-compose-demo-keycloak.yml up
 ```
 
 The keycloak container has started properly if you see the following log entry from keycloak service in the last row:
@@ -304,7 +274,7 @@ Please note that it may take a while for Keycloak service to start up.
 > If you prefer to start containers running in the background please execute the following command instead:
 > 
 > ```sh
-> $ ./docker-compose -f ./docker-compose-demo-keycloak.yml up -d
+> $ ./docker compose -f ./docker-compose-demo-keycloak.yml up -d
 > ```
 > 
 > Please note that when containers are run in the background they are executed in detached mode and their logs are not displayed in the current window.
@@ -313,7 +283,7 @@ Please note that it may take a while for Keycloak service to start up.
 > To terminate keycloak containers running in the background execute the following command:
 > 
 > ```sh
-> $ ./docker-compose -f ./docker-compose-demo-keycloak.yml down
+> $ ./docker compose -f ./docker-compose-demo-keycloak.yml down
 > ```
 > 
 
@@ -512,7 +482,7 @@ Please navigate to *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* folder.
 Start the backend services with the following command:
 
 ```
-$ docker-compose -f ./docker-compose-demo-dotnet.yml up
+$ docker compose -f ./docker-compose-demo-dotnet.yml up
 ```
 
 Please note that it may take a while for all the service defined in the file to start up, especially the database instance.
@@ -529,7 +499,7 @@ Please note that it may take a while for all the service defined in the file to 
 > 
 > If you prefer to start containers running in the background please execute the following command instead:
 > ```sh
-> $ docker-compose -f ./docker-compose-demo-dotnet.yml up -d
+> $ docker compose -f ./docker-compose-demo-dotnet.yml up -d
 > ```
 > 
 > Please note that when containers are run in the background they are executed in detached mode and their logs are not displayed in the current window.
@@ -538,7 +508,7 @@ Please note that it may take a while for all the service defined in the file to 
 > To terminate .Net back-end containers running in the background execute the following command:
 > 
 > ```sh
-> $ docker-compose -f ./docker-compose-demo-dotnet.yml down
+> $ docker compose -f ./docker-compose-demo-dotnet.yml down
 > ```
 
 </details>
@@ -690,6 +660,19 @@ But if you'd like **to access** the .Stat Suite installation **from other machin
 HOST=dotstat-demo.myorganization.org
 ```
 
+##### Additional Nginx configuration
+
+JavaScript services might need an additional configuration provided in the order than the static files have been served on your local environment. This configuration takes part of Nginx config. It tells Nginx to serve those files from the folder you have built the project.  
+You can use this configuration sample:
+
+```
+location /static { 
+  root <path to **build** folder>; 
+}
+```
+
+You might also need to mount those files in case you dockerize Nginx server. Just add **-v \<local path\>:\<remote path\>** if you run Nginx as a separtate container, or a volume description if you run it as part of the compose setup.
+
 ##### List and description of JavaScript service parameters with defaults
 
 <details>
@@ -753,28 +736,12 @@ Done. Files updated with the following host address: localhost
 Done.
 ```
 
-##### Setting parameters of SMTP service
-
-Javascript services are using the [SMTP parameters](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-docker-compose#setting-parameters-of-smtp-service) as well.
-
-You can find more explaination by services, links below:
-  - [share service](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-share#config)
-
 <details>
 <summary>Further details on what the script does</summary>
-
 > The script is executed in *line 38* of start.sh.
 >
-> 1. The script clones the [siscc-config-data](https://gitlab.com/sis-cc/topologies/siscc-config-data) git library *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/ directory.
-> 2. From the local copy of the config repository removes the following tenant folders:
-> - config/configs/default/
-> - config/configs/abs/
-> - config/configs/astat/
-> - config/configs/ins/
-> - config/configs/oecd/
-> - config/configs/statec/
-> - config/configs/statsnz/
-> 3. Renames *siscc* tenant folder to *default*
+> 1. The script clones the [config-data](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-config-data) git library *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/ directory.
+> 3. Renames tenant folder to *default*
 > 4. Copies sample files configuration json files from *samples/mono-tenant-two-dataspaces/*
 > 5. Replaces default urls to localhost
 > 
@@ -782,9 +749,11 @@ You can find more explaination by services, links below:
 > 
 > ```
 > ├── configs
-> │   ├── datasources.json
 > │   ├── tenants.json
+> │   ├── sfs.json
 > │   ├── default
+> │   │   ├── sfs
+> │   │   |   ├── settings.json
 > │   │   ├── data-explorer
 > │   │   │   ├── i18n
 > │   │   │   │   ├── en.js
@@ -808,12 +777,12 @@ You can find more explaination by services, links below:
 </details>
 
 ##### Changing localhost to hostname or ip address (optional)
-At this point the front-end services are configured to be used from localhost and if you are planning to access your .Stat Suite installation from your local machine only, you can skip this section.
+At this point the js services are configured to be used from localhost and if you are planning to access your .Stat Suite installation from your local machine only, you can skip this section.
 
 If you want to use the services from other location then the localhost reference should be replaced to the actual hostname or ip address of the server.
 To do that:
 - edit the .env file and replace value of HOST to the hostname/ip address of your server (to the same value used at backend config)
-- replace links pointing to localhost in *datasources.json* and applications' *settings.json* files. The simplest way to do that is to execute the following script from folder *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* (please replace **hostname_or_ip_address_of_your_server** with the actual hostname/ip address of your server):
+- replace links pointing to localhost in *tenants.json* and applications' *settings.json* files. The simplest way to do that is to execute the following script from folder *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* (please replace **hostname_or_ip_address_of_your_server** with the actual hostname/ip address of your server):
 
 ```sh
 $ scripts/replace.server.address.sh config/configs/ **hostname_or_ip_address_of_your_server** localhost
@@ -846,7 +815,7 @@ Done. Files updated with the following host address: **hostname_or_ip_address_of
 >    - "http://**server_address**:3005/api/charts"
 >    - "http://**server_address**:3005"
 >    - "http://**server_address**:7001"
-> - datasources.json file:
+> - tenants.json file:
 >    - "http://**server_address**:
 >    - "http://**server_address**/
 > 
@@ -860,7 +829,7 @@ Done. Files updated with the following host address: **hostname_or_ip_address_of
 > config/configs/default/data-lifecycle-manager/settings.json
 > config/configs/default/data-explorer/settings.json
 > config/configs/default/data-viewer/settings.json
-> config/configs/datasources.json
+> config/configs/tenants.json
 > Done. Files updated with the following host address: **hostname_or_ip_address_of_your_server**
 > ```
 
@@ -872,7 +841,6 @@ Javascript services expect valid JSON configuration files in order to function p
 In case you experience broken/weird functionality on user interface of DLM and/or DE after a change in configuration file(s) there is a chance of accidental mistake made in one of the config files, turning it to an invalid JSON file.
 
 It is recommended to check validity of the following JSON configuration files:
-- datasources.json
 - tenants.json
 - default/data-lifecycle-manager/settings.json
 - default/data-explorer/settings.json
@@ -898,7 +866,6 @@ You should see one row for each file verified, either the "Valid JSON" message o
 > A sample result can be seen below where all files are valid:
 > 
 > ```
-> Valid JSON (config/configs/datasources.json)
 > Valid JSON (config/configs/tenants.json)
 > Valid JSON (config/configs/default/data-lifecycle-manager/i18n/nl.json)
 > Valid JSON (config/configs/default/data-lifecycle-manager/i18n/fr.json)
@@ -927,12 +894,20 @@ You should see one row for each file verified, either the "Valid JSON" message o
 
 An option for validity checking of Json files on Windows could be Notepad++ with JSONViewer plugin but any tool of your preference could be used.
 
+
+##### Setting parameters of SMTP service
+
+Javascript services are using the [SMTP parameters](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-docker-compose#setting-parameters-of-smtp-service) as well.
+
+You can find more explaination by services, links below:
+  - [share service](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-share#config)
+
 #### Start JavaScript services
 
 Open a new bash (Linux) or Git Bash (Windows) terminal. Please navigate to *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* folder and start the services with the following command:
 
 ```sh
-$ docker-compose -f ./docker-compose-demo-js.yml up
+$ docker compose -f ./docker-compose-demo-js.yml up
 ```
 
 <details>
@@ -947,7 +922,7 @@ $ docker-compose -f ./docker-compose-demo-js.yml up
 > 
 > If you prefer to start containers running in the background please execute the following command instead:
 > ```sh
-> $ docker-compose -f ./docker-compose-demo-js.yml up -d
+> $ docker compose -f ./docker-compose-demo-js.yml up -d
 > ```
 > 
 > Please note that when containers are run in the background they are executed in detached mode and their logs are not displayed in the current window.
@@ -956,7 +931,7 @@ $ docker-compose -f ./docker-compose-demo-js.yml up
 > To terminate the JavaScript containers running in the background execute the following command:
 > 
 > ```sh
-> $ docker-compose -f ./docker-compose-demo-js.yml down
+> $ docker compose -f ./docker-compose-demo-js.yml down
 > ```
 
 </details>
@@ -1043,7 +1018,6 @@ The command displays the logs written by *nsiws-demo-release* so far and does no
 
 For further reference please see the following links:
 - [docker logs](https://docs.docker.com/engine/reference/commandline/logs/)
-- [docker-compose logs](https://docs.docker.com/compose/reference/logs/)
 
 #### Changing the IP address/hostname of your machine
 
@@ -1060,7 +1034,7 @@ In case the IP address or the hostname you used previously in your .Stat Suite i
     ```
     HOST=new-dotstat-demo.myorganization.org
     ```
-- **datasources.json** and **settings.json files** within *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/configs/* folder.
+- **tenants.json** and **settings.json files** within *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo/config/configs/* folder.
     The simplest way to do that is to execute the following script from folder *$DOTSTATSUITE-DOCKER-COMPOSE-ROOT/demo* (please replace both **NEW_hostname_or_ip_address_of_your_server** and **OLD_hostname_or_ip_address_of_your_server** with the actual NEW and OLD hostnames/ip addresses of your server):
 
     ```sh
@@ -1091,9 +1065,11 @@ In the default docker-compose installation the configuration files of DE and DLM
  
 ```
  ├── configs
- │   ├── datasources.json
- │   ├── tenants.json 
+ │   ├── tenants.json
+ │   ├── sfs.json
  │   ├── default
+ │   │   ├── sfs
+ │   │   │   ├── settings.json
  │   │   ├── data-explorer
  │   │   │   ├── settings.json
  │   │   ├── data-lifecycle-manager

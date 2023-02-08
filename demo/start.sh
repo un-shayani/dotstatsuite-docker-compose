@@ -12,14 +12,11 @@ echo "OS detected: $CURRENT_OS"
 if [ -z "$HOST" ]; then 
    #If HOST parameter is not provided, use the default hostname/address:
 
-   if [ "$CURRENT_OS" == "Darwin" ]; then
+   if [ "$CURRENT_OS" = "Darwin" ]; then
       # Max OS X - not tested!!!
       HOST=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | head -1); 
-   elif [ "$(expr substr $CURRENT_OS 1 5)" == "Linux" ]; then
-      # Linux - first ip address displayed by ifconfig
-      HOST=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | head -1);
    else
-      HOST=localhost
+      HOST="host.docker.internal"
    fi
 fi
 
@@ -27,8 +24,8 @@ fi
 COLOR='\033[1;32m'
 NOCOLOR='\033[0m' # No Color
 # Remove existing configuration directory (of JavaScript services)
-if [[ -d $DIR_CONFIG ]]; then
-   echo -e "Do you wish to erase the config folder (if yes, latest one will be downloaded with the host adress: $COLOR $HOST $NOCOLOR)? (Y/N)"
+if [ -d $DIR_CONFIG ]; then
+   echo -e "Delete config ? (if yes, latest one will be downloaded with the host adress: $COLOR $HOST $NOCOLOR)? (Y/N)"
    while true; do
       read -p "" yn
       case $yn in
@@ -38,7 +35,7 @@ if [[ -d $DIR_CONFIG ]]; then
       esac
    done
 fi
-if [[ ! -d $DIR_CONFIG ]]; then
+if [ ! -d $DIR_CONFIG ]; then
    ./scripts/download-config.sh;
 fi
 
@@ -57,13 +54,13 @@ sed -Ei "s#^HOST=.*#HOST=$HOST#g" .env
 #########################
 
 echo "Starting Keycloak services"
-docker-compose -f docker-compose-demo-keycloak.yml up -d
+docker compose -f docker-compose-demo-keycloak.yml up -d
 
 echo "Starting .Net services"
-docker-compose -f docker-compose-demo-dotnet.yml up -d
+docker compose -f docker-compose-demo-dotnet.yml up -d
 
 echo "Starting JS services"
-docker-compose -f docker-compose-demo-js.yml up -d
+docker compose -f docker-compose-demo-js.yml up -d
 
 echo -n "Services being started."
 
