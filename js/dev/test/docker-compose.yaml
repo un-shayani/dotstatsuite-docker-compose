@@ -6,9 +6,9 @@ volumes:
 
 services:
   solr:
-    image: solr:8.11.0
+    image: solr:8.11.2
     container_name: solr-test
-    entrypoint: 
+    entrypoint:
       - docker-entrypoint.sh
       - solr
       - start
@@ -16,7 +16,7 @@ services:
       - -f
     ports:
       - ${SOLR_PORT}:8983
-    volumes: 
+    volumes:
       - solr-data:/var/solr
 
   mongo:
