@@ -4,22 +4,22 @@ volumes:
   redis-data:
   solr-data:
   mongo-data:
-  
+
 services:
   solr:
     image: solr:8.11.1
     container_name: solr
     ports:
       - "${SOLR_PORT}:8983"
-    networks:
-      - dotstat_network
-    entrypoint: 
+    entrypoint:
       - docker-entrypoint.sh
       - solr
       - start
       - -c
       - -f
-    volumes: 
+    networks:
+      - dotstat_network
+    volumes:
       - solr-data:/var/solr
 
   redis:
@@ -31,7 +31,7 @@ services:
       - redis-data:/data
     networks:
       - dotstat_network
-  
+
   mongo:
     image: mongo:5.0.6
     container_name: mongo
@@ -154,7 +154,7 @@ services:
       API_KEY: ${API_KEY_SFS}
     networks:
       - dotstat_network
-
+      
 networks:
   dotstat_network:
     name: dotstat_common_network
