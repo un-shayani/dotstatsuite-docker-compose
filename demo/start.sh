@@ -53,6 +53,12 @@ sed -Ei "s#^HOST=.*#HOST=$HOST#g" .env
 # Start docker services #
 #########################
 
+read -p "Clean solr volumes ? (Y/N)" cl
+if [ $cl = 'y' ] || [ $cl = 'Y' ]
+then
+   scripts/clean-solr-volumes.sh;
+fi
+
 echo "Starting Keycloak services"
 docker compose -f docker-compose-demo-keycloak.yml up -d
 
