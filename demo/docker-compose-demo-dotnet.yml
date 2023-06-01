@@ -3,7 +3,7 @@ version: "3.5"
 services:
 
     nsiws-demo-design:
-        image: siscc/sdmxri-nsi-maapi:master
+        image: siscc/sdmxri-nsi-maapi:${NSI_IMAGE_TAG}
         container_name: nsiws-demo-design
         ports:
           - "${NSI_DESIGN_PORT}:80"
@@ -44,7 +44,7 @@ services:
           - dotstat_network
 
     nsiws-demo-release:
-        image: siscc/sdmxri-nsi-maapi:master
+        image: siscc/sdmxri-nsi-maapi:${NSI_IMAGE_TAG}
         container_name: nsiws-demo-release
         ports:
           - "${NSI_RELEASE_PORT}:80"
@@ -85,7 +85,7 @@ services:
           - dotstat_network
 
     transfer-service:
-        image: siscc/dotstatsuite-core-transfer:master
+        image: siscc/dotstatsuite-core-transfer:${TRANSFER_IMAGE_TAG}
         container_name: transfer-service
         environment:
             auth__Enabled: ${AUTH_ENABLED}
@@ -140,7 +140,7 @@ services:
           - dotstat_network
 
     auth-service:
-        image: siscc/dotstatsuite-core-auth-management:master
+        image: siscc/dotstatsuite-core-auth-management:${AUTH_IMAGE_TAG}
         container_name: auth-service
         environment:
             auth__enabled: ${AUTH_ENABLED}
@@ -166,7 +166,7 @@ services:
           - dotstat_network
 
     dbup-struct-design:
-        image: siscc/dotstatsuite-dbup:master
+        image: siscc/dotstatsuite-dbup:${DBUP_IMAGE_TAG}
         container_name: dbup-struct-design
         environment:
             EXECUTION_PARAMETERS: upgrade --connectionString Server=${STRUCT_DB_DESIGN_SERVER};Database=${STRUCT_DB_DESIGN};User=${DB_SA_USER};Password=${DB_SA_PASSWORD}; --mappingStoreDb --loginName ${STRUCT_DB_DESIGN_USER} --loginPwd ${STRUCT_DB_DESIGN_PWD} --force --alterPassword
@@ -177,7 +177,7 @@ services:
           - dotstat_network
 
     dbup-data-design:
-        image: siscc/dotstatsuite-dbup:master
+        image: siscc/dotstatsuite-dbup:${DBUP_IMAGE_TAG}
         container_name: dbup-data-design
         environment:
             EXECUTION_PARAMETERS: upgrade --connectionString Server=${DATA_DB_DESIGN_SERVER};Database=${DATA_DB_DESIGN};User=${DB_SA_USER};Password=${DB_SA_PASSWORD}; --dataDb --loginName ${DATA_DB_DESIGN_USER} --loginPwd ${DATA_DB_DESIGN_PWD} --force --alterPassword
@@ -188,7 +188,7 @@ services:
           - dotstat_network
 
     dbup-struct-release:
-        image: siscc/dotstatsuite-dbup:master
+        image: siscc/dotstatsuite-dbup:${DBUP_IMAGE_TAG}
         container_name: dbup-struct-release
         environment:
             EXECUTION_PARAMETERS: upgrade --connectionString Server=${STRUCT_DB_RELEASE_SERVER};Database=${STRUCT_DB_RELEASE};User=${DB_SA_USER};Password=${DB_SA_PASSWORD}; --mappingStoreDb --loginName ${STRUCT_DB_RELEASE_USER} --loginPwd ${STRUCT_DB_RELEASE_PWD} --force --alterPassword
@@ -199,7 +199,7 @@ services:
           - dotstat_network
 
     dbup-data-release:
-        image: siscc/dotstatsuite-dbup:master
+        image: siscc/dotstatsuite-dbup:${DBUP_IMAGE_TAG}
         container_name: dbup-data-release
         environment:
             EXECUTION_PARAMETERS: upgrade --connectionString Server=${DATA_DB_RELEASE_SERVER};Database=${DATA_DB_RELEASE};User=${DB_SA_USER};Password=${DB_SA_PASSWORD}; --dataDb --loginName ${DATA_DB_RELEASE_USER} --loginPwd ${DATA_DB_RELEASE_PWD} --force --alterPassword
@@ -210,7 +210,7 @@ services:
           - dotstat_network
 
     dbup-common:
-        image: siscc/dotstatsuite-dbup:master
+        image: siscc/dotstatsuite-dbup:${DBUP_IMAGE_TAG}
         container_name: dbup-common
         environment:
             EXECUTION_PARAMETERS: upgrade --connectionString Server=${COMMON_DB_SERVER};Database=${COMMON_DB};User=${DB_SA_USER};Password=${DB_SA_PASSWORD}; --commonDb --loginName ${COMMON_DB_USER} --loginPwd ${COMMON_DB_PWD} --force --alterPassword --ROloginName ${COMMON_DB_RO_USER} --ROloginPwd ${COMMON_DB_RO_PWD}
