@@ -95,6 +95,7 @@ services:
       MAIL_TO: ${CONTACT_TO}
       CAPTCHA_SECRET_KEY: ${CAPTCHA_SECRET_KEY}
       CAPTCHA_SITE_KEY: ${CAPTCHA_SITE_KEY}
+      SITE_ENV: ${SITE_ENV}
     volumes:
       - "./config/assets:/opt/build/assets"
     networks:
@@ -133,6 +134,7 @@ services:
       GA_TOKEN: ${GA_TOKEN}
       GTM_TOKEN: ${GTM_TOKEN_DV}
       ROBOTS_POLICY: ${ROBOTS_POLICY_DV}
+      SITE_ENV: ${SITE_ENV}
     volumes:
       - "./config/assets:/opt/build/assets"
     networks:
