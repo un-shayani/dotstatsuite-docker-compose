@@ -33,7 +33,7 @@ services:
             MA_ALWAYS_RESET: N
             # Other NSI WS configuration
             INSERT_NEW_ITEM_SCHEME_VALUES: "true"
-            SENDER_ID: "demo-design - DotStat v8"
+            SENDER_ID: "demo-design-DotStatV8"
             enableReleaseManagement: "true"
         depends_on:
           dbup-struct-design:
@@ -74,7 +74,7 @@ services:
             MA_ALWAYS_RESET: N
             # Other NSI WS configuration
             INSERT_NEW_ITEM_SCHEME_VALUES: "false"
-            SENDER_ID: "demot-release - DotStat v8"
+            SENDER_ID: "demo-release-DotStatV8"
             enableReleaseManagement: "true"
         depends_on:
           dbup-struct-release:
