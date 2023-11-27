@@ -99,6 +99,7 @@ services:
             auth__claimsMapping__groups: groups
             auth__requireHttps: "false"
             auth__validateIssuer: "false"
+            ServiceId: transfer-service-1
             MaxTransferErrorAmount: 0
             DefaultLanguageCode: en
             SmtpHost: ${SMTP_HOST}
