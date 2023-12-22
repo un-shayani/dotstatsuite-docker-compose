@@ -1082,13 +1082,16 @@ Remember to validate the json configuration files to make sure that the changes 
 
 #### Indexing data 
 
-before indexing data, you have to **create a collection**
+before indexing data, you have to **create a collection and dynamic fields**
 
-Your tenant name should be `default` else you have to change name in the url below. You can copy past this url in your browser or using postman.
+You can base these on the dafault `demo` tenant config provided through https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-config-data or configure it yourself with the following guidelines: https://sis-cc.gitlab.io/dotstatsuite-documentation/configurations/search-config/
+
+Once you're done with your configuration, enter the `sfs` container and run the following script:
 ```
-http://localhost:8983/solr/admin/collections?action=CREATE&name=default&numShards=1&collection.configName=_default
+yarn dist:schema
 ```
-This url will create a collection in solr. You can see your collection [here](http://localhost:8983/solr/#/~collections)
+With this, sfs will create or update your collection(s) based on this config (more details [here](https://gitlab.com/sis-cc/.stat-suite/dotstatsuite-sdmx-faceted-search#script)), 
+You can see your collection [here](http://localhost:8983/solr/#/~collections)
 
 Please find information on when and how to index data at the following link: https://sis-cc.gitlab.io/dotstatsuite-documentation/using-de/searching-data/indexing-data/#when-and-how-to-index
 
