@@ -25,6 +25,7 @@ services:
             SQL_DATABASE: ${STRUCT_DB_DESIGN}
             SQL_USER: ${STRUCT_DB_DESIGN_USER}
             SQL_PASSWORD: ${STRUCT_DB_DESIGN_PWD}
+            SQL_PROVIDER: MySql.Data.MySqlClient
             # Dissemination database configuration
             disseminationDbConnection__dbType: MySQL
             disseminationDbConnection__connectionString: Server=${DATA_DB_DESIGN_SERVER};Database=${DATA_DB_DESIGN};User=${DATA_DB_DESIGN_USER};Password=${DATA_DB_DESIGN_PWD};
@@ -67,6 +68,7 @@ services:
             SQL_DATABASE: ${STRUCT_DB_RELEASE}
             SQL_USER: ${STRUCT_DB_RELEASE_USER}
             SQL_PASSWORD: ${STRUCT_DB_RELEASE_PWD}
+            SQL_PROVIDER: MySql.Data.MySqlClient
             # Dissemination database configuration
             disseminationDbConnection__dbType: MySQL
             disseminationDbConnection__connectionString: Server=${DATA_DB_DESIGN_SERVER};Database=${DATA_DB_DESIGN};User=${DATA_DB_DESIGN_USER};Password=${DATA_DB_DESIGN_PWD};
@@ -162,6 +164,7 @@ services:
             auth__requireHttps: "false"
             auth__validateIssuer: "false"
             DotStatSuiteCoreCommonDbConnectionString: Server=${COMMON_DB_SERVER};Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
+            DbType: MariaDb
             disseminationDbConnection__dbType: "MySQL"
             disseminationDbConnection__dconnectionString: Server=${DATA_DB_DESIGN_SERVER};Database=${DATA_DB_DESIGN};User=${DATA_DB_DESIGN_USER};Password=${DATA_DB_DESIGN_PWD};
         volumes:
@@ -266,7 +269,7 @@ services:
             MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
         command: --lower_case_table_names=1
         ports:
-          - "${MARIADB_PORT}:${MARIADB_PORT}"
+          - "3336:${MARIADB_PORT}"
         networks:
           - dotstat_network
         healthcheck:
