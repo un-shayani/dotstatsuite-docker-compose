@@ -18,19 +18,20 @@ services:
             auth__showPii: "true"
             # Authorization configuration
             mappingStore__Id__Default: "demo-design" #Dataspace id
-            DotStatSuiteCoreCommonDbConnectionString: Server=db;Database=${COMMON_DB};User=${COMMON_DB_RO_USER};Password=${COMMON_DB_RO_PWD};
+            DotStatSuiteCoreCommonDbConnectionString: Server=mariadb;Database=${COMMON_DB};User=${COMMON_DB_RO_USER};Password=${COMMON_DB_RO_PWD};
+            DbType: MariaDb
             # Database configuration
-            SQL_SERVER: db
+            SQL_SERVER: mariadb
             SQL_DATABASE: ${STRUCT_DB_DESIGN}
             SQL_USER: ${STRUCT_DB_DESIGN_USER}
             SQL_PASSWORD: ${STRUCT_DB_DESIGN_PWD}
-            SQL_PROVIDER: System.Data.SqlClient
+            SQL_PROVIDER: MySql.Data.MySqlClient
             # Dissemination database configuration
-            disseminationDbConnection__dbType: SqlServer
-            disseminationDbConnection__connectionString: Server=db;Database=${DATA_DB_DESIGN};User=${DATA_DB_DESIGN_USER};Password=${DATA_DB_DESIGN_PWD};
+            disseminationDbConnection__dbType: MySQL
+            disseminationDbConnection__connectionString: Server=mariadb;Database=${DATA_DB_DESIGN};User=${DATA_DB_DESIGN_USER};Password=${DATA_DB_DESIGN_PWD};
             # MAAPI.NET configuration
-            MA_SQL_USER: ${DB_SA_USER}
-            MA_SQL_PASSWORD: ${DB_SA_PASSWORD}
+            MA_SQL_USER: ${MARIADB_ROOT_USER}
+            MA_SQL_PASSWORD: ${MARIADB_ROOT_PASSWORD}
             MA_ALWAYS_RESET: N
             # Other NSI WS configuration
             INSERT_NEW_ITEM_SCHEME_VALUES: "true"
@@ -60,22 +61,23 @@ services:
             auth__showPii: "true"
             # Authorization configuration
             mappingStore__Id__Default: "demo-release" #Dataspace id
-            DotStatSuiteCoreCommonDbConnectionString: Server=db;Database=${COMMON_DB};User=${COMMON_DB_RO_USER};Password=${COMMON_DB_RO_PWD};
+            DotStatSuiteCoreCommonDbConnectionString: Server=mariadb;Database=${COMMON_DB};User=${COMMON_DB_RO_USER};Password=${COMMON_DB_RO_PWD};
+            DbType: MariaDb
             # Database configuration
-            SQL_SERVER: db
+            SQL_SERVER: mariadb
             SQL_DATABASE: ${STRUCT_DB_RELEASE}
             SQL_USER: ${STRUCT_DB_RELEASE_USER}
             SQL_PASSWORD: ${STRUCT_DB_RELEASE_PWD}
-            SQL_PROVIDER: System.Data.SqlClient
+            SQL_PROVIDER: MySql.Data.MySqlClient
             # Dissemination database configuration
-            disseminationDbConnection__dbType: SqlServer
-            disseminationDbConnection__connectionString: Server=db;Database=${DATA_DB_RELEASE};User=${DATA_DB_RELEASE_USER};Password=${DATA_DB_RELEASE_PWD};
+            disseminationDbConnection__dbType: MySQL
+            disseminationDbConnection__connectionString: Server=mariadb;Database=${DATA_DB_RELEASE};User=${DATA_DB_RELEASE_USER};Password=${DATA_DB_RELEASE_PWD};
             # MAAPI.NET configuration
-            MA_SQL_USER: ${DB_SA_USER}
-            MA_SQL_PASSWORD: ${DB_SA_PASSWORD}
+            MA_SQL_USER: ${MARIADB_ROOT_USER}
+            MA_SQL_PASSWORD: ${MARIADB_ROOT_PASSWORD}
             MA_ALWAYS_RESET: N
             # Other NSI WS configuration
-            INSERT_NEW_ITEM_SCHEME_VALUES: "false"
+            INSERT_NEW_ITEM_SCHEME_VALUES: "true"
             SENDER_ID: "demo-release-DotStatV8"
             enableReleaseManagement: "true"
         depends_on:
@@ -101,7 +103,6 @@ services:
             auth__claimsMapping__groups: groups
             auth__requireHttps: "false"
             auth__validateIssuer: "false"
-            ServiceId: transfer-service-1
             MaxTransferErrorAmount: 0
             DefaultLanguageCode: en
             SmtpHost: ${SMTP_HOST}
@@ -111,21 +112,26 @@ services:
             SmtpUserPassword: ${SMTP_PASSWORD}
             MailFrom: noreply@dlm.org
             MaxTextAttributeLength: 150
-            DotStatSuiteCoreCommonDbConnectionString: Server=db;Database=${COMMON_DB};User=${COMMON_DB_RO_USER};Password=${COMMON_DB_RO_PWD};
+            DotStatSuiteCoreCommonDbConnectionString: Server=mariadb;Database=${COMMON_DB};User=${COMMON_DB_RO_USER};Password=${COMMON_DB_RO_PWD};
+            DbType: MariaDb
             SpacesInternal__0__Id: demo-design
-            SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=db;Database=${STRUCT_DB_DESIGN};User=${STRUCT_DB_DESIGN_USER};Password=${STRUCT_DB_DESIGN_PWD};
-            SpacesInternal__0__DotStatSuiteCoreDataDbConnectionString: Server=db;Database=${DATA_DB_DESIGN};User=${DATA_DB_DESIGN_USER};Password=${DATA_DB_DESIGN_PWD};
+            SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=mariadb;Database=${STRUCT_DB_DESIGN};User=${STRUCT_DB_DESIGN_USER};Password=${STRUCT_DB_DESIGN_PWD};
+            SpacesInternal__0__DotStatSuiteCoreDataDbConnectionString: Server=mariadb;Database=${DATA_DB_DESIGN};User=${DATA_DB_DESIGN_USER};Password=${DATA_DB_DESIGN_PWD};
             SpacesInternal__0__DataImportTimeOutInMinutes: 2
             SpacesInternal__0__DatabaseCommandTimeoutInSec: 60
             SpacesInternal__0__AutoLog2DB: "true"
             SpacesInternal__0__AutoLog2DBLogLevel: "Notice"
+            SpacesInternal__0__DbType: "MariaDb"
+            SpacesInternal__0__MySql__UseColumnstoreIndexes: "false"
             SpacesInternal__1__Id: demo-release
-            SpacesInternal__1__DotStatSuiteCoreStructDbConnectionString: Server=db;Database=${STRUCT_DB_RELEASE};User=${STRUCT_DB_RELEASE_USER};Password=${STRUCT_DB_RELEASE_PWD};
-            SpacesInternal__1__DotStatSuiteCoreDataDbConnectionString: Server=db;Database=${DATA_DB_RELEASE};User=${DATA_DB_RELEASE_USER};Password=${DATA_DB_RELEASE_PWD};
+            SpacesInternal__1__DotStatSuiteCoreStructDbConnectionString: Server=mariadb;Database=${STRUCT_DB_RELEASE};User=${STRUCT_DB_RELEASE_USER};Password=${STRUCT_DB_RELEASE_PWD};
+            SpacesInternal__1__DotStatSuiteCoreDataDbConnectionString: Server=mariadb;Database=${DATA_DB_RELEASE};User=${DATA_DB_RELEASE_USER};Password=${DATA_DB_RELEASE_PWD};
             SpacesInternal__1__DataImportTimeOutInMinutes: 2
             SpacesInternal__1__DatabaseCommandTimeoutInSec: 60
             SpacesInternal__1__AutoLog2DB: "true"
             SpacesInternal__1__AutoLog2DBLogLevel: "Notice"
+            SpacesInternal__1__DbType: "MariaDb"
+            SpacesInternal__1__MySql__UseColumnstoreIndexes: "false"
         volumes:
           - "./logs:/app/logs"
         ports:
@@ -157,7 +163,8 @@ services:
             auth__claimsMapping__groups: groups
             auth__requireHttps: "false"
             auth__validateIssuer: "false"
-            DotStatSuiteCoreCommonDbConnectionString: Server=db;Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
+            DotStatSuiteCoreCommonDbConnectionString: Server=mariadb;Database=${COMMON_DB};User=${COMMON_DB_USER};Password=${COMMON_DB_PWD};
+            DbType: MariaDb
         volumes:
           - "./logs:/app/logs"
         ports:
@@ -172,9 +179,9 @@ services:
         image: siscc/dotstatsuite-dbup:${DBUP_IMAGE_TAG}
         container_name: dbup-struct-design
         environment:
-            EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${STRUCT_DB_DESIGN};User=${DB_SA_USER};Password=${DB_SA_PASSWORD}; --mappingStoreDb --loginName ${STRUCT_DB_DESIGN_USER} --loginPwd ${STRUCT_DB_DESIGN_PWD} --force --alterPassword
+            EXECUTION_PARAMETERS: upgrade --connectionString Server=mariadb;Database=${STRUCT_DB_DESIGN};User=${MARIADB_ROOT_USER};Password=${MARIADB_ROOT_PASSWORD}; --mappingStoreDb --loginName ${STRUCT_DB_DESIGN_USER} --loginPwd ${STRUCT_DB_DESIGN_PWD} --force --alterPassword --useMariaDb
         depends_on:
-          db:
+          mariadb:
             condition: service_healthy
         networks:
           - dotstat_network
@@ -183,9 +190,9 @@ services:
         image: siscc/dotstatsuite-dbup:${DBUP_IMAGE_TAG}
         container_name: dbup-data-design
         environment:
-            EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${DATA_DB_DESIGN};User=${DB_SA_USER};Password=${DB_SA_PASSWORD}; --dataDb --loginName ${DATA_DB_DESIGN_USER} --loginPwd ${DATA_DB_DESIGN_PWD} --force --alterPassword
+            EXECUTION_PARAMETERS: upgrade --connectionString Server=mariadb;Database=${DATA_DB_DESIGN};User=${MARIADB_ROOT_USER};Password=${MARIADB_ROOT_PASSWORD}; --dataDb --loginName ${DATA_DB_DESIGN_USER} --loginPwd ${DATA_DB_DESIGN_PWD} --force --alterPassword --useMariaDb
         depends_on:
-          db:
+          mariadb:
             condition: service_healthy
         networks:
           - dotstat_network
@@ -194,9 +201,9 @@ services:
         image: siscc/dotstatsuite-dbup:${DBUP_IMAGE_TAG}
         container_name: dbup-struct-release
         environment:
-            EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${STRUCT_DB_RELEASE};User=${DB_SA_USER};Password=${DB_SA_PASSWORD}; --mappingStoreDb --loginName ${STRUCT_DB_RELEASE_USER} --loginPwd ${STRUCT_DB_RELEASE_PWD} --force --alterPassword
+            EXECUTION_PARAMETERS: upgrade --connectionString Server=mariadb;Database=${STRUCT_DB_RELEASE};User=${MARIADB_ROOT_USER};Password=${MARIADB_ROOT_PASSWORD}; --mappingStoreDb --loginName ${STRUCT_DB_RELEASE_USER} --loginPwd ${STRUCT_DB_RELEASE_PWD} --force --alterPassword --useMariaDb
         depends_on:
-          db:
+          mariadb:
             condition: service_healthy
         networks:
           - dotstat_network
@@ -205,9 +212,9 @@ services:
         image: siscc/dotstatsuite-dbup:${DBUP_IMAGE_TAG}
         container_name: dbup-data-release
         environment:
-            EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${DATA_DB_RELEASE};User=${DB_SA_USER};Password=${DB_SA_PASSWORD}; --dataDb --loginName ${DATA_DB_RELEASE_USER} --loginPwd ${DATA_DB_RELEASE_PWD} --force --alterPassword
+            EXECUTION_PARAMETERS: upgrade --connectionString Server=mariadb;Database=${DATA_DB_RELEASE};User=${MARIADB_ROOT_USER};Password=${MARIADB_ROOT_PASSWORD}; --dataDb --loginName ${DATA_DB_RELEASE_USER} --loginPwd ${DATA_DB_RELEASE_PWD} --force --alterPassword --useMariaDb
         depends_on:
-          db:
+          mariadb:
             condition: service_healthy
         networks:
           - dotstat_network
@@ -216,35 +223,34 @@ services:
         image: siscc/dotstatsuite-dbup:${DBUP_IMAGE_TAG}
         container_name: dbup-common
         environment:
-            EXECUTION_PARAMETERS: upgrade --connectionString Server=db;Database=${COMMON_DB};User=${DB_SA_USER};Password=${DB_SA_PASSWORD}; --commonDb --loginName ${COMMON_DB_USER} --loginPwd ${COMMON_DB_PWD} --force --alterPassword --ROloginName ${COMMON_DB_RO_USER} --ROloginPwd ${COMMON_DB_RO_PWD}
+            EXECUTION_PARAMETERS: upgrade --connectionString Server=mariadb;Database=${COMMON_DB};User=${MARIADB_ROOT_USER};Password=${MARIADB_ROOT_PASSWORD}; --commonDb --loginName ${COMMON_DB_USER} --loginPwd ${COMMON_DB_PWD} --force --alterPassword --ROloginName ${COMMON_DB_RO_USER} --ROloginPwd ${COMMON_DB_RO_PWD} --useMariaDb
         depends_on:
-          db:
+          mariadb:
             condition: service_healthy
         networks:
           - dotstat_network
 
-    db:
-        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
-        container_name: mssql
-        ports:
-          - "${SQL_PORT}:1433"
+    mariadb:
+        image: mariadb:10.9
+        container_name: mariadb
         environment:
-          - SA_PASSWORD=${DB_SA_PASSWORD}
-          - MSSQL_PID=Developer
-          - ACCEPT_EULA=Y
-        healthcheck:
-          test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P ${DB_SA_PASSWORD} -Q "SELECT 1" -b -o /dev/null
-          interval: 10s
-          timeout: 3s
-          retries: 10
-          start_period: 10s          
-        volumes:
-          - "db-data:/var/opt/mssql/data"
+            MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+        command: --lower_case_table_names=1
+        ports:
+          - "3336:${MARIADB_PORT}"
         networks:
           - dotstat_network
+        healthcheck:
+          test: bash healthcheck.sh --su-mysql --connect --innodb_initialized 
+          interval: 30s
+          timeout: 10s
+          retries: 3
+          start_period: 10s
+        volumes:
+          - "mariadb-data:/var/opt/mariadb/data"
 
 volumes:
-  db-data:
+  mariadb-data:
 
 networks:
   dotstat_network:
