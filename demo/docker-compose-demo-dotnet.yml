@@ -109,6 +109,7 @@ services:
             SmtpUserPassword: ${SMTP_PASSWORD}
             MailFrom: noreply@dlm.org
             MaxTextAttributeLength: 150
+            ExcludeNonCodedDimensionsDuringConstraintCalculation: "true"
             DotStatSuiteCoreCommonDbConnectionString: Server=${COMMON_DB_SERVER};Database=${COMMON_DB};User=${COMMON_DB_RO_USER};Password=${COMMON_DB_RO_PWD};
             SpacesInternal__0__Id: demo-design
             SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=${STRUCT_DB_DESIGN_SERVER};Database=${STRUCT_DB_DESIGN};User=${STRUCT_DB_DESIGN_USER};Password=${STRUCT_DB_DESIGN_PWD};
