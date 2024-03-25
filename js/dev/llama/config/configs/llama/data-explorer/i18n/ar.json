@@ -1,0 +1,7 @@
+{
+  "de.app.title.search": "QA .Stat Data Explorer",
+  "de.app.title.vis": "QA .Stat Data Explorer • {dataflowName}",
+  "de.footer.disclaimer": "هذا إصدار ضمان الجودة لم يتم إصداره من .Stat Data Explorer.{br} يجب استخدامه لأغراض الاختبار فقط.",
+  "de.viewer.copyright.content.label": "SIS-CC {link}",
+  "de.viewer.copyright.content.link": "http://www.oecd.org/termsandconditions/"
+}

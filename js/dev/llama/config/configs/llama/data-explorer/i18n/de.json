@@ -1,0 +1,7 @@
+{
+  "de.app.title.search": "QA .Stat Data Explorer",
+  "de.app.title.vis": "QA .Stat Data Explorer • {dataflowName}",
+  "de.footer.disclaimer": "Dies ist eine nicht veröffentlichte Qualitätssicherungsversion des .Stat Data Explorer.{br}Sie darf nur zu Testzwecken verwendet werden.",
+  "de.viewer.copyright.content.label": "SIS-CC {link}",
+  "de.viewer.copyright.content.link": "http://www.oecd.org/termsandconditions/"
+}
