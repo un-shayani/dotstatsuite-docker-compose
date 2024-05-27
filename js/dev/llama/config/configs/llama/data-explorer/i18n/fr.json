@@ -1,0 +1,11 @@
+{
+  "de.app.title.search": "AQ .Stat Data Explorer",
+  "de.app.title.vis": "AQ .Stat Data Explorer • {dataflowName}",
+  "de.footer.disclaimer": "Ceci est une version d'assurance-qualité non-publiée de l’application .Stat Data Explorer.{br}Elle doit être utilisée à des fins de test uniquement.",
+  "de.viewer.copyright.content.label": "{link} de SIS-CC",
+  "de.viewer.copyright.content.link": "http://www.oecd.org/fr/conditionsdutilisation/",
+  "share.disclaimer": "Pour partager et intégrer notre contenu en toute sécurité, nous vous enverrons les informations nécessaires par courrier électronique. Votre addresse électronique est uniquement utilisée pour permettre l'accès à ce service et sera protégée conformément à la {link} de l’OCDE.",
+  "share.policy.label": "politique de protection des données et de la vie privée",
+  "share.policy.link": "https://www.oecd.org/fr/confidentialite/",
+  "de.header.message": "<a>Politique de protection des données et de la vie privée|https://www.oecd.org/fr/confidentialite/</a> | <a>Conditions d'utilisation|https://www.oecd.org/fr/conditionsdutilisation/</a> | <a>Contactez nous|https://siscc.org/contact/</a>"
+}

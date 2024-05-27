@@ -1,0 +1,9 @@
+{
+  "de.app.title.search": "QA .Stat Data Explorer",
+  "de.app.title.vis": "QA .Stat Data Explorer • {dataflowName}",
+  "de.footer.disclaimer": "This is a non-released quality assurance version of the .Stat Data Explorer.{br}It is to be used for test purposes only.",
+  "de.viewer.copyright.content.label": "SIS-CC {link}",
+  "de.viewer.copyright.content.link": "http://www.oecd.org/termsandconditions/",
+  "share.disclaimer": "To share and embed our content safely, we will send you the necessary information by email. Your email address is only used to enable you to access this service, and will be protected consistent with the OECD {link}.",
+  "de.header.message": "<a>Privacy policy|https://www.oecd.org/privacy/</a> | <a>Terms and conditions|https://www.oecd.org/termsandconditions/</a> | <a>Contact us|https://siscc.org/contact/</a>"
+}

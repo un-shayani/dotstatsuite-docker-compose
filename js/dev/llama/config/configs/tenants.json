@@ -1,0 +1,49 @@
+{
+  "llama": {
+    "id": "llama",
+    "label": "llama",
+    "default": true,
+    "spaces": {
+      "farso": {
+        "label": "farso",
+        "url": "host.docker.internal:4042/rest",
+        "hasRangeHeader": true,
+        "supportsReferencePartial": true,
+        "supportsPostLongRequests": true,
+        "hasLastNObservations": true,
+        "headers": {
+          "data": {
+            "json": "application/vnd.sdmx.data+json;version=2.0"
+          }
+        }
+      }
+    },
+    "datasources": {
+      "ds:farso": {
+        "dataSpaceId": "farso",
+        "indexed": true,
+        "dataqueries": [
+          {
+            "version": "1.0",
+            "categorySchemeId": "OECDCS1",
+            "agencyId": "OECD"
+          }
+        ]
+      }
+    },
+    "scopes": {
+      "de": {
+        "type": "de",
+        "label": "de",
+        "spaces": [
+          "farso"
+        ],
+        "datasources": [
+          "ds:farso"
+        ]
+      }
+    }
+  }
+}
+
+
