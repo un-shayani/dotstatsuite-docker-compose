@@ -60,13 +60,16 @@ then
 fi
 
 echo "Starting Keycloak services"
-docker compose -f docker-compose-demo-keycloak.yml up -d
+#docker compose -f docker-compose-demo-keycloak.yml up -d --quiet-pull --pull always
+docker compose -f docker-compose-demo-keycloak.yml up -d --quiet-pull
 
 echo "Starting .Net services"
-docker compose -f docker-compose-demo-dotnet.yml up -d
+#docker compose -f docker-compose-demo-dotnet.yml up -d --quiet-pull --pull always
+docker compose -f docker-compose-demo-dotnet.yml up -d --quiet-pull
 
 echo "Starting JS services"
-docker compose -f docker-compose-demo-js.yml up -d
+#docker compose -f docker-compose-demo-js.yml up -d --quiet-pull --pull always 
+docker compose -f docker-compose-demo-js.yml up -d --quiet-pull
 
 echo -n "Services being started."
 
