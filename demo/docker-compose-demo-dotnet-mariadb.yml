@@ -237,7 +237,7 @@ services:
             MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
         command: --lower_case_table_names=1
         ports:
-          - "3336:${MARIADB_PORT}"
+          - "${MARIADB_PORT}:3306"
         networks:
           - dotstat_network
         healthcheck:
