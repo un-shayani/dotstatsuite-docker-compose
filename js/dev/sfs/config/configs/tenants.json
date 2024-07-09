@@ -1,0 +1,119 @@
+{
+  "oecd": {
+    "id": "oecd",
+    "label": "oecd",
+    "default": true,
+    "spaces": {
+      "qa:stable": {
+        "label": "qa:stable",
+        "isExternal": false,
+        "hasExternalAuth": false,
+        "hasRangeHeader": true,
+        "supportsReferencePartial": true,
+        "hasLastNObservations": true,
+        "url": "https://nsi-qa-stable.siscc.org/rest",
+        "urlv3": "https://nsi-qa-stable.siscc.org/rest/V2",
+        "headers": {
+          "data": {
+            "csv": "application/vnd.sdmx.data+csv;version=2.0",
+            "json": "application/vnd.sdmx.data+json;version=2.0"
+          }
+        }
+      }
+    },
+    "datasources": {
+      "ds:qa:stable": {
+        "dataSpaceId": "qa:stable",
+        "indexed": true,
+        "dataqueries": [
+          { "version": "1.1", "categorySchemeId": "OECDCS1", "agencyId": "OECD" }
+        ]
+      }
+    },
+    "scopes": {
+      "dlm": {
+        "type": "dlm",
+        "label": "dlm",
+        "oidc": {
+          "authority": "https://keycloak.siscc.org/auth/realms/OECD",
+          "client_id": "app"
+        },
+        "spaces": [
+          {
+            "id": "qa:stable",
+            "color": "white",
+            "backgroundColor": "#222222",
+            "label": "qa-stable",
+            "transferUrl": "https://transfer-qa.siscc.org/2",
+            "dataExplorerUrl": "http://localhost:7001"
+          }
+        ]
+      },
+      "de": {
+        "type": "de",
+        "label": "de",
+        "oidc": {
+          "required": false,
+          "authority": "https://keycloak.siscc.org/auth/realms/OECD",
+          "authority_aliases": [
+            "https://keycloak.aaa.org/auth/realms/OECD",
+            "https://keycloak.bbb.org/auth/realms/OECD"
+          ],
+          "client_id": "app",
+          "scope": "openid email offline_access"
+        },
+        "spaces": [ "qa:stable" ],
+        "datasources": [ "ds:qa:stable" ]
+      }
+    }
+  },
+  "worldcompany": {
+    "id": "worldcompany",
+    "name": "worldcompany",
+    "spaces": {
+      "qa:stable": {
+        "label": "qa:stable",
+        "isExternal": false,
+        "hasExternalAuth": false,
+        "hasRangeHeader": true,
+        "supportsReferencePartial": true,
+        "hasLastNObservations": true,
+        "url": "https://nsi-qa-stable.siscc.org/rest",
+        "urlv3": "https://nsi-qa-stable.siscc.org/rest/V2",
+        "headers": {
+          "data": {
+            "csv": "application/vnd.sdmx.data+csv;version=2.0",
+            "json": "application/vnd.sdmx.data+json;version=2.0"
+          }
+        }
+      }
+    },
+    "datasources": {
+      "ds:qa:stable": {
+        "dataSpaceId": "qa:stable",
+        "indexed": true,
+        "dataqueries": [
+          { "version": "1.1", "categorySchemeId": "OECDCS1", "agencyId": "OECD" }
+        ]
+      }
+    },
+    "scopes": {
+      "de": {
+        "type": "de",
+        "label": "de",
+        "oidc": {
+          "required": false,
+          "authority": "https://keycloak.siscc.org/auth/realms/OECD",
+          "authority_aliases": [
+            "https://keycloak.aaa.org/auth/realms/OECD",
+            "https://keycloak.bbb.org/auth/realms/OECD"
+          ],
+          "client_id": "app",
+          "scope": "openid email offline_access"
+        },
+        "spaces": [ "qa:stable" ],
+        "datasources": [ "ds:qa:stable" ]
+      }
+    }
+  }
+}

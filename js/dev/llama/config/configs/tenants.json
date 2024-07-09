@@ -6,7 +6,7 @@
     "spaces": {
       "farso": {
         "label": "farso",
-        "url": "host.docker.internal:4042/rest",
+        "url": "localhost:4042/rest",
         "hasRangeHeader": true,
         "supportsReferencePartial": true,
         "supportsPostLongRequests": true,
