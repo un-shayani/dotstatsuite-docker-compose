@@ -156,7 +156,7 @@ services:
       API_KEY: ${API_KEY_SFS}
     networks:
       - dotstat_network
-      
+
 networks:
   dotstat_network:
     name: dotstat_common_network

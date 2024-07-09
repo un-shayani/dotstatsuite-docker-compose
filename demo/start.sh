@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 ##################
 # Initialization #
@@ -9,12 +9,12 @@ DIR_CONFIG='./config'
 CURRENT_OS=$(uname -s)
 echo "OS detected: $CURRENT_OS"
 
-if [ -z "$HOST" ]; then 
+if [ -z "$HOST" ]; then
    #If HOST parameter is not provided, use the default hostname/address:
 
    if [ "$CURRENT_OS" = "Darwin" ]; then
       # Max OS X - not tested!!!
-      HOST=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | head -1); 
+      HOST=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | head -1);
    else
       HOST="host.docker.internal"
    fi
@@ -68,7 +68,7 @@ echo "Starting .Net services"
 docker compose -f docker-compose-demo-dotnet.yml up -d --quiet-pull
 
 echo "Starting JS services"
-#docker compose -f docker-compose-demo-js.yml up -d --quiet-pull --pull always 
+#docker compose -f docker-compose-demo-js.yml up -d --quiet-pull --pull always
 docker compose -f docker-compose-demo-js.yml up -d --quiet-pull
 
 echo -n "Services being started."

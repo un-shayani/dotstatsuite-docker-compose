@@ -64,7 +64,6 @@ services:
     container_name: sfs
     ports:
       - "${SFS_PORT}:80"
-    restart: always
     environment:
       DEFAULT_TENANT: ${DEFAULT_TENANT}
       CONFIG_URL: http://config
@@ -75,7 +74,7 @@ services:
       API_KEY: ${API_KEY_SFS}
     networks:
       - dotstat_network
-      
+
 networks:
   dotstat_network:
     name: dotstat_common_network
