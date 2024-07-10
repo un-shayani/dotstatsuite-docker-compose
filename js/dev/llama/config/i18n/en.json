@@ -138,7 +138,7 @@
   "de.share.alert.deleteall.description": "All your active visualisations will be removed and their URLs will be obsolete.",
   "de.share.alert.deleteall.title": "Delete all the items?",
   "de.share.button.deleteAll": "Delete all",
-  "de.share.confirmationText": "You need to confirm your email address within the next  {redisChartsTTL} hours. If you received this email by mistake, simply delete it.",
+  "de.share.confirmationText": "You need to confirm your email address within the next  {chartsTTL} hours. If you received this email by mistake, simply delete it.",
   "de.share.copyMsg": "Alternatively, you can also paste this URL into your web browser.",
   "de.share.email.button.label": "Confirm your email",
   "de.share.embed.description": "Embed in your website using the following code (update the width and height to fit in your design)",

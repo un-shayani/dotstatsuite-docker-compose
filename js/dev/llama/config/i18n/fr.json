@@ -138,7 +138,7 @@
   "de.share.alert.deleteall.description": "Toutes vos visualisations actives seront supprimées et leurs adresses URL seront obsolètes.",
   "de.share.alert.deleteall.title": "Confirmer la suppression de tous les éléments ?",
   "de.share.button.deleteAll": "Tout supprimer",
-  "de.share.confirmationText": "Vous devez confirmer votre adresse e-mail dans les prochaines {redisChartsTTL} heures. Si vous avez reçu cet email par erreur, supprimez-le simplement.",
+  "de.share.confirmationText": "Vous devez confirmer votre adresse e-mail dans les prochaines {chartsTTL} heures. Si vous avez reçu cet email par erreur, supprimez-le simplement.",
   "de.share.copyMsg": "Vous pouvez également coller cette URL dans votre navigateur Web.",
   "de.share.email.button.label": "Confirmez votre email",
   "de.share.embed.description": "Ajoutez le code ci-dessous pour l'intégrer à votre site internet (modifiez les propriétés \"width\" et \"height\" pour l'ajuster à votre site)",
