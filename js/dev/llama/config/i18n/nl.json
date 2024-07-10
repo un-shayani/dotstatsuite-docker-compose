@@ -138,7 +138,7 @@
   "de.share.alert.deleteall.description": "Al uw actieve visualisaties worden verwijderd en hun URL's zijn verouderd.",
   "de.share.alert.deleteall.title": "Alle items verwijderen?",
   "de.share.button.deleteAll": "Verwijder alles",
-  "de.share.confirmationText": "U moet uw e-mailadres bevestigen binnen de komende {redisChartsTTL} uur. Als u deze e-mail per ongeluk hebt ontvangen, verwijder deze dan eenvoudigweg.",
+  "de.share.confirmationText": "U moet uw e-mailadres bevestigen binnen de komende {chartsTTL} uur. Als u deze e-mail per ongeluk hebt ontvangen, verwijder deze dan eenvoudigweg.",
   "de.share.copyMsg": "Als alternatief kunt u ook deze URL in uw webbrowser plakken.",
   "de.share.email.button.label": "Bevestig Email",
   "de.share.embed.description": "Sluit uw website in met behulp van de volgende code (werk de breedte en hoogte bij zodat ze in uw ontwerp passen)",

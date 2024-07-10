@@ -138,7 +138,7 @@
   "de.share.alert.deleteall.description": "Alle Ihre aktiven Visualisierungen werden entfernt und die entsprechenden URLs werden unbrauchbar.",
   "de.share.alert.deleteall.title": "Alle Elemente löschen?",
   "de.share.button.deleteAll": "Alles löschen",
-  "de.share.confirmationText": "Sie müssen Ihre E-Mail-Adresse innerhalb der nächsten {redisChartsTTL} Stunden bestätigen. Wenn Sie diese E-Mail versehentlich erhalten haben, löschen Sie sie einfach.",
+  "de.share.confirmationText": "Sie müssen Ihre E-Mail-Adresse innerhalb der nächsten {chartsTTL} Stunden bestätigen. Wenn Sie diese E-Mail versehentlich erhalten haben, löschen Sie sie einfach.",
   "de.share.copyMsg": "Alternativ können Sie auch diese URL in Ihren Webbrowser einfügen.",
   "de.share.email.button.label": "E-Mail-Adresse bestätigen",
   "de.share.embed.description": "Betten Sie die Visualisierung mit dem folgenden Code in Ihre Website ein (aktualisieren Sie deren Breite und Höhe, damit sie in Ihr Design passt)",
