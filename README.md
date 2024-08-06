@@ -444,11 +444,14 @@ Further details on setting up a Gmail account for SMTP service can be found here
 > | Variable                 | Description                                         | Default value                                             |
 > | ------------------------ | --------------------------------------------------- | --------------------------------------------------------- |
 > | SA_PASSWORD              | Admin password of MS SQL database                   | My-Mssql-Pwd-123                                          |
+> | MARIADB_ROOT_USER        | Admin user of MariaDb database                      | root (should always be set to root)                       |
+> | MARIADB_ROOT_PASSWORD    | Admin password of MariaDb database                  | My-Mariadb-Pwd-123                                        |
 > | NSI_DESIGN_PORT          | Port of NSI WS - Design instance                    | 80                                                        |
 > | NSI_RELEASE_PORT         | Port of NSI WS - Release instance                   | 81                                                        |
 > | TRANSFER_PORT            | Port of Transfer service                            | 93                                                        |
 > | AUTH_PORT                | Port of Authorization Management service            | 94                                                        |
 > | SQL_PORT                 | Port of MS SQL Server                               | 1434                                                      |
+> | MARIADB_PORT             | Port of MariaDb Server                              | 3306                                                      |
 > | STRUCT_DB_DESIGN         | Name of structure database (Design dataspace)       | DesignStructDb                                            |
 > | STRUCT_DB_DESIGN_USER    | Username for structure database (Design dataspace)  | testLoginDesignStruct                                     |
 > | STRUCT_DB_DESIGN_PWD     | Password for structure database (Design dataspace)  | testLogin(!)Password                                      |
@@ -1177,6 +1180,7 @@ The TCP ports used by default installation of .Stat Suite v8 are as follows:
 | Transfer service                  |      93       |
 | Authorization Management service  |      94       |
 | MS SQL Server                     |     1434      |
+| MariaDb SQL Server                |     3306      |
 | SMTP server port                  |      587      |
 | Postgress DB                      |     5432      |
 
