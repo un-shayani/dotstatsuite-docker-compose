@@ -452,26 +452,23 @@ Further details on setting up a Gmail account for SMTP service can be found here
 > | AUTH_PORT                | Port of Authorization Management service            | 94                                                        |
 > | SQL_PORT                 | Port of MS SQL Server                               | 1434                                                      |
 > | MARIADB_PORT             | Port of MariaDb Server                              | 3306                                                      |
+> | SQL_SERVER_HOST          | Name of the MS SQL database server host             | db (default name of MS SQL instance running in container) |
+> | MARIADB_SERVER_HOST      | Name of the MariaDb database server                 | mariadb (default name of the MariaDb instance running in container) |
 > | STRUCT_DB_DESIGN         | Name of structure database (Design dataspace)       | DesignStructDb                                            |
 > | STRUCT_DB_DESIGN_USER    | Username for structure database (Design dataspace)  | testLoginDesignStruct                                     |
 > | STRUCT_DB_DESIGN_PWD     | Password for structure database (Design dataspace)  | testLogin(!)Password                                      |
-> | STRUCT_DB_DESIGN_SERVER  | Name of the database server (Design dataspace)      | db (default name of MS SQL instance running in container) |
 > | DATA_DB_DESIGN           | Name of data database (Design dataspace)            | DesignDataDb                                              |
 > | DATA_DB_DESIGN_USER      | Username for data database (Design dataspace)       | testLoginDesignData                                       |
 > | DATA_DB_DESIGN_PWD       | Password for data database (Design dataspace)       | testLogin(!)Password                                      |
-> | DATA_DB_DESIGN_SERVER    | Name of the database server (Design dataspace)      | db (default name of MS SQL instance running in container) |
 > | STRUCT_DB_RELEASE        | Name of structure database (Release dataspace)      | ReleaseStructDb                                           |
 > | STRUCT_DB_RELEASE_USER   | Username for structure database (Release dataspace) | testLoginReleaseStruct                                    |
 > | STRUCT_DB_RELEASE_PWD    | Password for structure database (Release dataspace) | testLogin(!)Password                                      |
-> | STRUCT_DB_RELEASE_SERVER | Name of the database server (Release dataspace)     | db (default name of MS SQL instance running in container) |
 > | DATA_DB_RELEASE          | Name of data database (Release dataspace)           | ReleaseDataDb                                             |
 > | DATA_DB_RELEASE_USER     | Username for data database (Release dataspace)      | testLoginReleaseData                                      |
 > | DATA_DB_RELEASE_PWD      | Password for data database (Release dataspace)      | testLogin(!)Password                                      |
-> | DATA_DB_RELEASE_SERVER   | Name of the database server (Release dataspace)     | db (default name of MS SQL instance running in container) |
 > | COMMON_DB                | Name of common database                             | CommonDb                                                  |
 > | COMMON_DB_USER           | Username for common database                        | testLoginCommon                                           |
 > | COMMON_DB_PWD            | Password for common database                        | testLogin(!)Password                                      |
-> | COMMON_DB_SERVER         | Name of the database server of common database      | db (default name of MS SQL instance running in container) |
 > | SMTP_HOST                | SMTP server hostname or IP address                  | smtp.gmail.com                                            |
 > | SMTP_PORT                | SMTP server port                                    | 587 (this port is using TLS default )                     |
 > | SMTP_SSL                 | SMTP server uses SSL                                | true                                                      |
