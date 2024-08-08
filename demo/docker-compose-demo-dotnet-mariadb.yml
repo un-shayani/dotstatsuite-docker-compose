@@ -23,7 +23,7 @@ services:
             SQL_DATABASE: ${STRUCT_DB_DESIGN}
             SQL_USER: ${STRUCT_DB_DESIGN_USER}
             SQL_PASSWORD: ${STRUCT_DB_DESIGN_PWD}
-            SQL_PROVIDER: MySql.Data.MySqlClient
+            SQL_PROVIDER: MySqlConnector
             # Dissemination database configuration
             disseminationDbConnection__dbType: MySQL
             disseminationDbConnection__connectionString: Server=${MARIADB_SERVER_HOST};Database=${DATA_DB_DESIGN};User=${DATA_DB_DESIGN_USER};Password=${DATA_DB_DESIGN_PWD};
@@ -66,7 +66,7 @@ services:
             SQL_DATABASE: ${STRUCT_DB_RELEASE}
             SQL_USER: ${STRUCT_DB_RELEASE_USER}
             SQL_PASSWORD: ${STRUCT_DB_RELEASE_PWD}
-            SQL_PROVIDER: MySql.Data.MySqlClient
+            SQL_PROVIDER: MySqlConnector
             # Dissemination database configuration
             disseminationDbConnection__dbType: MySQL
             disseminationDbConnection__connectionString: Server=${MARIADB_SERVER_HOST};Database=${DATA_DB_RELEASE};User=${DATA_DB_RELEASE_USER};Password=${DATA_DB_RELEASE_PWD};
@@ -111,7 +111,7 @@ services:
             MailFrom: noreply@dlm.org
             MaxTextAttributeLength: 150
             DotStatSuiteCoreCommonDbConnectionString: Server=${MARIADB_SERVER_HOST};Database=${COMMON_DB};User=${COMMON_DB_RO_USER};Password=${COMMON_DB_RO_PWD};
-            DbType: MariaDb
+            DbType: "MariaDb"
             SpacesInternal__0__Id: demo-design
             SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=${MARIADB_SERVER_HOST};Database=${STRUCT_DB_DESIGN};User=${STRUCT_DB_DESIGN_USER};Password=${STRUCT_DB_DESIGN_PWD};
             SpacesInternal__0__DotStatSuiteCoreDataDbConnectionString: Server=${MARIADB_SERVER_HOST};Database=${DATA_DB_DESIGN};User=${DATA_DB_DESIGN_USER};Password=${DATA_DB_DESIGN_PWD};
@@ -229,7 +229,7 @@ services:
           - dotstat_network
 
     mariadb:
-        image: mariadb:10.9
+        image: mariadb:11.4.2
         container_name: mariadb
         environment:
             MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
