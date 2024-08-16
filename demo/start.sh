@@ -1,9 +1,35 @@
 #!/bin/bash
 
+# Set default value for DATABASE_TYPE
+DATABASE_TYPE="${DATABASE_TYPE:-SqlServer}"
+
+# Convert DATABASE_TYPE to lowercase for case insensitive comparison
+DATABASE_TYPE_LOWER=$(echo "$DATABASE_TYPE" | tr '[:upper:]' '[:lower:]')
+
+# Check if the command line parameter --useMariaDb is provided, case insensitive
+for arg in "$@"; do
+    arg_lower=$(echo "$arg" | tr '[:upper:]' '[:lower:]')
+    if [ "$arg_lower" == "--usemariadb" ]; then
+        DATABASE_TYPE_LOWER="mariadb"
+    else
+        HOST=$arg
+    fi
+done
+
+# Determine which Docker Compose file to use
+if [ "$DATABASE_TYPE_LOWER" == "mariadb" ]; then
+    DOTNET_COMPOSE_FILE="docker-compose-demo-dotnet-mariadb.yml"
+else
+    DOTNET_COMPOSE_FILE="docker-compose-demo-dotnet.yml"
+    DATABASE_TYPE_LOWER="sqlserver"
+fi
+
+echo "SQL Database type set to ["$DATABASE_TYPE_LOWER"]."
+
 ##################
 # Initialization #
 ##################
-HOST=$1
+####################### HOST=$1
 DIR_CONFIG='./config'
 #determine current OS
 CURRENT_OS=$(uname -s)
@@ -63,9 +89,9 @@ echo "Starting Keycloak services"
 #docker compose -f docker-compose-demo-keycloak.yml up -d --quiet-pull --pull always
 docker compose -f docker-compose-demo-keycloak.yml up -d --quiet-pull
 
-echo "Starting .Net services"
-#docker compose -f docker-compose-demo-dotnet.yml up -d --quiet-pull --pull always
-docker compose -f docker-compose-demo-dotnet.yml up -d --quiet-pull
+echo "Starting .Net services using" $DOTNET_COMPOSE_FILE
+#docker compose -f "$DOTNET_COMPOSE_FILE" up -d --quiet-pull --pull always
+docker compose -f "$DOTNET_COMPOSE_FILE" up -d --quiet-pull
 
 echo "Starting JS services"
 #docker compose -f docker-compose-demo-js.yml up -d --quiet-pull --pull always
