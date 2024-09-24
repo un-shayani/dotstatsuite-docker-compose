@@ -34,6 +34,7 @@ services:
             INSERT_NEW_ITEM_SCHEME_VALUES: "true"
             SENDER_ID: "demo-design-DotStatV8"
             enableReleaseManagement: "true"
+            excludeNonCodedDimensionsDuringConstraintCalculation: "true"
         depends_on:
           dbup-struct-design:
             condition: service_completed_successfully
@@ -76,6 +77,7 @@ services:
             INSERT_NEW_ITEM_SCHEME_VALUES: "false"
             SENDER_ID: "demo-release-DotStatV8"
             enableReleaseManagement: "true"
+            excludeNonCodedDimensionsDuringConstraintCalculation: "true"
         depends_on:
           dbup-struct-release:
             condition: service_completed_successfully
