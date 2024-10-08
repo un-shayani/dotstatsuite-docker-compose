@@ -14,12 +14,12 @@ services:
       - docker-entrypoint.sh
       - solr
       - start
-      - -c
-      - -f
-    volumes:
-      - solr-data:/var/solr
+      - --cloud
+      - -Dsolr.modules=analysis-extras
     networks:
       - loop_network
+    volumes:
+      - solr-data:/var/solr
 
   mongo:
     image: mongo:7.0.1

@@ -12,8 +12,8 @@ services:
       - docker-entrypoint.sh
       - solr
       - start
-      - -c
-      - -f
+      - --cloud
+      - -Dsolr.modules=analysis-extras
     ports:
       - ${SOLR_PORT}:8983
     volumes:
