@@ -112,6 +112,7 @@ services:
             SmtpUserPassword: ${SMTP_PASSWORD}
             MailFrom: noreply@dlm.org
             MaxTextAttributeLength: 150
+            ExcludeNonCodedDimensionsDuringConstraintCalculation: "true"
             DotStatSuiteCoreCommonDbConnectionString: Server=${MARIADB_SERVER_HOST};Database=${COMMON_DB};User=${COMMON_DB_RO_USER};Password=${COMMON_DB_RO_PWD};
             DbType: "MariaDb"
             SpacesInternal__0__Id: demo-design
