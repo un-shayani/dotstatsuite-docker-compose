@@ -12,8 +12,8 @@ services:
       - docker-entrypoint.sh
       - solr
       - start
-      - -c
-      - -f
+      - --cloud
+      - -Dsolr.modules=analysis-extras
     networks:
       - dotstat_network
     volumes:
