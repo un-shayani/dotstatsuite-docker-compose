@@ -14,6 +14,7 @@ services:
       - start
       - -c
       - -f
+      - -Dsolr.modules=analysis-extras
     ports:
       - ${SOLR_PORT}:8983
     volumes:
