@@ -15,6 +15,7 @@ services:
       - -c
       - -f
       - -Dsolr.modules=analysis-extras
+      - -Dsolr.max.booleanClauses=1024
     ports:
       - ${SOLR_PORT}:8983
     volumes:
