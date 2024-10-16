@@ -14,8 +14,10 @@ services:
       - docker-entrypoint.sh
       - solr
       - start
-      - --cloud
+      - -c
+      - -f
       - -Dsolr.modules=analysis-extras
+      - -Dsolr.max.booleanClauses=4096
     networks:
       - loop_network
     volumes:
