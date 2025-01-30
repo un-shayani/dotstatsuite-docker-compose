@@ -232,7 +232,7 @@ services:
           - dotstat_network
 
     mariadb:
-        image: mariadb:11.4.3
+        image: mariadb:11.4.4
         container_name: mariadb
         environment:
             MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
