@@ -116,17 +116,19 @@ services:
             SpacesInternal__0__Id: demo-design
             SpacesInternal__0__DotStatSuiteCoreStructDbConnectionString: Server=${SQL_SERVER_HOST};Database=${STRUCT_DB_DESIGN};User=${STRUCT_DB_DESIGN_USER};Password=${STRUCT_DB_DESIGN_PWD};TrustServerCertificate=True;
             SpacesInternal__0__DotStatSuiteCoreDataDbConnectionString: Server=${SQL_SERVER_HOST};Database=${DATA_DB_DESIGN};User=${DATA_DB_DESIGN_USER};Password=${DATA_DB_DESIGN_PWD};TrustServerCertificate=True;
-            SpacesInternal__0__DataImportTimeOutInMinutes: 2
-            SpacesInternal__0__DatabaseCommandTimeoutInSec: 60
+            SpacesInternal__0__DataImportTimeOutInMinutes: 20
+            SpacesInternal__0__DatabaseCommandTimeoutInSec: 1200
             SpacesInternal__0__AutoLog2DB: "true"
             SpacesInternal__0__AutoLog2DBLogLevel: "Notice"
+            SpacesInternal__0__OptimizedForHighPerformanceReads:
             SpacesInternal__1__Id: demo-release
             SpacesInternal__1__DotStatSuiteCoreStructDbConnectionString: Server=${SQL_SERVER_HOST};Database=${STRUCT_DB_RELEASE};User=${STRUCT_DB_RELEASE_USER};Password=${STRUCT_DB_RELEASE_PWD};TrustServerCertificate=True;
             SpacesInternal__1__DotStatSuiteCoreDataDbConnectionString: Server=${SQL_SERVER_HOST};Database=${DATA_DB_RELEASE};User=${DATA_DB_RELEASE_USER};Password=${DATA_DB_RELEASE_PWD};TrustServerCertificate=True;
-            SpacesInternal__1__DataImportTimeOutInMinutes: 2
-            SpacesInternal__1__DatabaseCommandTimeoutInSec: 60
+            SpacesInternal__1__DataImportTimeOutInMinutes: 20
+            SpacesInternal__1__DatabaseCommandTimeoutInSec: 1200
             SpacesInternal__1__AutoLog2DB: "true"
             SpacesInternal__1__AutoLog2DBLogLevel: "Notice"
+            SpacesInternal__1__OptimizedForHighPerformanceReads:
         volumes:
           - "./logs:/app/logs"
         ports:
@@ -225,8 +227,9 @@ services:
           - dotstat_network
 
     db:
-        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+        image: mcr.microsoft.com/mssql/server:2019-latest
         container_name: mssql
+        user: root
         ports:
           - "${SQL_PORT}:1433"
         environment:
@@ -234,7 +237,7 @@ services:
           - MSSQL_PID=Developer
           - ACCEPT_EULA=Y
         healthcheck:
-          test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P ${DB_SA_PASSWORD} -Q "SELECT 1" -b -o /dev/null
+          test: /opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P ${DB_SA_PASSWORD} -Q "SELECT 1" -b -o /dev/null
           interval: 10s
           timeout: 3s
           retries: 10
