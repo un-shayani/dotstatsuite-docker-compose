@@ -35,6 +35,8 @@ services:
             SENDER_ID: "demo-design-DotStatV8"
             enableReleaseManagement: "true"
             excludeNonCodedDimensionsDuringConstraintCalculation: "true"
+            maxNumberObservationsToSortForPaginatedRequests: 1000000
+            applyContentConstraintsOnDataQueries: "false"
         depends_on:
           dbup-struct-design:
             condition: service_completed_successfully
@@ -78,6 +80,8 @@ services:
             SENDER_ID: "demo-release-DotStatV8"
             enableReleaseManagement: "true"
             excludeNonCodedDimensionsDuringConstraintCalculation: "true"
+            maxNumberObservationsToSortForPaginatedRequests: 1000000
+            applyContentConstraintsOnDataQueries: "false"
         depends_on:
           dbup-struct-release:
             condition: service_completed_successfully
