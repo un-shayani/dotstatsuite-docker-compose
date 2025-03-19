@@ -27,7 +27,7 @@ services:
         SpacesInternal__0__OptimizedForHighPerformanceReads: true
         SpacesInternal__1__DataImportTimeOutInMinutes: 1440
         SpacesInternal__1__DatabaseCommandTimeoutInSec: 18000
-        SpacesInternal__0__OptimizedForHighPerformanceReads: true
+        SpacesInternal__1__OptimizedForHighPerformanceReads: true
       volumes:
         - "/mnt/k6_sql_volume/bind/temp:/app/temp"
         - "/mnt/k6_data_volume:/app/import"  
