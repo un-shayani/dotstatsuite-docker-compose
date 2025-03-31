@@ -1,0 +1,72 @@
+services:
+    
+    nsiws-demo-design:
+      environment:
+        applyContentConstraintsOnDataQueries: "false"
+      extends:
+        file: docker-compose-demo-dotnet.yml
+        service: nsiws-demo-design
+
+    nsiws-demo-release:
+      environment:
+        applyContentConstraintsOnDataQueries: "false"
+      extends:
+        file: docker-compose-demo-dotnet.yml
+        service: nsiws-demo-release
+
+    auth-service:
+      extends:
+        file: docker-compose-demo-dotnet.yml
+        service: auth-service
+
+    transfer-service:
+      environment:
+        TempFileDirectory: /app/temp
+        SpacesInternal__0__DataImportTimeOutInMinutes: 1440
+        SpacesInternal__0__DatabaseCommandTimeoutInSec: 18000
+        SpacesInternal__0__OptimizedForHighPerformanceReads: true
+        SpacesInternal__1__DataImportTimeOutInMinutes: 1440
+        SpacesInternal__1__DatabaseCommandTimeoutInSec: 18000
+        SpacesInternal__1__OptimizedForHighPerformanceReads: true
+      volumes:
+        - "/mnt/k6_sql_volume/bind/temp:/app/temp"
+        - "/mnt/k6_data_volume:/app/import"  
+      extends:
+        file: docker-compose-demo-dotnet.yml
+        service: transfer-service
+    
+    dbup-struct-design:
+      extends:
+        file: docker-compose-demo-dotnet.yml
+        service: dbup-struct-design
+        
+    dbup-data-design:
+      extends:
+        file: docker-compose-demo-dotnet.yml
+        service: dbup-data-design
+        
+    dbup-struct-release:
+      extends:
+        file: docker-compose-demo-dotnet.yml
+        service: dbup-struct-release
+        
+    dbup-data-release:
+      extends:
+        file: docker-compose-demo-dotnet.yml
+        service: dbup-data-release
+    
+    dbup-common:
+      extends:
+        file: docker-compose-demo-dotnet.yml
+        service: dbup-common
+        
+    db:
+      volumes:
+        - "/mnt/k6_sql_volume/bind/mssql:/var/opt/mssql/data"
+      extends:
+        file: docker-compose-demo-dotnet.yml
+        service: db
+
+networks:
+  dotstat_network:
+    name: dotstat_common_network 
